@@ -1037,6 +1037,9 @@ is,
  \item $\alpha^*=\alpha$, if $\alpha<\Omega$ is an $\varepsilon$-ordinal,
  \item $\alpha^*=\max\{\gamma^*,\delta^*\}$, if $\alpha=_\NF\omega^\gamma+\delta$.
 \end{enumerate}
+
+\emph{[Elaborate that the following is constructive.]}
+
 Define sets of ordinals $C_k(\alpha,\beta)$, and a function $\vartheta\colon\On\to\Omega$ by transfinite recursion on $\alpha\in\On$ as follows.
 \begin{itemize}
  \item [(C1)] $\{0,\Omega\}\cup\beta\subseteq C_k(\alpha,\beta)$,
@@ -1404,25 +1407,12 @@ The following observations are immediate consequences of the definition.
 
 %%%%%%%%%% Lower bound %%%%%%%%%%%%
 \subsection{Lower bounds on the proof-theoretic ordinal}\label{extsec:Fblower}
+
 We will now establish lower bounds for the theories $\HST_\beta$. This will be achieved by extending the well-ordering proofs used in our analysis of $\F$ (\cref{classsec:lowerbounds}) and $\theory S_3$ (\cref{extsec:S3lowerbd}). Recall $\kappa=\vartheta\varepsilon_{\Omega+1}$.
 
-% An analysis of the predicates $\wo_\xi$ for $\xi\le\beta$ is sufficient to
-% obtain a lower bound on the proof-theoretic strength of $\HST_\beta$.
-%
-% Let $\wo^{\Omega^\beta}(x)$ also denote $\wo_\beta(x)$. Then,
-% By induction on the normal form of ordinals $\rho<\Omega^\kappa$ we define the
-% predicate $\wo^\rho(x)$ representing iterations of the truth predicates to the
-% basic predicates $\wo_\eta$. Let $\wo^0(x)$ denote $\wo_0(x)$ and, if $\rho=_\NF\sigma+\Omega^\beta\cdot\alpha$,
-% define
-% \begin{align*}
-%  \wo^\rho(x)\equi\wo_\beta(x)\land\forall y\prec \alpha\,\T_\beta(\gn{\wo^{\sigma+\Omega^\delta\cdot y}(\dot x)})
-% \end{align*}
-% and denote by $B^\rho(x)$ the formula
-% \begin{align*}
-%  \forall \sigma\prec x(\wo^\rho(\sigma^*)\rightarrow\wo^\rho(\vartheta\sigma)).
-% \end{align*}
-% For completeness, we assume $B^0(x)$ denotes the formula $x=x$.
-% Let $G_0^\rho(x)$ denote the formula $\wo_0(\vartheta(\rho+x))$.
+[Remark that case distinctions below are all decidable]
+
+
 $\HST_0$ is identical to $\F$, for which an optimal lower bound was established
 in \cref{classlem:S2abcd}. However, because of the change in ordinal notation
 system and the reflective nature of the theories $\HST_\beta$ it will be useful
@@ -2134,8 +2124,9 @@ The lower bound on $\HST_\beta$ is an immediate consequence of the fact
 
 % \section{An infinitary proof system for theories with multiple inter-referential truth predicates.}
 \subsection{Upper bounds on the proof-theoretic ordinal}\label{extsec:Fbupper1}
-% {Upper bound on the proof-theoretic ordinal I.}
-% \label{extsec:Fbupper1}
+
+[Keep this about the classical theory.]
+
 We now move to the task of determining an upper bound on the strength of the theory
 $\HST_\beta$. The ultimate aim is to demonstrate that any arithmetical theorem of
 $\HST_\beta$ is derivable in the theory $\PA+\TI(\mathord<\delta)$ for a suitable
