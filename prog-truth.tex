@@ -19,13 +19,13 @@
 
 % TYPE-FACE
 \usepackage[T1]{fontenc}
-\usepackage[lining,p,mono=false]{libertine}
-\usepackage[libertine,nosymbolsc]{newtxmath}
-\usepackage[cal=rsfs]{mathalfa}
+\usepackage[osf]{newpxtext}
+\usepackage[nosymbolsc]{newpxmath}
+\usepackage[scr=boondox,cal=rsfs,frak=pxtx]{mathalfa}
 \useosf
-\let\emptyset\emptysetAlt
-\let\forall\forallAlt
-\let\exists\existsAlt
+%\let\emptyset\emptysetAlt
+%\let\forall\forallAlt
+%\let\exists\existsAlt
 
 % MISC
 \usepackage{mathtools}
@@ -37,7 +37,7 @@
 	right label template={\small \inserttext},
 	rule margin=.5ex,% default .7ex
 	rule separation=1pt,
-	separation=3ex,% default 1.5em
+	separation=2ex,% default 1.5em
 	label separation=.3ex,% default .5ex
 }
 %
@@ -61,7 +61,7 @@
 
 % Define environments
 \newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
+\newtheorem{lemma}{Lemma}[section]
 \newtheorem{proposition}[lemma]{Proposition}
 \newtheorem{corollary}[lemma]{Corollary}
 
@@ -86,8 +86,8 @@
 \NewDocumentCommand{\highlight}{O{blue}om}{\begingroup\small\textcolor{#1}{\IfValueT{#2}{\textsc{#2}\ }#3}\endgroup}
 \NewDocumentCommand{\note}{O{black}om}{\marginpar{\scriptsize\textcolor{#1}{\IfValueT{#2}{\textsc{#2}\ }#3}}}
 % personalise:
-\newcommand{\gelnote}[1]{\note[magenta][gel]{#1}}
-\newcommand{\gelhighlight}[1]{\highlight[magenta][gel]{#1}}
+\newcommand{\gelnote}[1]{\note[magenta]{#1}}
+\newcommand{\gelhighlight}[1]{\highlight[magenta]{#1}}
 %
 
 %++++++++++++++++++++++++++++++++++++++++
@@ -169,7 +169,7 @@ The ordinal analysis of \( \TT_\beta \) theories is derived from the analysis of
 Some arguments require changing to accommodate the intuitionistic base (T-elimination), and some have been streamlined (?).
 
 % ----------------------------------
-\section{From the thesis: Theories with multiple self-applicable truth predicates}
+\section{Theories with multiple self-applicable truth predicates --- material from the thesis}
 \label{chap:ext}
 % ----------------------------------
 
@@ -202,7 +202,7 @@ Since closure of $\F$ under $\lnot$T-Elim is vacuous, $\F$ and $\theory S_2$ are
 \begin{align*}%\label{eqn:S3ax5}
   \T(\gn{\lnot \T(\dot x)})\rightarrow \T(\dlnot x)
 \end{align*}
-as an axiom.\footnote{As the $\L_\T$-structure $\mathfrak{M}$ used in \cref{extthm:S3consistent} also satisfies the axiom $\T(\gn{\lnot \T(\dot x)})\rightarrow \T(\dlnot x)$, the extension of $\theory S_3$ obtained by adding this axiom is also consistent.} Still, the resulting theory cannot be closed under T-Intro, as one would like.
+as an axiom.\footnote{As the $\L_\T$-structure $\mathfrak{M}$ used in \cref{thm:S3consistent} also satisfies the axiom $\T(\gn{\lnot \T(\dot x)})\rightarrow \T(\dlnot x)$, the extension of $\theory S_3$ obtained by adding this axiom is also consistent.} Still, the resulting theory cannot be closed under T-Intro, as one would like.
 
 If one were to stratify the language, in much the same way as one would to form a Tarskian hierarchy of truth predicates, the problem can be circumvented. Recall $\F=\BaseT+\text{T-Intro}+\text{T-Elim}+\text{$\lnot$T-Elim}+\text{T-Del}+\text{$\forall$-Inf}$. Let $\HST_0$ denote $\F$ formulated with the predicate $\T_0$ in place of $\T$, and suppose $\T_1$ is a (new) unary predicate symbol. The theory formalising acceptance of $\HST_0$, which we shall denote by $\HST_1$, would then contain the following axioms
 \begin{gather}
@@ -214,8 +214,8 @@ If one were to stratify the language, in much the same way as one would to form 
   \T_1(\gn{\T_0(\dot x)})\rightarrow \T_1(x),\label{eqn:FFax4}\\
   \T_1(\gn{\lnot \T_0(\dot x)})\rightarrow \T_1(\dlnot x).\label{eqn:FFax5}
 \end{gather}
-\Cref{eqn:FFax1,eqn:FFax0} state the acceptance of all axioms of $\HST_0$ (logical and non-logical), whereas \cref{eqn:FFax2} formalises {\em modus ponens} in $\HST_0$. These three also combine to imply the axioms of $\theory{Base}_{\T_1}$. \Cref{eqn:FFax3,eqn:FFax4,eqn:FFax5} express the acceptance of the rules \Nec{0}, \Conec0 and
-$\lnot$\Conec0, respectively, in $\HST_0$, while \cref{eqn:FFaxw} closes the
+\eqref{eqn:FFax1,eqn:FFax0} state the acceptance of all axioms of $\HST_0$ (logical and non-logical), whereas \eqref{eqn:FFax2} formalises \emph{modus ponens} in $\HST_0$. These three also combine to imply the axioms of $\theory{Base}_{\T_1}$. \eqref{eqn:FFax3,eqn:FFax4,eqn:FFax5} express the acceptance of the rules \Nec{0}, \Conec0 and
+$\lnot$\Conec0, respectively, in $\HST_0$, while \eqref{eqn:FFaxw} closes the
 predicate under $\omega$-logic.
 
 The predicate $\T_1$ is viewed as an extension of the predicate $\T_0$ and as such
@@ -233,7 +233,7 @@ also the axioms of $\HST_0$ it is then easy to deduce
 % % On the other hand, since we are claiming to accept $\theory S_2$ we should
 % % consider adding the rules of inference \Conec{1} ensuring $\theory S_2$ is a
 % % subset of the final theory we construct.
-% With \Conec{1} present, \cref{eqn:F1reflection} commits $\HST_1$ to being
+% With \Conec{1} present, \eqref{eqn:F1reflection} commits $\HST_1$ to being
 % formulated with both predicates $\T_0$ and $\T_1$ (as opposed to $\T_0$ occurring
 % only in the scope of $\T_1$). Finally, we argued that $\theory S_3$
 % did not fulfil our intuitive understanding of acceptance as it could not be
@@ -264,8 +264,8 @@ Since
 \Nec{1} may apply to arbitrary sentences in $\L_{\T_0,\T_1}$, the question
 of whether or not $\T_0$ can meaningfully apply to sentences containing $\T_1$
 is essentially decided by how we restrict the quantifiers in
-\cref{eqn:FFax2,eqn:FFax3,eqn:FFax4,eqn:FFax5,eqn:FFaxw} (in
-particular \cref{eqn:FFax3} pertaining to \Nec{0}) for inclusion in
+\eqref{eqn:FFax2,eqn:FFax3,eqn:FFax4,eqn:FFax5,eqn:FFaxw} (in
+particular \eqref{eqn:FFax3} pertaining to \Nec{0}) for inclusion in
 $\HST_1$: if we restrict them to range over only codes of $\L_{\T_0}$-sentences we
 will have no non-trivial occurrences of this inter-applicability.
 
@@ -297,12 +297,12 @@ This provides, for example,
 \begin{align*}
   \forall x[\T_1(\gn{\T_1(\dot x)})\equi \T_1(\gn{\T_0(\gn{\T_1(\dot x)})})],
 \end{align*}
-which, by \Nec{1} and \cref{eqn:F1reflection}, yields
+which, by \Nec{1} and \eqref{eqn:F1reflection}, yields
 $\T_0(\gn{\T_1(\gn A)})$ for every theorem $A$ of $\HST_0$. Thus our informal
 interpretation leads us to the curious situation where we have two
 self-applicable predicates $\T_0$, $\T_1$ which may also be applied to each other.
 
-If, on the other hand, we had considered relativising the quantifiers as in \cref{eqn:T0relative},
+If, on the other hand, we had considered relativising the quantifiers as in \eqref{eqn:T0relative},
 $\T_1$ may apply to the language $\L_{\T_0,\T_1}$ whereas $\T_0$ may only
 meaningfully apply to $\L_{\T_0}$ and one would obtain the base of a strict
 hierarchy of self-applicable truth predicates. In this case we can no longer
@@ -310,7 +310,7 @@ argue that $\T_0$ represents a truth predicate for the whole language but only o
 the sub-language $\L_{\T_0}$. The reason for choosing a self-applicable
 notion of truth in the first place was that it may be treated as a truth
 predicate for the entire language, including any subsequent extension. Thus,
-$\T_0$ {\em should} be applicable to sentences involving the predicate $\T_1$ and
+$\T_0$ \emph{should} be applicable to sentences involving the predicate $\T_1$ and
 we find ourselves returning to the world of two inter-applicable truth
 predicates.
 
@@ -319,7 +319,7 @@ closed under \Conec0 and $\lnot$\Conec0 while the interpretation of
 $\T_1$ should be closed under \Nec{0}, \Conec0, $\lnot$\Conec0,
 \Conec{1} and $\lnot$\Conec{1}. However, we desire $\T_1$ to be
 viewed as an extension of $\T_0$ so as to allow for closure of $\HST_1$ under a
-form of {\em truth introduction} and this fact should be recognised by the
+form of \emph{truth introduction} and this fact should be recognised by the
 theory. That is, from the point of view of the theory $\HST_1$, there should be no
 essential difference between the predicates $\T_0$ and $\T_1$. Thus we propose to
 also include the principle
@@ -327,11 +327,11 @@ also include the principle
   \T_0(\gn{\T_1(\dot x)})\rightarrow \T_0(x)
 \end{gather}
 as an axiom of $\HST_1$ (in fact as an axiom of $\HST_0$).
-\Cref{eqn:T1Del} expresses that the interpretation of $\T_0$ is closed under
+\eqref{eqn:T1Del} expresses that the interpretation of $\T_0$ is closed under
 the rule \Conec{1}. This is vacuously valid in the theory $\HST_0$. It also
 serves to confirm the inter-applicability of the two predicates by allowing
 meaningful inferences regarding $\T_1$ under a $\T_0$ predicate. If we accept
-\cref{eqn:T1Del} we should also accept $\T_0(\gn{\lnot \T_1(\dot x)})\rightarrow
+\eqref{eqn:T1Del} we should also accept $\T_0(\gn{\lnot \T_1(\dot x)})\rightarrow
 \T_0(\dlnot x)$, but as we shall see, this axiom will be trivially satisfied by
 our model.
 
@@ -364,7 +364,7 @@ a hierarchy, although not, perhaps, in a manner one might first imagine.}
 The description of $\HST_1$ and $\HST_2$ presented above is purely motivational and requires making
 explicit, which the next definition achieves.
 As we pass beyond finite iterations and consider the construction of theories
-$\HST_\omega$, $\HST_{\varepsilon_0}$, {\em etc.},  one requires the ability
+$\HST_\omega$, $\HST_{\varepsilon_0}$, \emph{etc.},  one requires the ability
 to internally quantify over the indices of truth predicates in the language. We
 therefore need to fix some computable ordinal $\kappa$ from the outset and only
 consider iterating the construction up to ordinals $\alpha<\kappa$. In fact to
@@ -372,7 +372,7 @@ maintain as much similarity with our previous work as possible ({for
 example to ensure a primitive recursive Gödel numbering}) we will insist $\kappa$ is
 primitive recursively definable. One could consider taking $\kappa=\Gamma_0$ and
 utilising the encoding chosen in \cref{chap:fsclass}, but as we shall see
-$\pto{\theory F_1}\ge\Gamma_0$ (see \cref{extcor:F1lowerbound} below) and so we will
+$\pto{\theory F_1}\ge\Gamma_0$ (see \cref{cor:F1lowerbound} below) and so we will
 require the construction of a larger class of ordinals to perform a sufficient
 proof-theoretic analysis. Suitable choices for $\kappa$ will ultimately depend on our
 analysis and have no substantial role in defining the theories. Since the
@@ -436,21 +436,21 @@ $\theory S_3$. As a result it may not be surprising to know that $\HST_1$ is
 consistent and in fact $\HST_1^1$ proves the same arithmetical statements as the
 theory $\theory S_3$. Unfortunately we do not at this time have the suitable
 machinery to prove their equivalence ({this will have to wait until
-\cref{extsec:conc}}), but the
+\cref{sec:conc}}), but the
 following remark should motivate the connection.
 
 
-\begin{remark}\label{extrem:S3} It is natural to first consider embedding
+\begin{remark}\label{rem:S3} It is natural to first consider embedding
 $\HST_1^1$ into $\theory S_3$. As the predicate $\T_1$ can be interpreted vacuously
 in $\HST_1^0$ (as can $\T_0$), one may expect the interpretation given by
 \begin{align*}
- \T_1(s)^*=\T_0(s)^*= \T(g(s))
+ \T_1 s^*=\T_0 s^*= \T(g s)
 \end{align*}
 to suffice, where $g$ is a primitive recursive function chosen, by the primitive recursion theorem, such that
 \begin{align*}
  g(x)&=x, \text{ if $x$ is the code of an arithmetical literal},\\
- g(\gn{\T_1(s)})&=\gn{s\neq s},\\
- g(\gn{\T_0(s)})&=\gn{\T(g(s))},\\
+ g(\gn{\T_1 s})&=\gn{s\neq s},\\
+ g(\gn{\T_0 s})&=\gn{\T(g s)},\\
  g(\gn{A\mathbin\circ B})&=g(\gn A)\mathbin{\subdot\circ} g(\gn B), \text{for $\circ\in\{\land,\lor\}$}\\
  g(\gn{QxA(x)})&=\dfa x\, g(\gn{A(x)}).
 \end{align*}
@@ -461,10 +461,10 @@ and \Rep{1} of $\HST_1$ to the axioms T-Del, $\forall$-Inf and T-Rep
 respectively of $\theory S_3$. Since $\theory S_3$ does not have the axiom
 $\lnot$T-Del (nor can we expect to derive it in $\theory S_3$) one cannot derive
 the translation of $\lnot$\Del{1} from $\HST_1^1$. Fortunately, the model
-construction of \cref{extsec:S3consis} can easily incorporate the additional
+construction of \cref{sec:S3consis} can easily incorporate the additional
 axiom $\lnot$T-Del and rule $\lnot$T-Elim with minimal adjustments: one
 may consistently add the rule pertaining to $\lnot$T-Del to each of the theories
-$\FF_\alpha$ and expand \cref{extlem:FF1TElim} to also prove $\FF_\alpha\proves\lnot
+$\FF_\alpha$ and expand \cref{lem:FF1TElim} to also prove $\FF_\alpha\proves\lnot
 \T(\gn A)$ implies $\FF_\alpha\proves\lnot A$, thus showing $\theory
 S_3+\text{$\lnot$T-Del}+\text{$\lnot$T-Elim}$ is a consistent theory.
 
@@ -495,10 +495,10 @@ way to proceed would appear to involve replacing the outermost predicate by
 $\T_1$ and all others by $\T_0$, thus mapping the axioms $\T(\gn{\text{T-Imp}})$,
 $\T(\gn{\text{$\forall$-Inf}})$ and $\T(\gn{\text{T-Del}})$ of $\theory S_3$ to
 theorems of $\HST_1^1$. This could be achieved by picking a primitive recursive
-function $f$ which recursively substitutes $\T_0(f(s))$ for $\T(s)$, and considering
+function $f$ which recursively substitutes $\T_0(f s)$ for $\T s$, and considering
 the interpretation $^*$ of $\L_\T$ into $\L_1$ given by
 \begin{align*}
- (\T(s))^*=\T_1(f(s)).
+ (\T s)^*=\T_1(f s).
 \end{align*}
 This interpretation maps the axioms $\forall$-Inf, T-Imp, T-Del and
 T-Rep by instances of axioms \Uni{1}, \textT1-Imp, \Del{1} and
@@ -510,25 +510,25 @@ readily recognise as holding in $\HST_1$.
 We now move to the task of proving the consistency of $\HST_\beta$ for arbitrary
 $\beta$. This will be obtained by generalising the consistency argument for
 $\theory S_3$ to theories with multiple predicates and is presented in
-\cref{extsec:Fbconsis} below. Following this we will perform a detailed ordinal
+\cref{sec:Fbconsis} below. Following this we will perform a detailed ordinal
 analysis of these theories, first determining lower bounds on their
 proof-theoretic strength, and second upper bounds. Lower bounds on the strength
-of the theories $\HST_\beta$ will be obtained in \cref{extsec:Fblower} by
+of the theories $\HST_\beta$ will be obtained in \cref{sec:Fblower} by
 extending the well-ordering results previously established for $\theory S_2$ and
-$\theory S_3$. Upper bounds are determined in \cref{extsec:Fbupper1} where we
-attempt to directly formalise the model constructions of \cref{extsec:Fbconsis}
+$\theory S_3$. Upper bounds are determined in \cref{sec:Fbupper1} where we
+attempt to directly formalise the model constructions of \cref{sec:Fbconsis}
 in a manner similar to our analysis of $\F$. However, much care will be required when
 dealing with a hierarchy of truth predicates and the transfinite iterations of
 T-Intro caused by the interaction between axioms \Uni\eta and \Rep\eta.
 % The bounds obtained,
-% however, will not be optimal and in \cref{extsec:Fbupper2} we modify the
+% however, will not be optimal and in \cref{sec:Fbupper2} we modify the
 % analysis obtaining optimal bounds. Lower bounds on the strength of the theories
-% $\HST_\beta$ will be determined in \cref{extsec:Fblower} by extending the
+% $\HST_\beta$ will be determined in \cref{sec:Fblower} by extending the
 % well-ordering previously results established for $\theory S_2$ and $\theory
 % S_3$.
 
 The axiom \Del\eta implies the interpretation of the predicate $\T_\eta$ is closed under \textT\xi-Elim for every $\xi\le\eta$. Likewise \Rep\eta implies $\T_\eta$ is closed under \textT\xi-Intro for each $\xi<\eta$. From this observation we may deduce the following proposition, in which $\Prov_\eta$ abbreviates the formalised provability predicate for $\HST_\eta$.
-\begin{proposition}\label{extprop:FFreflec}
+\begin{proposition}\label{prop:FFreflec}
  For every $\eta<\beta$, $\HST_\beta$ is closed under \Nec\eta and \Conec\eta. Moreover, \[\HST_\beta^1\proves \forall x( \Prov_{\eta}(x)\land\Sent_{\L_\eta}(x)\rightarrow \T_\beta(x)).\]
 \end{proposition}
 \begin{proof}
@@ -539,7 +539,7 @@ All axioms of $\HST_\eta$ are axioms of $\HST_\beta^0$, and by \Nec\beta we have
 where $\set{Ax}_\eta(x)$ expresses that $x$ is a sentential axiom of $\HST_\eta$.
 To complete the proof, we observe that $\HST_\beta^1$ has the axioms
 \Imp\beta, \Del\beta, T$_\beta^-$-Rep and $\lnot$\Del\beta
-formalising applications of {\em modus ponens}, \Conec\eta, \Nec\eta and $\lnot$\Conec\eta respectively in $\HST_\eta$.
+formalising applications of \emph{modus ponens}, \Conec\eta, \Nec\eta and $\lnot$\Conec\eta respectively in $\HST_\eta$.
 \end{proof}
 
 % $\HST_0$ is the same as the theory $\F$: by renaming all instances of the
@@ -553,7 +553,7 @@ formalising applications of {\em modus ponens}, \Conec\eta, \Nec\eta and $\lnot$
 % idea of iterating the ``operation induced by $\F$''. For example $\forall x,
 % y(\T(x)\land \T(x\dimplies y)\rightarrow  \T(y))$ can bee seens as formalising the
 % closure
-% of $\PRA$ (formulated in the language including $\T$) under {\em modus ponens};
+% of $\PRA$ (formulated in the language including $\T$) under \emph{modus ponens};
 % thus $\F(\PRA)$ should be recognised as $\F$, as should $\HST_0$. In this sense,
 % it is also not difficult to see $\HST_{\beta+1}$ as intertranslatable with
 % $\F(\HST_\beta)$: (\ref{ax:del}) and (\ref{ax:rep}) correspond to
@@ -575,7 +575,7 @@ formalising applications of {\em modus ponens}, \Conec\eta, \Nec\eta and $\lnot$
 %   \end{enumerate}
 % \end{remark}
 % \subsection{Ordinals}
-\subsection{Consistency}\label{extsec:Fbconsis}
+\section{Consistency}\label{sec:Fbconsis}
 At first glance the theory $\HST_\beta$ could easily look suspect, after all it
 contains \Del\eta, \Conec\eta, \Nec\eta and an axiom that appears
 extremely close to \textT\eta-Rep, for each $\eta\le\beta$.
@@ -588,7 +588,7 @@ $\F$ one might expect that if $\HST_\beta$ is consistent, models of $\HST_\beta$
 may be constructed by extending models
 of $\F$. This is indeed the case; moreover, the extension we defined for
 establishing the consistency of $\theory S_3$ makes a suitable base from which to start the construction. We will only sketch the consistency argument as it will be subsumed
-by our work in \cref{extsec:Fbupper1} where we determine an upper bound on the
+by our work in \cref{sec:Fbupper1} where we determine an upper bound on the
 proof-theoretic strength of $\HST_\beta$.
 
 % Recall that by $\kappa$ we denote the Howard-Bachmann ordinal
@@ -605,88 +605,96 @@ Suppose
  with $\alpha_0>\dots>\alpha_n$ and $\beta_i<\Omega$ for each $i\le n$. We denote by $\rho|_\gamma$ the ordinal
 $\Omega^{\alpha_0}\cdot\beta_0+\cdots+\Omega^{\alpha_k}\cdot\beta_k$ where $k<n$
 is the least such that $\alpha_k>\gamma\ge\alpha_{k+1}$, or $k=n$ if
-$\alpha_n>\gamma$. An ordinal $\rho$ is called an {\em $\Omega$-limit} if $\rho=\rho_0+\Omega^\eta\cdot\alpha$ and either $\alpha$ or $\eta$ is a
+$\alpha_n>\gamma$. An ordinal $\rho$ is called an \emph{$\Omega$-limit} if $\rho=\rho_0+\Omega^\eta\cdot\alpha$ and either $\alpha$ or $\eta$ is a
 limit ordinal.
 % Whether or not an ordinal $\rho$ is an $\Omega$-limit will be key as to
 % when we are dealing with a theory $\FF_{<\rho}^*$ closed under $\omega$-logic.
 
-Define a system $\FF^*_\rho$ for $\rho\in\On$, formulated in a Tait-style
-sequent calculus in the language $\L_\kappa$. The system has three axioms.
+\begin{definition}[Sequent]
+	Let \( \kappa \in \On \) be fixed. 
+	A (\( \kappa \)-)sequent is an expression \( \Gamma \sa A \) where \( \Gamma \cup \{ A \} \) is a finite of sentences of \( \L_\kappa \).
+\end{definition}
+
+\begin{definition}[Semiformal calculus]
+For each $\rho\in\On$, a Tait-style sequent calculus \( \proves_\rho \) is introduced for \( \kappa \)-sequents, defined by the following rules.\gelhighlight{One- or two-sided?}
 \begin{itemize}
- \item Ax.1. $\FF^*_\rho\proves\Gamma \sa A$ whenever $A$ is a true atomic literal,
- \item Ax.2$_\eta$. $\FF^*_\rho\proves \T_\eta s , \Gamma \sa \T_\eta s$ for every closed term $s$ and $\eta<\kappa$,
- \item Ax.3$_\eta$. $\FF^*_\rho\proves \T_\eta s , \Gamma\sa A$ if $s^\N$ is not the code of an $\L_\kappa$-sentence.
-\end{itemize}
-The rules of this system are the usual arithmetical rules ($\land$), ($\lor_0$), ($\lor_1$) and ($\exists$), plus the following six rules for every $\eta<\kappa$.
-\begin{itemize}
-\item %[\normalfont(\Imp\eta)]
+ \item Ax.1. $\proves_\rho \Gamma \sa A$ whenever $A$ is a true atomic literal,
+ \item Ax.2$_\eta$. $\proves_\rho  \Gamma , \T_\eta s \sa \T_\eta s$ for every closed term $s$ and $\eta<\kappa$,
+ \item Ax.3$_\eta$. $\proves_\rho  \Gamma , \T_\eta s \sa A$ if $s^\N$ is not the code of an $\L_\kappa$-sentence.
+ \item The usual arithmetical rules for $\land$, $\lor$ and $\exists$, 
+\item The $\omega$ rule: 
 	\begin{prooftree}
-	\hypo{\FF^*_\rho\proves\Gamma \sa \T_\eta s }
-	\hypo{\FF^*_\rho\proves\Gamma \sa \T_\eta({s \dimplies t})}
-	\infer2[\Imp{\eta}]{\FF^*_\rho\proves \Gamma \sa \T_\eta t}
+	\hypo{\proves_\rho \Gamma \sa A(\nm n) \quad \text{for every } n < \omega }
+	\infer1[$\omega$]{\proves_\rho  \Gamma \sa \forall xA(x)}
   \end{prooftree}
-\item %[\normalfont(T-Del)]
+ \item The following six rules for every $\eta<\kappa$.
+ \begin{itemize}
+\item [\normalfont\Imp\eta]
 	\begin{prooftree}
-	\hypo{\FF^*_\rho\proves\Gamma \sa \T_\eta (\gn{\T_\xi s})}
+	\hypo{\proves_\rho \Gamma \sa \T_\eta s }
+	\hypo{\proves_\rho \Gamma \sa \T_\eta({s \dimplies t})}
+	\infer2[\Imp{\eta}]{\proves_\rho  \Gamma \sa \T_\eta t}
+  \end{prooftree}
+\item [\normalfont\Del\eta]
+	\begin{prooftree}
+	\hypo{\proves_\rho \Gamma \sa \T_\eta (\gn{\T_\xi s})}
 	\hypo{\xi < \beta}
-	\infer2[\Del{\eta}]{\FF^*_\rho\proves \Gamma \sa \T_\eta s}
+	\infer2[\Del{\eta}]{\proves_\rho  \Gamma \sa \T_\eta s}
   \end{prooftree}
-\item %[\normalfont(T-Rep)]
+\item [\normalfont \Rep\eta]
 	\begin{prooftree}
-	\hypo{\FF^*_\rho\proves\Gamma \sa \T_\eta s }
+	\hypo{\proves_\rho \Gamma \sa \T_\eta s }
 	\hypo{\xi < \eta }
-	\infer2[\Rep{\eta}]{\FF^*_\rho\proves\Gamma \sa \T_\eta (\gn{\T_\xi s})}
+	\infer2[\Rep{\eta}]{\proves_\rho \Gamma \sa \T_\eta (\gn{\T_\xi s})}
   \end{prooftree}
-\item %[\normalfont(T-Intro)]
+\item [\normalfont \Nec\eta]
 	\begin{prooftree}
-	\hypo{\FF^*_\sigma\proves \Gamma \sa A}
+	\hypo{\proves_\sigma  \Gamma \sa A }
 		\hypo{\sigma < \rho |_\eta }
-	\infer2[\Nec{\eta}]{\FF^*_\rho\proves \Delta , \T_\eta \gn\Gamma \sa \T_\eta \gn A }
+	\infer2[\Nec{\eta}]{\proves_\rho  \Delta , \T_\eta \gn\Gamma \sa \T_\eta \gn A }
   \end{prooftree}
-\item %[\normalfont($\forall$-Inf)]
+\item [\normalfont\Uni\eta]
 	\begin{prooftree}
-	\hypo{\FF^*_\rho\proves \Gamma \sa  \T_\eta \gn{A(\nm n)} \text{ for all \( n \)}}
+	\hypo{\proves_\rho  \Gamma \sa  \T_\eta \gn{A(\nm n)} \text{ for all \( n \)}}
 	\hypo{\rho |_\eta \text{ not an $\Omega$-limit}}
-	\infer2[\Uni{\eta}]{\FF^*_\rho\proves \Gamma \sa \T_\eta \gn{\forall xA(x)} }
+	\infer2[\Uni{\eta}]{\proves_\rho  \Gamma \sa \T_\eta \gn{\forall xA(x)} }
   \end{prooftree}
-\item %[\normalfont($\omega$)]
-	\begin{prooftree}
-	\hypo{\FF^*_\rho\proves\Gamma \sa A(\nm n) \quad \text{for every } n \in \N }
-	\infer1[$\omega$]{\FF^*_\rho\proves \Gamma \sa \forall xA(x)}
-  \end{prooftree}
+  \end{itemize}
 \end{itemize}
-Moreover, for each $\rho$ define the set of (codes of) $\L_\kappa$-sentences
+\end{definition}
+Moreover, for each $\rho$ define the set of $\L_\kappa$-sentences
 \begin{align*}
-	\FF^*_{<\rho}=\{\gn A:\FF^*_\sigma\proves  \sa A\text{ for some $\sigma<\rho$}\}.
+	\FF_{<\rho}=\{ A:{}\proves_\sigma  {} \sa A\text{ for some $\sigma<\rho$}\}.
 \end{align*}
 
 Before we proceed with analysing the role of the truth predicates in
-$\FF^*_\rho$, it is important to note that a rule of {\em modus ponens}, or cut
-is lacking from our definition. However, it is not hard to show the cut rule is,
-in fact, admissible in $\FF^*_\rho$: a derivation of
-the form $\Gamma,\lnot \T_\eta(s)$ with $\lnot\T_\eta(s)$ active {\em must} be an
-instance of an axiom, hence if one has derivations of $\Gamma,\lnot \T_\eta(s)$
-and $\Gamma,\T_\eta(s)$ one can easily obtain instead a derivation of $\Gamma$.
-This argument is essentially identical to that employed in the Cut-Elimination
-theorem for $\Finfty$, \cref{classthm:F8CutElim}.
-\begin{lemma}[Admissibility of cut]\label{extthm:FFCutElim}
- Suppose $\eta<\kappa$, $\FF^*_\rho\proves\Gamma \sa \T_\eta s $, and $\FF^*_\rho\proves\Delta,
-  \T_\eta s  \sa A $ for some ordinal $\rho$. Then $\FF^*_\rho\proves\Gamma,\Delta \sa A$.
+$\FF_\rho$, it is important to note that a rule of \emph{modus ponens}, or cut
+is lacking from our definition. However, it is not hard to show the cut rule is
+admissible: a derivation of
+the form $ \T_\eta s , \Gamma \sa A $ with $ \T_\eta s$ principal \emph{must} be an
+instance of an axiom, hence given derivations of $ \T_\eta s , \Gamma \sa A $
+and $\Delta \sa \T_\eta s $ one can easily obtain instead a derivation of $\Gamma$.
+This argument is essentially identical to that employed in the Cut Elimination
+theorem in \cite{LeiRat10} for the analysis of the theory $\F$ (see \cite[Thm.~3.7]{LeiRat10}).
+\begin{lemma}[Admissibility of cut]\label{thm:FFCutElim}
+	Suppose $\proves_\rho \Gamma \sa \T_\eta s $, and $\proves_\rho \Delta,
+  \T_\eta s  \sa A $. Then $\proves_\rho \Gamma,\Delta \sa A$.
 \end{lemma}
 
-If $\alpha<\Omega$, $\alpha|_0=0$ and so no applications the rule \Nec\eta is not available in $\FF^*_\alpha$ for any $\eta$. Thus, $\FF^*_{\mathord<\Omega}$ is trivially closed under \Conec\eta for every $\eta$. Moreover, for every
-$\alpha<\Omega$, only applications of \Nec{0} have been permitted in $\FF^*_{\Omega\cdot\alpha}$. Thus, we can
-establish by induction on $n<\omega$ that the predicate $\T_0$ in $\FF^*_{\Omega\cdot n}$ may be interpreted as the
-theory $\FF^*_{<\Omega\cdot n}$ and that $\FF^*_{\Omega\cdot n}$ is closed under \Conec0 (this is identical to the argument showing $\Finfty\prov\alpha {n+1}{\T(\gn A)}$ for some $\alpha$ implies $\Finfty\prov\beta n A$ for some $\beta$). Since all other truth
-predicates in $\FF^*_{\Omega\cdot n}$ may be interpreted vacuously, we conclude $\FF^*_{\Omega\cdot n}$ is closed under
+If $\rho<\Omega$, then $\rho|_0=0$ and so no applications the rule \Nec\eta{} is available in $\proves_\rho $ for any $\eta$. 
+Thus, $\FF_{\mathord<\Omega}$ is trivially closed under \Conec\eta{} for every $\eta$. \gelhighlight{Simple but not `trivial'}
+Moreover, for every
+$\rho<\Omega$, only applications of \Nec{0} have been permitted in $\proves_{\Omega\cdot\rho}$. Thus, we can
+establish by induction on $n<\omega$ that in derivations in $\proves_{\Omega\cdot n}$ the predicate $\T_0$ may be interpreted by the $\FF_{<\Omega\cdot n}$ which happens to be closed under \Conec0.
+Since all other truth predicates that can occur in $\proves_{\Omega\cdot n}$-derivable sequents may be interpreted vacuously, we conclude $\proves_{\Omega\cdot n}$ is closed under
 \Conec\eta\ for every $\eta<\kappa$. 
 Hence $\HST_0^n$ may be interpreted
-in $\FF^*_{\Omega\cdot n}$.
+in $\FF_{\Omega\cdot n}$.
 
-This suggests that for $n<\omega$, $\FF^*_{\Omega\cdot n}$, like $\FF_n$, reconstructs
+This suggests that for $n<\omega$, $\FF_{\Omega\cdot n}$, like $\FF_n$, reconstructs
 the theories $\Th_n$ used by Friedman and Sheard to prove the consistency of
 $\F$. At the first limit ordinal,
-we obtain $\FF^*_{<\Omega\cdot\omega}$, a set of $\L_\kappa$-sentences closed under
+we obtain $\FF_{<\Omega\cdot\omega}$, a set of $\L_\kappa$-sentences closed under
 \Nec{0} and \Conec0, and containing \Del{0}, \Rep{0} (which holds vacuously) and all other axioms of $\HST_0$.
 
 To proceed with the analysis of $\HST_1$, we first consider $\HST_1^0$ which, without
@@ -697,111 +705,111 @@ under $\omega$-logic (due to \Uni{1}), \Nec{0} (due to \Rep{1}),
 \Conec0 and \Conec{1} (due to \Del{1}). Moreover, we need to find an interpretation of $\T_0$ closed under $\omega$-logic, \Conec0, and now also \Conec{1} (as
 implied by the axiom \Del{0}). The properties we established for the set
 $\FF_{<\Omega}$
-in \cref{extsec:S3consis} motivate us to consider $\FF^*_{<\Omega^2}$, a set
+in \cref{sec:S3consis} motivate us to consider $\FF_{<\Omega^2}$, a set
 closed under \Nec{0}, \Conec0 and, by a
-similar argument as before, $\omega$-logic ({{\em cf.}~the proof of
-\cref{extthm:S3consistent}}). For every $\alpha<\Omega$, the predicate
-$\T_1$ may be interpreted vacuously in $\FF^*_{<\Omega\cdot\alpha}$, so
-$\FF^*_{<\Omega^2}$ is also closed under \Conec{1}. Thus $\FF^*_{<\Omega^2}$
+similar argument as before, $\omega$-logic ({\emph{cf.}~the proof of
+\cref{thm:S3consistent}}). For every $\alpha<\Omega$, the predicate
+$\T_1$ may be interpreted vacuously in $\FF_{<\Omega\cdot\alpha}$, so
+$\FF_{<\Omega^2}$ is also closed under \Conec{1}. Thus $\FF_{<\Omega^2}$
 provides a consistent interpretation of both predicates $\T_0$ and $\T_1$ in
 $\HST_1^1$.
 
 The next step is to consider $\T_1$ in $\HST_1^2$. Two applications of
 \Nec{1} are permitted and one can derive sentences of the form $\T_1(\gn{\T_1(\gn A)})$
 whenever $\HST_1^0\proves A$,  suggesting a
-shift to $\FF^*_{\Omega^2}$, where one can derive $\T_1(\gn A)$ whenever
-$A\in\FF^*_{<\Omega^2}$, might yield a suitable interpretation for $\T_1$. However,
-$\FF^*_{\Omega^2}$ is not closed under \Nec{0} (only the systems
-$\FF^*_{<\rho+\Omega\cdot \sigma}$ for limit ordinals $\sigma$ are), leading us instead to consider
-$\FF^*_{<\Omega^2+\Omega\cdot\omega}$ which is closed under \Nec{0}, but not
-$\omega$-logic; there will be sentences $A\in\FF^*_{<\Omega^2}$ for which
-$\FF^*_{\Omega^2+\Omega\cdot n}\proves \T_0(f(n,\gn A))$ for each $n<\omega$, where
+shift to $\FF_{\Omega^2}$, where one can derive $\T_1(\gn A)$ whenever
+$A\in\FF_{<\Omega^2}$, might yield a suitable interpretation for $\T_1$. However,
+$\FF_{\Omega^2}$ is not closed under \Nec{0} (only the systems
+$\FF_{<\rho+\Omega\cdot \sigma}$ for limit ordinals $\sigma$ are), leading us instead to consider
+$\FF_{<\Omega^2+\Omega\cdot\omega}$ which is closed under \Nec{0}, but not
+$\omega$-logic; there will be sentences $A\in\FF_{<\Omega^2}$ for which
+$\FF_{\Omega^2+\Omega\cdot n}\proves \T_0(f(n,\gn A))$ for each $n<\omega$, where
 $f(0,n)=\gn{\bar n}$ and $f(m+1,n)=\gn{\T_0({f(m,n)})}$, but the sentence $\forall x\,
-\T_0(f(x,\gn A)$ is not contained in $\FF^*_{<\Omega^2+\Omega\cdot\omega}$. Indeed to obtain
+\T_0(f(x,\gn A)$ is not contained in $\FF_{<\Omega^2+\Omega\cdot\omega}$. Indeed to obtain
 both closure under $\omega$-logic and \Nec{0} we must move to the theory
-$\FF^*_{<\Omega^2\cdot2}$. We also require the interpretation to be closed under
+$\FF_{<\Omega^2\cdot2}$. We also require the interpretation to be closed under
 \Conec0. To manage this we repeat the same argument as before, but starting
-from $\FF^*_{\Omega^2}$ in place of $\FF^*_{\Omega}$. We know $\FF^*_{\Omega^2}$ is closed
+from $\FF_{\Omega^2}$ in place of $\FF_{\Omega}$. We know $\FF_{\Omega^2}$ is closed
 under \Conec0 since the predicate $\T_0$ can be consistently interpreted
-as the set $\FF^*_{<\Omega^2}$. This leads us to successively deduce the theories
-$\FF^*_{\Omega^2+\Omega\cdot n}$ are closed under \Conec0 for each
-$n<\omega$. Note, we can still interpret $\T_1$ in $\FF^*_{\Omega^2+\Omega\cdot n}$ by the set
-$\FF^*_{<\Omega^2}$  as there has been no further
-applications of \Nec{1}. In $\FF^*_{\Omega^2+\Omega\cdot \omega}$ we aim to interpret
-$\T_0$ by $\FF^*_{<\Omega^2+\Omega\cdot \omega}$, which unlike $\FF^*_{\Omega^2+\Omega\cdot n}$ is not closed
-under $\omega$-logic; however, $\FF^*_{\Omega^2+\Omega\cdot \omega}$ is not closed under
+as the set $\FF_{<\Omega^2}$. This leads us to successively deduce the theories
+$\FF_{\Omega^2+\Omega\cdot n}$ are closed under \Conec0 for each
+$n<\omega$. Note, we can still interpret $\T_1$ in $\FF_{\Omega^2+\Omega\cdot n}$ by the set
+$\FF_{<\Omega^2}$  as there has been no further
+applications of \Nec{1}. In $\FF_{\Omega^2+\Omega\cdot \omega}$ we aim to interpret
+$\T_0$ by $\FF_{<\Omega^2+\Omega\cdot \omega}$, which unlike $\FF_{\Omega^2+\Omega\cdot n}$ is not closed
+under $\omega$-logic; however, $\FF_{\Omega^2+\Omega\cdot \omega}$ is not closed under
 (\Uni{1}) so this does not pose a problem. Thus we
-may continue through the construction of $\FF^*_{<\Omega^2\cdot2}$ determining
-each theory $\FF^*_{\Omega^2+\Omega\cdot \alpha}$ for $\alpha<\Omega$ is closed under
+may continue through the construction of $\FF_{<\Omega^2\cdot2}$ determining
+each theory $\FF_{\Omega^2+\Omega\cdot \alpha}$ for $\alpha<\Omega$ is closed under
 \Conec0.
 
 The argument above highlights that the predicates $\T_1$ and $\T_0$ in $\HST_1^n$ may be
-interpreted as the set $\FF^*_{<\Omega^2\cdot n}$, and hence $\HST_1$ naturally
-embeds into $\FF^*_{<\Omega^2\cdot\omega}$. If we wanted to proceed beyond this
+interpreted as the set $\FF_{<\Omega^2\cdot n}$, and hence $\HST_1$ naturally
+embeds into $\FF_{<\Omega^2\cdot\omega}$. If we wanted to proceed beyond this
 and construct models for $\HST_2$, we could imagine constructing a sequence of
 systems
 \begin{center}
   %\text{
-  $\FF^*_{\Omega^2\cdot\omega}$, $\FF^*_{\Omega^2\cdot\omega+\Omega}$, \dots,
-  $\FF^*_{\Omega^2\cdot\omega+\Omega\cdot \alpha}$, \dots,\,
-  $\FF^*_{\Omega^2\cdot(\omega+1)}$, \dots,
-  $\FF^*_{\Omega^2\cdot\alpha}$, \dots%}
+  $\FF_{\Omega^2\cdot\omega}$, $\FF_{\Omega^2\cdot\omega+\Omega}$, \dots,
+  $\FF_{\Omega^2\cdot\omega+\Omega\cdot \alpha}$, \dots,\,
+  $\FF_{\Omega^2\cdot(\omega+1)}$, \dots,
+  $\FF_{\Omega^2\cdot\alpha}$, \dots%}
 \end{center}
-to obtain $\FF^*_{<\Omega^3}$,
+to obtain $\FF_{<\Omega^3}$,
 an interpretation of the predicate $\T_2$ in $\HST_2^1$. The ability to recognise
-each theory $\FF^*_{\Omega^2\cdot\alpha+\Omega\cdot \gamma}$ as closed under \Conec{1} and
+each theory $\FF_{\Omega^2\cdot\alpha+\Omega\cdot \gamma}$ as closed under \Conec{1} and
 \Conec0, however, is essential for the interpretation of \textT2-Del in
-$\HST_2^1$. As already argued, the set $\FF^*_{<\Omega^2\cdot\alpha+\Omega\cdot \gamma}$
-provides an interpretation of $\T_0$ in $\FF^*_{\Omega^2\cdot\alpha+\Omega\cdot \gamma}$; but
+$\HST_2^1$. As already argued, the set $\FF_{<\Omega^2\cdot\alpha+\Omega\cdot \gamma}$
+provides an interpretation of $\T_0$ in $\FF_{\Omega^2\cdot\alpha+\Omega\cdot \gamma}$; but
 unless $\gamma$ is a limit ordinal, this need not be closed under \Nec{0}, so cannot
 interpret the predicate $\T_1$. The answer is to interpret $\T_1$ in
-$\FF^*_{\Omega^2\cdot\alpha+\Omega\cdot \gamma}$ as the set
-$\FF^*_{<\Omega^2\cdot\alpha}$ for {\em every} $\gamma<\Omega$. Only when we
-pass to $\FF^*_{\Omega^2\cdot(\alpha+1)}$ do we alter the
+$\FF_{\Omega^2\cdot\alpha+\Omega\cdot \gamma}$ as the set
+$\FF_{<\Omega^2\cdot\alpha}$ for \emph{every} $\gamma<\Omega$. Only when we
+pass to $\FF_{\Omega^2\cdot(\alpha+1)}$ do we alter the
 interpretation of $\T_1$ (in this case it is changed to the set
-$\FF^*_{<\Omega^2\cdot(\alpha+1)}$). It is for exactly this reason that the rule
-\Uni\eta was restricted so as to apply to $\FF^*_\rho$ only if
-$\rho|_\eta$ is not an $\Omega$-limit; the set $\FF^*_{<\Omega^2\cdot\alpha}$ will
+$\FF_{<\Omega^2\cdot(\alpha+1)}$). It is for exactly this reason that the rule
+\Uni\eta was restricted so as to apply to $\FF_\rho$ only if
+$\rho|_\eta$ is not an $\Omega$-limit; the set $\FF_{<\Omega^2\cdot\alpha}$ will
 not be closed under $\omega$-logic if $\alpha$ is a limit ordinal.
 
-Once one has constructed $\FF^*_{<\Omega^3}$ and verified that it is closed
+Once one has constructed $\FF_{<\Omega^3}$ and verified that it is closed
 under \textT n-Elim for $n=0,1,2$, one would then embark on the construction of
 a further sequence of systems
 \begin{center}
-$\FF^*_{\Omega^3}$,  \dots, %\FF^*_{\Omega^2+\alpha}, \dots,
-$\FF^*_{\Omega^3+\Omega\cdot \alpha}$, \dots, %$\FF^*_{<\Omega^3+\Omega^2}$,
-$\FF^*_{\Omega^3+\Omega^2}$, \dots, $\FF^*_{\Omega^3+\Omega^2\cdot2}$, \dots,
-$\FF^*_{\Omega^3+\Omega^2\cdot\alpha}$, \dots, $\FF^*_{\Omega^3\cdot2}$, \dots
+$\FF_{\Omega^3}$,  \dots, %\FF_{\Omega^2+\alpha}, \dots,
+$\FF_{\Omega^3+\Omega\cdot \alpha}$, \dots, %$\FF_{<\Omega^3+\Omega^2}$,
+$\FF_{\Omega^3+\Omega^2}$, \dots, $\FF_{\Omega^3+\Omega^2\cdot2}$, \dots,
+$\FF_{\Omega^3+\Omega^2\cdot\alpha}$, \dots, $\FF_{\Omega^3\cdot2}$, \dots
 \end{center}
-and subsequently $\FF^*_{<\Omega^3\cdot\omega}$, a theory into which $\HST_2$ embeds.
+and subsequently $\FF_{<\Omega^3\cdot\omega}$, a theory into which $\HST_2$ embeds.
 %
-In general, we expect $\HST_\beta$ to embed into $\FF^*_{\Omega^{\beta+1}\cdot\omega}$ for each $\beta$.
+In general, we expect $\HST_\beta$ to embed into $\FF_{\Omega^{\beta+1}\cdot\omega}$ for each $\beta$.
 
-% It should be easy to see that $\FF^*_\delta$ is essentially identical to the
-% system $\FF_\delta$ introduced in \cref{extsec:S3consis} for $\delta<\Omega$.
+% It should be easy to see that $\FF_\delta$ is essentially identical to the
+% system $\FF_\delta$ introduced in \cref{sec:S3consis} for $\delta<\Omega$.
 % Moreover, if we define
 % \begin{align*}
-%   \FF^*_{<\delta}=\{ A:\FF^*_\beta\proves A\text{ for some
+%   \FF_{<\delta}=\{ A:\FF_\beta\proves A\text{ for some
 % 	$\beta<\delta$}\}
 % \end{align*}
-% $\FF^*_{<\Omega}$ is essentially $\FF_{<\Omega}$.
+% $\FF_{<\Omega}$ is essentially $\FF_{<\Omega}$.
 %
-% Comparing the theories $\FF^*_n$ to Friedman and Sheard's model construction for
-% $\F$, we expect $\FF^*_{<\omega}$ to contain $\HST_0$. Beyond this, $\HST_1^1$
+% Comparing the theories $\FF_n$ to Friedman and Sheard's model construction for
+% $\F$, we expect $\FF_{<\omega}$ to contain $\HST_0$. Beyond this, $\HST_1^1$
 % essentially re-axiomatises $\theory S_3$ and so we expect to be able to
-% interpret the predicate $\T_1$ in $\HST_1^1$ by $\FF^*_{<\Omega}$. Moreover, $\T_0$
-% may also be interpreted by $\FF^*_{<\Omega}$ in $\HST_1^1$. The step from a model
-% of $\HST_1^1$ to one of $\HST_1^2$ involves first passing to $\FF^*_\Omega$ ...
+% interpret the predicate $\T_1$ in $\HST_1^1$ by $\FF_{<\Omega}$. Moreover, $\T_0$
+% may also be interpreted by $\FF_{<\Omega}$ in $\HST_1^1$. The step from a model
+% of $\HST_1^1$ to one of $\HST_1^2$ involves first passing to $\FF_\Omega$ ...
 %
-% % It should also be clear that provided $\FF^*_\delta$
-% The next proposition provides a number of technical results regarding derivations in $\FF^*_\delta$ are easily verified and left to the reader.
+% % It should also be clear that provided $\FF_\delta$
+% The next proposition provides a number of technical results regarding derivations in $\FF_\delta$ are easily verified and left to the reader.
 % \begin{proposition}
-%  Some technical results about $\FF^*_\delta$.
+%  Some technical results about $\FF_\delta$.
 % \end{proposition}
 
-The next lemma deals with the task of determining the theory $\FF^*_\rho$ is
-closed under \Conec\eta for every $\eta<\kappa$. Before that, however, we require the following result regarding the behaviour of $\Omega$-limits.
-\begin{proposition}\label{extlem:ordOlimit}
+The next lemma deals with the task of determining the theory $\FF_\rho$ is
+closed under \Conec\eta for every $\eta<\kappa$. Before that, however, we require a result on the behaviour of $\Omega$-limits.
+\begin{proposition}\label{lem:ordOlimit}
  If $\rho$ is not an $\Omega$-limit and $\sigma_n<\rho$ for every $n<\omega$,
  \begin{align*}
   \sup_{n<\omega}\sigma_n<\rho.
@@ -815,33 +823,35 @@ ordinal $\delta_n<\Omega$ to each $n<\omega$ so that
 $\sigma_n<\rho_0+\Omega^{\alpha_0}\cdot\delta_n$. The set
 $\{\delta_n:n<\omega\}$ is a countable set of countable ordinals, and hence is
 bounded in $\Omega$, whence
-\begin{align*}
+\[
+\begin{aligned}
 \sup\nolimits_{n}\sigma_n&\le\sup\nolimits_{n}\{\rho_0+\Omega^{\alpha_0}\cdot\delta_n\}\\
   &\le \rho_0+\Omega^{\alpha_0}\cdot(\sup\nolimits_{n}\delta_n)\\
   &<\rho_0+\Omega^{\alpha_0}\cdot\Omega\\
-  &=\rho.
-\end{align*}
+  &=\rho. 
+\end{aligned}
+\]
 \end{proof}
 
-A sequent $\Gamma$ is called {\em T-positive} if all occurrences of a predicate $\T_\eta$ in $\Gamma$ for any $\eta<\kappa$ are positive. Define, for each ordinal $\rho$, an $\L_\kappa$-structure $\mathfrak{M}_\rho$ according to the following criterion.
+A sequent $\Gamma$ is called \emph{T-positive} if all occurrences of a predicate $\T_\eta$ in $\Gamma$ for any $\eta<\kappa$ are positive. Define, for each ordinal $\rho$, an $\L_\kappa$-structure $\mathfrak{M}_\rho$ according to the following criterion.
 \begin{center}
- $\mathfrak{M}_\rho\models \T_\eta(s)$ iff $s^\N\in\FF^*_{<\rho|_\eta}$.
+ $\mathfrak{M}_\rho\models \T_\eta s$ iff $s^\N\in\FF_{<\rho|_\eta}$.
 \end{center}
-\begin{theorem}[T-Elimination \namecref{extlem:FFTElim}]\label{extlem:FFTElim}\label{extthm:FFTElim} Suppose $\rho\in\On$.
+\begin{theorem}[T-Elimination \namecref{lem:FFTElim}]\label{lem:FFTElim}\label{thm:FFTElim} Suppose $\rho\in\On$.
 \begin{enumerate}
-  \item For every T-positive sequent $\Gamma$, $\FF^*_\rho\proves\Gamma$ implies
+  \item For every T-positive sequent $\Gamma$, $\proves_\rho \Gamma$ implies
 	$\mathfrak{M}_\rho\models\bigvee\Gamma$;
-  \item For any $\eta<\kappa$, $\FF^*_\rho\proves \T_\eta(s)$ implies there is a
-	sentence $A$ with $s^\N=\gn	A$ and $\FF^*_\rho\proves A$;
-%  \item For any $\eta<\kappa$, $\FF^*_\rho\proves \lnot \T_\eta(s)$ implies there
-%	is a sentence $A$ with $s^\N=\gn A$ and $\FF^*_\rho\proves \lnot A$.
+  \item For any $\eta<\kappa$, $\proves_\rho  \T_\eta s$ implies there is a
+	sentence $A$ with $s^\N=\gn	A$ and $\proves_\rho  A$;
+%  \item For any $\eta<\kappa$, $\proves_\rho  \lnot \T_\eta s$ implies there
+%	is a sentence $A$ with $s^\N=\gn A$ and $\proves_\rho  \lnot A$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-We proceed by transfinite induction on $\rho$. For (i), one has a {\em
+We proceed by transfinite induction on $\rho$. For (i), one has a \emph{
 subsidiary} induction on the height of the derivation. The base case is easy to
 deal with. For the induction step we argue according to the last rule applied in
-the derivation $\FF^*_\rho\proves\Gamma$. Whichever rule was applied, the sequent(s) in the premise must also be T-positive and we may apply the subsidiary induction hypothesis to them.
+the derivation $\proves_\rho \Gamma$. Whichever rule was applied, the sequent(s) in the premise must also be T-positive and we may apply the subsidiary induction hypothesis to them.
 
 If the last rule was one of the arithmetical rules, that is, ($\lor_i$),
 ($\land$), ($\omega$) or ($\exists$),
@@ -849,7 +859,7 @@ $\mathfrak{M}_\rho\models\bigvee\Gamma$ is an immediate consequence of the
 subsidiary induction hypothesis, and in the case of the weakening rule,
 $\mathfrak{M}_\rho\models\bigvee\Gamma$ follows from the fact that $\Gamma$ is
 T-positive. If the last applied rule was \Nec\eta, $\T_\eta(\gn A)$ is
-contained in $\Gamma$ and $\FF^*_\sigma\proves A$ for some % $\sigma$ such that
+contained in $\Gamma$ and $\proves_\sigma  A$ for some % $\sigma$ such that
 % $\sigma+\Omega^\eta\le\rho$, whence $\sigma+\Omega^\eta\le\rho|_\eta$ and
 $\sigma<\rho|_\eta$, so $\mathfrak{M}_\rho\models \T_\eta(\gn A)$.
 For the remaining rules, the subsidiary induction hypothesis implies
@@ -863,7 +873,7 @@ $\mathfrak{M}_\rho\models\bigvee\Gamma$ we are done, so we may assume
 $\mathfrak{M}_\rho\models A_0\land A_1$.
 % along with one of following observations.\footnote{We omit
 % some of the details as the argument employed here is essentially a simplified
-% version of the proof of \cref{extlem:T8model} in the next section.}
+% version of the proof of \cref{lem:T8model} in the next section.}
 \begin{description}\renewcommand*\labelitemi{--}%
 %  \item[(Cut).] In the case the last rule applied was (Cut),
 %  \item [(Weakening).]
@@ -875,71 +885,71 @@ $\mathfrak{M}_\rho\models A_0\land A_1$.
   $\mathfrak{M}_\rho\models \T_\eta(s_0)\land \T_\eta(s_0\dimplies s_1)$. Thus,
   $s_0^\N$ and $s_1^\N$ are Gödel numbers of $\L_\kappa$-sentences, say $B_0$
   and $B_1$ respectively, and there is some $\sigma<\rho|_\eta$ so
-  that $\FF^*_\sigma\proves B_0$ and $\FF^*_\sigma\proves\lnot B_0,B_1$.
-  Admissibility of the cut rule (\cref{extthm:FFCutElim}) yields $\FF^*_\sigma\proves B_1$, and hence
+  that $\proves_\sigma  B_0$ and $\proves_\sigma \lnot B_0,B_1$.
+  Admissibility of the cut rule (\cref{thm:FFCutElim}) yields $\proves_\sigma  B_1$, and hence
   $\mathfrak{M}_\rho\models \T_\eta(s_1)$.
 \item [\normalfont\Del\eta.] In the case the last applied rule is \Del\eta,
-  we may identify $A_0$ as $\T_\eta(\gn{\T_\xi(s)})$ for some $\xi<\kappa$
-  and  term $s$; moreover, $\T_\eta(s)$ is contained in $\Gamma$.
-  $\mathfrak{M}_\rho\models \T_\eta(\gn{\T_\xi(s)})$ implies $\FF^*_\sigma\proves
-  \T_\xi(s)$ for some $\sigma<\rho|_\eta$. Since $\sigma<\rho$, the
-  {\em  main} induction hypothesis may be applied, whence $s^\N=\gn A$ for some $A$
-  and  $\FF^*_\sigma\proves A$. Thus $\mathfrak{M}_\rho\models \T_\eta(s)$ and
+  we may identify $A_0$ as $\T_\eta(\gn{\T_\xi s})$ for some $\xi<\kappa$
+  and  term $s$; moreover, $\T_\eta s$ is contained in $\Gamma$.
+  $\mathfrak{M}_\rho\models \T_\eta(\gn{\T_\xi s})$ implies $\proves_\sigma 
+  \T_\xi s$ for some $\sigma<\rho|_\eta$. Since $\sigma<\rho$, the
+  \emph{ main} induction hypothesis may be applied, whence $s^\N=\gn A$ for some $A$
+  and  $\proves_\sigma  A$. Thus $\mathfrak{M}_\rho\models \T_\eta s$ and
   $\mathfrak{M}_\rho\models\bigvee\Gamma$.
-\item [\normalfont{}\Rep\eta.] Here we have $\mathfrak{M}_\rho\models \T_\eta(s)$ and
-  $\T_\eta(\gn{\T_\xi(s)})$ is in $\Gamma$ for some $\xi<\eta$. By definition this
-  implies $s^\N=\gn A$ for some sentence $A$ and $\FF^*_\sigma\proves A$ for some
-  $\sigma<\rho|_\eta$, whence $\FF^*_{\sigma+\Omega^{\xi+1}}\proves \T_\xi(s)$ is
+\item [\normalfont{}\Rep\eta.] Here we have $\mathfrak{M}_\rho\models \T_\eta s$ and
+  $\T_\eta(\gn{\T_\xi s})$ is in $\Gamma$ for some $\xi<\eta$. By definition this
+  implies $s^\N=\gn A$ for some sentence $A$ and $\proves_\sigma  A$ for some
+  $\sigma<\rho|_\eta$, whence $\FF_{\sigma+\Omega^{\xi+1}}\proves \T_\xi s$ is
   derivable. But since $\xi<\eta$ and $\sigma<\rho|_\eta$, we have
   $\sigma+\Omega^{\xi+1}<\rho|_\eta$, and so $\mathfrak{M}_\rho\models \bigvee\Gamma$.
 %\item [\normalfont{}$\lnot$\Del\eta.] This case is similar to
-%  \Del\eta above; by the main induction hypothesis we know, for every $\sigma<\rho$ and $\xi<\kappa$, that $\FF^*_\sigma$
+%  \Del\eta above; by the main induction hypothesis we know, for every $\sigma<\rho$ and $\xi<\kappa$, that $\FF_\sigma$
 %  is closed under $\lnot$\textT\xi-Elim, thus
-%  $\mathfrak{M}_\rho\models \T_\eta(\gn{\lnot \T_\xi(s)})$ implies
+%  $\mathfrak{M}_\rho\models \T_\eta(\gn{\lnot \T_\xi s})$ implies
 %  $\mathfrak{M}_\rho\models \T_\eta(\dlnot s)$ as desired.
 \item [\normalfont{}\Uni\eta.] The assumption is that
   $\mathfrak{M}_\rho\models\forall x\,\T_\eta(\gn{A(\dot x)})$. This entails the
   existence of, for every $n<\omega$, an ordinal $\sigma_n<\rho|_\eta$ such that
-  $\FF^*_{\sigma_n}\proves A(\bar n)$. Weakening and the $\omega$-rule yields
-  $\FF^*_\sigma\proves \forall x\,A(x)$, where $\sigma=\sup_n{\sigma_n}$, but
+  $\FF_{\sigma_n}\proves A(\bar n)$. Weakening and the $\omega$-rule yields
+  $\proves_\sigma  \forall x\,A(x)$, where $\sigma=\sup_n{\sigma_n}$, but
   one need not in general have $\sigma<\rho|_\eta$.\footnote{For example,
   suppose $\rho|_\eta=\rho_0+\Omega^\xi$ and $\xi$ is a limit ordinal. If
   $\sigma_n= \rho_0+\Omega^{\xi_n}$, where $\xi=\sup_n\xi_n$ and
   $\xi_n<\xi$ for every  $n<\omega$, one has $\sigma_n<\rho|_\eta$, but
   $\sup_n\sigma_n=\rho|_\eta$.} Due to the restriction on applications of
   \Uni\eta, however, $\rho|_\eta$ is not an $\Omega$-limit,
-  thus by \cref{extlem:ordOlimit}, $\sigma<\rho|_\eta$ and so
+  thus by \cref{lem:ordOlimit}, $\sigma<\rho|_\eta$ and so
   $\mathfrak{M}_\rho\models \T_\eta(\gn{\forall xA(x)})$, whence
   $\mathfrak{M}_\rho\models\bigvee\Gamma$.
 \end{description}
 This completes the proof of (i).
 
-(ii) is now a consequence of (i). If $\FF^*_\rho\proves \T_\eta(s)$, (i) implies
-$\mathfrak{M}_\rho\models \T_\eta(s)$, whence $s^\N=\gn A$ for some
-$\L_\kappa$-sentence $A$ and $\FF^*_\sigma\proves A$ for some
-$\sigma<\rho|_\eta$. By weakening, $\FF^*_\rho\proves A$, as desired.
+(ii) is now a consequence of (i). If $\proves_\rho  \T_\eta s$, (i) implies
+$\mathfrak{M}_\rho\models \T_\eta s$, whence $s^\N=\gn A$ for some
+$\L_\kappa$-sentence $A$ and $\proves_\sigma  A$ for some
+$\sigma<\rho|_\eta$. By weakening, $\proves_\rho  A$, as desired.
 
-Observe that in the case of every rule of inference in the system $\FF^*_\rho$, T-positive
-premises yield T-positive consequents. Therefore $\FF^*_\eta\proves\Gamma$ implies $\bigvee\Gamma$
-is satisfied in the {\em everything is true} $\L_\kappa$ structure, so
-$\FF^*_\rho\proves\lnot \T_\eta(s)$ is impossible and (iii) holds vacuously.
+Observe that in the case of every rule of inference in the system $\FF_\rho$, T-positive
+premises yield T-positive consequents. Therefore $\FF_\eta\proves\Gamma$ implies $\bigvee\Gamma$
+is satisfied in the \emph{everything is true} $\L_\kappa$ structure, so
+$\proves_\rho \lnot \T_\eta s$ is impossible and (iii) holds vacuously.
 \end{proof}
 
 % \begin{corollary}
-%  The system $\FF^*_\rho$ is consistent for every $\rho$, that is
+%  The system $\FF_\rho$ is consistent for every $\rho$, that is
 % \end{corollary}
-\begin{proposition}\label{extprop:FFembed}
- Let $A$ be any axiom of $\HST_\beta$. Then $\FF^*_{\Omega^{\beta+1}}\proves A$.
+\begin{proposition}\label{prop:FFembed}
+ Let $A$ be any axiom of $\HST_\beta$. Then $\FF_{\Omega^{\beta+1}}\proves A$.
 \end{proposition}
 \begin{proof}
  One can derive each of the axioms via the corresponding rule and Ax.2$_\eta$, as in \cref{classprop:F8axF}. In the case of \Uni\eta note $\Omega^{\beta+1}|_\eta$ is not an $\Omega$-limit for any $\eta\le\beta$.
 \end{proof}
 
-\begin{theorem}\label{extthm:FFconsis}
+\begin{theorem}\label{thm:FFconsis}
  The theory $\HST_\beta$ is consistent for every $\beta<\kappa$.
 \end{theorem}
 \begin{proof}
-\Cref{extthm:FFCutElim}, \cref{extlem:FFTElim} and the previous \namecref{extprop:FFembed} provide the means to deduce, by induction on $n$, that $\HST_\beta^n$ embeds into $\FF^*_{\Omega^{\beta+1}\cdot n}$. Thus every sentential theorem of $\HST_\beta$ is contained in $\FF^*_{<\Omega^\beta\cdot\omega}$. However, clearly the empty sequent is not derivable in $\FF^*_\rho$ for any $\rho$, so $\HST_\beta$ must be consistent.
+\Cref{thm:FFCutElim}, \cref{lem:FFTElim} and the previous \namecref{prop:FFembed} provide the means to deduce, by induction on $n$, that $\HST_\beta^n$ embeds into $\FF_{\Omega^{\beta+1}\cdot n}$. Thus every sentential theorem of $\HST_\beta$ is contained in $\FF_{<\Omega^\beta\cdot\omega}$. However, clearly the empty sequent is not derivable in $\FF_\rho$ for any $\rho$, so $\HST_\beta$ must be consistent.
 \end{proof}
 %%%%%%%%%%%%%%%%%%%% OLD CONSISTENCY %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \begin{align*}
@@ -989,7 +999,7 @@ $\FF^*_\rho\proves\lnot \T_\eta(s)$ is impossible and (iii) holds vacuously.
 % \end{align*}
 % we see $\mathrm{Th}'_{\omega\cdot m}$ can interpret $\T_1$ in $\HST_2^{m}$ and
 % $\mathrm{Th}'_{\omega\cdot m+n}$ can interpret $\T_0$ in $\HST_2^{m,\,n}$. In
-% other words a model for $\HST_2$ can be obtained by interpreting {\em both}
+% other words a model for $\HST_2$ can be obtained by interpreting \emph{both}
 % predicates ($\T_0$ and $\T_1$) by the set $\mathrm{Th}'_{\omega^2}=
 % \bigcup_{m<\omega}\mathrm{Th}'_{\omega\cdot m}$.
 %
@@ -1009,7 +1019,7 @@ $\FF^*_\rho\proves\lnot \T_\eta(s)$ is impossible and (iii) holds vacuously.
 % via $f_\eta(0,\gn A)=x$, and $f_\eta(n+1,\gn A)=\gn{\T_\eta(\gn A)}$. Thus
 % $\HST_\beta\mapsto\HST_{\beta+1}$ can be seen as a step in a reflection process.
 %%%%%%%%%%%%%%%%%%%%%%%%%% END OLD CONSISTENCY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{An ordinal notation system for impredicative theories} \label{extsec:moreordinals}
+\section{An ordinal notation system for impredicative theories} \label{sec:moreordinals}
 To carry out an ordinal analysis of $\HST_\beta$ we require the current
 set of ordinal terms, $\OT$, to be extended to cover a larger segment of the
 ordinals. We will make use of an ordinal notation system for the Bachmann-Howard
@@ -1038,7 +1048,7 @@ is,
  \item $\alpha^*=\max\{\gamma^*,\delta^*\}$, if $\alpha=_\NF\omega^\gamma+\delta$.
 \end{enumerate}
 
-\emph{[Elaborate that the following is constructive.]}
+\gelhighlight{[Elaborate that the following is constructive.]}
 
 Define sets of ordinals $C_k(\alpha,\beta)$, and a function $\vartheta\colon\On\to\Omega$ by transfinite recursion on $\alpha\in\On$ as follows.
 \begin{itemize}
@@ -1050,7 +1060,7 @@ Define sets of ordinals $C_k(\alpha,\beta)$, and a function $\vartheta\colon\On\
 \end{itemize}
 The next two propositions shed some light on the role the function
 $\vartheta$ plays in generating intitial segments of $\On$.
-\begin{proposition}\label{extprop:theta1}
+\begin{proposition}\label{prop:theta1}
  $\vartheta\alpha$ is defined for every $\alpha<\varepsilon_{\Omega+1}$.
 \end{proposition}
 \begin{proof}
@@ -1071,7 +1081,7 @@ The function $\vartheta$ works by ``collapsing'' ordinals below $\varepsilon_{\O
 in ($\vartheta$1) ensures the function $\alpha\mapsto\vartheta\alpha$ is
 strictly increasing on $\Omega$. Thus, unlike the Veblen functions
 $\varphi_\alpha$, one never has $\vartheta\beta=\vartheta\vartheta\beta$. In the following proposition we show $\vartheta$ is in fact injective on $\varepsilon_{\Omega+1}$ and show that relation `$\alpha<\beta$' may be decided purely on the normal form presentation for $\alpha$ and $\beta$.
-\begin{proposition}\label{extprop:thetaitems1} For all ordinals $\alpha$, $\beta$ and $\gamma$ the following holds.
+\begin{proposition}\label{prop:thetaitems1} For all ordinals $\alpha$, $\beta$ and $\gamma$ the following holds.
 \begin{enumerate}
   \item $\alpha\in C(\alpha,\vartheta\alpha)$,
   \item $\vartheta\alpha=C(\alpha,\vartheta\alpha)\cap\Omega$ and $\vartheta\alpha\not\in C(\alpha,\vartheta\alpha)$,
@@ -1082,11 +1092,11 @@ $\varphi_\alpha$, one never has $\vartheta\beta=\vartheta\vartheta\beta$. In the
   \item $\vartheta\alpha=\vartheta\beta$ if and only if $\alpha=\beta$,
   \item $\vartheta\alpha<\vartheta\beta$ if and only if $(\alpha<\beta\land\alpha^*<\vartheta\beta)\lor (\beta<\alpha\land\vartheta\alpha\le\beta^*)$.
 %   \item $\gamma<\delta\in C(\alpha,\beta)\cap\Omega$ implies $\gamma\in C(\alpha,\beta)$.
-%   \ivartheta\alpha <\vartheta\beta$.\label{extitem:morditem5}
+%   \ivartheta\alpha <\vartheta\beta$.\label{item:morditem5}
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-\Cref{extprop:theta1} ensures $\vartheta\alpha$ is defined for every
+\Cref{prop:theta1} ensures $\vartheta\alpha$ is defined for every
 $\alpha<\varepsilon_{\Omega+1}$, so (i) is a direct consequence of ($\vartheta$1). By (C1),
 $\vartheta\alpha\subseteq C(\alpha,\vartheta\alpha)$ whence (ii) also follows
 from ($\vartheta$1). (ii) then implies (iii) since, as a result of (C2),
@@ -1122,7 +1132,7 @@ and so, by (vii),
 \begin{align}\label{eqn:theta1.2}
  \beta<\alpha \rightarrow(\vartheta\alpha<\vartheta\beta \equi \vartheta\alpha\le\beta^*).
 \end{align}
-Combining \cref{eqn:theta1.2,eqn:theta1.1} gives (viii).
+Combining \eqref{eqn:theta1.2,eqn:theta1.1} gives (viii).
 %
 % (viii). By (iv) we need only consider when $\gamma$ is an $\varepsilon$-ordinal.
 % Suppose $\gamma\not\in C(\alpha,\beta)$. Then $\gamma\ge\beta$ and
@@ -1132,7 +1142,7 @@ Combining \cref{eqn:theta1.2,eqn:theta1.1} gives (viii).
 % $\delta^*=\vartheta\xi$. If $\gamma=\xi$ we are done and if $\gamma>\xi$
 % (ix). $\vartheta\beta<\Omega$ for every $\beta<\varepsilon_{\Omega+1}$. If $\alpha<\vartheta\beta$, $<\Omega\le\beta$, $\gamma^*<
 % \vartheta\beta$ and hence $\vartheta\gamma<\vartheta\beta$ by
-% \cref{extprop:mordmain}\ref{extitem:mordtheta}.
+% \cref{prop:mordmain}\ref{item:mordtheta}.
 \end{proof}
 We can now proceed with defining a primitive recursive set of ordinal terms for
 use in the later analysis of $\HST_\beta$.
@@ -1149,7 +1159,7 @@ It should be noted that the definition of $x\in\OT_\Omega$ and $\rank\alpha$ are
 
 We now want to define an ordering $<_\vartheta$ on $\OT_\Omega$ such that
 $\tau(\alpha)<_\vartheta\tau(\beta)$ if and only if $\alpha<\beta$. Conditions
-(iii) and (vii) of \cref{extprop:thetaitems1} ensures every ordinal built up
+(iii) and (vii) of \cref{prop:thetaitems1} ensures every ordinal built up
 from the constants $0$, $\Omega$ and functions
 $\alpha,\beta\mapsto\omega^\alpha+\beta$ and $\alpha\mapsto\vartheta\alpha$ has
 a unique representation. We may therefore dispense with the
@@ -1159,7 +1169,7 @@ represent, as was the case with $\OT$.
 Define the relation $\alpha<_\vartheta\beta$ on $\OT_\Omega$ by
 recursion on the value of $\rank\alpha+\rank\beta$. The conditions involved in
 comparing two ordinals $\vartheta\xi_0$ and $\vartheta\xi_1$ will be taken from
-(viii) of \cref{extprop:thetaitems1}. Let $\alpha<_\vartheta\beta$ if and only
+(viii) of \cref{prop:thetaitems1}. Let $\alpha<_\vartheta\beta$ if and only
 if one of the following conditions hold.
 \begin{enumerate}
  \item $\alpha=0$ and $\beta\neq0$;
@@ -1202,7 +1212,7 @@ and $\alpha_0\ge\dots\ge\alpha_n$, define
   \Omega^\beta\cdot\alpha&=\omega^{\Omega\cdot\beta+\alpha_0}+
 \dots+\omega^{\Omega\cdot\beta+\alpha_n}.
 \end{align*}
-\begin{proposition}\label{extprop:thetaord}
+\begin{proposition}\label{prop:thetaord}
  $\OT_\Omega\cap \Omega$ forms an initial segment of the ordinals.
 \end{proposition}
 \begin{proof}
@@ -1210,7 +1220,7 @@ Suppose $\delta\in\OT_\Omega\cap\Omega$. We prove $\alpha\in\OT_\Omega$ for ever
 \begin{align}\label{eqn:ordOT1}
   \forall\xi<\alpha(\xi\in\OT_\Omega).
 \end{align}
-If $\alpha=0$ or $\alpha=_\NF\omega^\gamma+\delta$, \cref{eqn:ordOT1}, (C1) and (C2) imply $\alpha\in\OT_\Omega$, so assume
+If $\alpha=0$ or $\alpha=_\NF\omega^\gamma+\delta$, \eqref{eqn:ordOT1}, (C1) and (C2) imply $\alpha\in\OT_\Omega$, so assume
 $\alpha$ is an $\varepsilon$-ordinal. In search of a contradiction, assume further that $\alpha\not\in\OT_\Omega$. We prove $\alpha=\vartheta\xi$ for some $\xi\in\OT_\Omega$. Pick $\beta$ to be the least ordinal in $\{\gamma\le\delta:\gamma\in\OT_\Omega\land\alpha<\gamma\}$. Then $\beta$ must be an $\varepsilon$-ordinal as otherwise
 $\beta=\omega^{\gamma_0}+\gamma_1$ for some $\gamma_0,\gamma_1<\beta$, whence
 $\alpha\le\max\{\gamma,\delta\}\in\OT_\Omega\cap\Omega$. Since
@@ -1224,13 +1234,13 @@ $\eta=\vartheta\zeta$. Then $\zeta<\xi$ and, since
 \begin{align*}
   \eta\in C(\xi,\alpha)\cap\Omega\subseteq C(\xi,\vartheta\xi)\cap\Omega=\vartheta\xi,
 \end{align*}
-$\eta<\beta$. By \cref{eqn:ordOT1} and the fact $\xi\in\OT_\Omega$, we obtain $C(\xi,\alpha)\subseteq\OT_\Omega$, so
+$\eta<\beta$. By \eqref{eqn:ordOT1} and the fact $\xi\in\OT_\Omega$, we obtain $C(\xi,\alpha)\subseteq\OT_\Omega$, so
 $\eta=\vartheta\zeta\in\OT_\Omega$, whence $\eta<\alpha$ by the choice of
 $\beta$.
 
 Thus we have shown $\xi\in C(\xi,\alpha)$ and $C(\xi,\alpha)\cap\Omega\subseteq \alpha$, whence $\vartheta\xi\le\alpha$ by ($\vartheta1$), and $\alpha=\beta\in\OT_\Omega$.
 \end{proof}
-\begin{proposition}\label{extprop:thetaitems2}\
+\begin{proposition}\label{prop:thetaitems2}\
 % Let $\alpha<\Omega$ be some ordinal. Then
 % For $\alpha\in\OT_\Omega\cap\Omega$,
 \begin{enumerate}
@@ -1248,7 +1258,7 @@ Thus we have shown $\xi\in C(\xi,\alpha)$ and $C(\xi,\alpha)\cap\Omega\subseteq 
 \begin{align*}
  \sup_{n<\omega}\gamma_n=\vartheta\Omega,
 \end{align*}
-whence it is clear (i) holds. $\gamma_0<\vartheta\Omega$ holds trivially and, if $\gamma_m<\vartheta\Omega$, we have $(\gamma_m)^*<\vartheta\Omega$ and so $\gamma_{m+1}=\vartheta\gamma_m<\vartheta\Omega$ by (viii) of \cref{extprop:thetaitems1}; thus $\sup_{n}\gamma_n\le\vartheta\Omega$.
+whence it is clear (i) holds. $\gamma_0<\vartheta\Omega$ holds trivially and, if $\gamma_m<\vartheta\Omega$, we have $(\gamma_m)^*<\vartheta\Omega$ and so $\gamma_{m+1}=\vartheta\gamma_m<\vartheta\Omega$ by (viii) of \cref{prop:thetaitems1}; thus $\sup_{n}\gamma_n\le\vartheta\Omega$.
 
 To show $\vartheta\Omega\le\sup_n\gamma_n$ we prove $\beta<\vartheta\Omega$
 implies $\beta<\gamma_m$ for some $m$ by induction on the rank of $\beta$. Suppose $\beta<\vartheta\Omega$. Both
@@ -1257,8 +1267,8 @@ $\beta=_\NF\omega^{\beta_0}+\beta_1$, holds by the induction hypothesis. If
 $\beta=\vartheta\xi$ we deduce $\xi<\Omega$ and $\xi^*<\vartheta\Omega$, since
 $\beta<\vartheta\Omega$ and $\Omega^*=0$. $\xi^*$ has rank strictly less than
 $\beta$, so the induction hypothesis yields an $m<\omega$ such that
-$\xi^*<\gamma_m$. \Cref{extprop:thetaitems1} (v) then entails $\xi<\gamma_m$.
-Moreover, since $\gamma_m=(\gamma_m)^*<\vartheta\gamma_m$, by \cref{extprop:thetaitems1} (vi), $\gamma_m<\gamma_{m+1}$, so $\xi^*<\vartheta\gamma_{m}$. Therefore $\beta=\vartheta\xi<\vartheta\gamma_m=\gamma_{m+1}$.
+$\xi^*<\gamma_m$. \Cref{prop:thetaitems1} (v) then entails $\xi<\gamma_m$.
+Moreover, since $\gamma_m=(\gamma_m)^*<\vartheta\gamma_m$, by \cref{prop:thetaitems1} (vi), $\gamma_m<\gamma_{m+1}$, so $\xi^*<\vartheta\gamma_{m}$. Therefore $\beta=\vartheta\xi<\vartheta\gamma_m=\gamma_{m+1}$.
 
 (ii). Let $\gamma_0=0$ and $\gamma_{m+1}=\vartheta(\Omega\cdot\gamma_m)$; we claim
 \begin{align*}
@@ -1270,21 +1280,21 @@ Let $\alpha=\sup_n\gamma_n$. Naturally, $\gamma_0< \vartheta\Omega^2$, and if $\
  (\Omega\cdot\gamma_m)^* %&=(\omega^{\Omega+\gamma_m})^*,\\
 	&=\gamma_m^*<\vartheta\Omega^2,
 \end{align*}
-so $\gamma_{m+1}<\vartheta\Omega^2$ by \cref{extprop:thetaitems1} (viii). Thus $\alpha\le\vartheta\Omega^2$.
+so $\gamma_{m+1}<\vartheta\Omega^2$ by \cref{prop:thetaitems1} (viii). Thus $\alpha\le\vartheta\Omega^2$.
 
 To show the converse, we prove $\beta<\vartheta\Omega^2$ implies $\beta<\alpha$ by induction on the rank of $\beta$. Suppose $\beta<\vartheta\Omega^2$ and $\beta=\vartheta\xi$
 for some $\xi$. As $(\Omega^2)^*=0$ and $\beta<\vartheta\Omega^2$,
-\cref{extprop:thetaitems1} (viii) implies $\xi<\Omega^2$ and
+\cref{prop:thetaitems1} (viii) implies $\xi<\Omega^2$ and
 $\xi^*<\vartheta\Omega^2$, whence the induction hypothesis implies
 $\xi^*<\gamma_m$ for some $m$. Since $\xi<\Omega^2$, there are $\delta_0,\delta_1<\Omega$ such that $\xi=\Omega\cdot\delta_0+\delta_1$, whence $\delta_0^*\le\xi^*<\gamma_m$. So $\xi<\Omega\cdot\gamma_m$
 % \footnote{$\xi\ge\Omega\cdot\gamma_m$ entails $\xi=\Omega\cdot\delta_0+\delta_1$ for some $\delta_0,\delta_1<\Omega$
 % as $\xi<\Omega^2$. But then $\xi^*\ge\delta_0^*\ge\gamma_m^*$, contradicting $\xi^*<\gamma_m$.} so
-and $\beta<\gamma_{m+1}$ by \cref{extprop:thetaitems1} (viii).
+and $\beta<\gamma_{m+1}$ by \cref{prop:thetaitems1} (viii).
 
 (iii) involves a near identical argument as (ii). Pick $\gamma_0=0$ and
 $\gamma_{m+1}=\vartheta(\Omega^2\cdot\gamma_m)$. That
 $\sup_{n}\gamma_n\le\vartheta\Omega^3$ is easily established using
-\cref{extprop:thetaitems1}. For the converse direction,
+\cref{prop:thetaitems1}. For the converse direction,
 $\vartheta\Omega^3\le\sup_{n}\gamma_n$, we suppose $\beta<\vartheta\Omega^3$ and
 seek to determine $\beta<\gamma_m$ for some $m$. If
 $\beta=\vartheta\xi<\vartheta\Omega^3$, we may assume $\xi^*<\gamma_m$ for
@@ -1295,7 +1305,7 @@ some $m$, whence $\xi<\Omega^2\cdot\gamma_m$, and so $\beta<\gamma_{m+1}$.
 % \end{align}
 % by transfinite induction on $\gamma$ with a subsidiary transfinite induction on $\delta$. We have two cases to consider:
 %
-% Suppose \cref{eqn:theta2.1} holds for every $\gamma<\alpha$ and $\delta<\vartheta(\Omega\cdot\gamma)$; we need to show
+% Suppose \eqref{eqn:theta2.1} holds for every $\gamma<\alpha$ and $\delta<\vartheta(\Omega\cdot\gamma)$; we need to show
 % \begin{align*}
 %  \vartheta(\Omega\cdot\alpha)\le\varphi\vartheta(\Omega\cdot\alpha)0.
 % \end{align*}
@@ -1303,14 +1313,14 @@ some $m$, whence $\xi<\Omega^2\cdot\gamma_m$, and so $\beta<\gamma_{m+1}$.
 % $C(\Omega\cdot\alpha,\xi)\cap\Omega\subseteq\xi$ and $\Omega\cdot\alpha\in
 % C(\Omega\cdot\alpha,\xi)$ and invoking ($\vartheta$1).
 %
-% Otherwise, suppose \cref{eqn:theta2.1} holds for every $\gamma\le\alpha$ and $\delta<\beta$; we need to show
+% Otherwise, suppose \eqref{eqn:theta2.1} holds for every $\gamma\le\alpha$ and $\delta<\beta$; we need to show
 % \begin{align*}
 %  \vartheta(\Omega\cdot\alpha+\beta)\le\varphi\vartheta(\Omega\cdot\alpha)\beta.
 % \end{align*}
 %
 \end{proof}
-\Cref{extprop:thetaitems2} allows us to identify some characteristic ordinals in terms of both the Veblen and $\vartheta$ functions.
-\begin{corollary}\label{extprop:thetaitems3}\
+\Cref{prop:thetaitems2} allows us to identify some characteristic ordinals in terms of both the Veblen and $\vartheta$ functions.
+\begin{corollary}\label{prop:thetaitems3}\
  \begin{enumerate}
   \item $\alpha<\varphi20$ implies $\varepsilon_\alpha=\vartheta\alpha$.
   \item $\vartheta\Omega=\varphi20$.
@@ -1330,9 +1340,9 @@ a) is shown by a further induction on the construction of $C(\alpha,\varepsilon_
 
 b) uses the fact $\alpha<\varphi20$, whence $\alpha<\varepsilon_\alpha$ and $\alpha\in C(\alpha,\varepsilon_\alpha)$ by (C1).
 
-To see $\varepsilon_\alpha\le\vartheta\alpha$, assume otherwise. Then $\vartheta\alpha=\varepsilon_\beta$ for some $\beta<\alpha$ by \cref{extprop:thetaitems1} (iii). The induction hypothesis yields $\vartheta\alpha=\vartheta\beta$, contradicting $\beta<\alpha$.
+To see $\varepsilon_\alpha\le\vartheta\alpha$, assume otherwise. Then $\vartheta\alpha=\varepsilon_\beta$ for some $\beta<\alpha$ by \cref{prop:thetaitems1} (iii). The induction hypothesis yields $\vartheta\alpha=\vartheta\beta$, contradicting $\beta<\alpha$.
 
-(ii) is an immediate consequence of (i) and \cref{extprop:thetaitems2}.
+(ii) is an immediate consequence of (i) and \cref{prop:thetaitems2}.
 
 (iii). The proof for (i) above can be extended to $\alpha>\varphi20$, but then one can at best show $\varepsilon_\alpha\le\vartheta\alpha\le\varepsilon_{\alpha+1}$ for $\alpha<\Omega$.\footnote{$\vartheta\alpha=\varepsilon_{\alpha+1}$ for $\alpha=\varphi20$ for example.} One can then prove
 \begin{align*}
@@ -1343,7 +1353,7 @@ $\vartheta$. This can easily be extended to deduce, in general,
 \begin{align*}
  \varphi\alpha\beta\le\vartheta(\Omega\cdot\alpha+\beta)\le\varphi(\alpha+1)(\beta+1)
 \end{align*}
-for $\alpha,\beta<\Gamma_0$, from which \cref{extprop:thetaitems2} (ii) implies
+for $\alpha,\beta<\Gamma_0$, from which \cref{prop:thetaitems2} (ii) implies
 $\vartheta\Omega^2=\Gamma_0$.
 
 (iv). Let $\Delta_0$ denote the least fixed point of the function
@@ -1354,7 +1364,7 @@ $\alpha\mapsto\vartheta(\Omega^2+\alpha)$, we deduce $\vartheta(\Omega^2+\Omega)
 =\Delta_0$.
 \end{proof}
 
-In this notation system, $\vartheta\Omega^3$ represents the {\em Ackermann ordinal}, $\vartheta\Omega^\Omega$ denotes the {\em Veblen ordinal} and $\vartheta\varepsilon_{\Omega+1}$ is the {\em Bachmann-Howard ordinal} where
+In this notation system, $\vartheta\Omega^3$ represents the \emph{Ackermann ordinal}, $\vartheta\Omega^\Omega$ denotes the \emph{Veblen ordinal} and $\vartheta\varepsilon_{\Omega+1}$ is the \emph{Bachmann-Howard ordinal} where
 \begin{align*}
  \vartheta\varepsilon_{\Omega+1}=\sup\{\vartheta\Omega, \vartheta\Omega^\Omega,\vartheta\Omega^{\Omega^\Omega},\dots\}=\sup_{\alpha\in\OT_\Omega}\vartheta\alpha.
 \end{align*}
@@ -1370,35 +1380,35 @@ is the least such that $\alpha_{k}>\gamma\ge\alpha_{k+1}$, or $k=n$ if
 $\alpha_n>\gamma$.
 
 The following observations are immediate consequences of the definition.
-\begin{proposition}\label{extprop:morditems} For all ordinals $\alpha, \beta<\varepsilon_{\Omega+1}$ and $\gamma,\delta<\Omega$,
+\begin{proposition}\label{prop:morditems} For all ordinals $\alpha, \beta<\varepsilon_{\Omega+1}$ and $\gamma,\delta<\Omega$,
 \begin{enumerate}
-% 	\item $\alpha^*\le\beta^*$ implies $\alpha^*<\vartheta\beta$.\label{extitem:morditem1}
+% 	\item $\alpha^*\le\beta^*$ implies $\alpha^*<\vartheta\beta$.\label{item:morditem1}
 %   \item $\alpha|_0=\alpha$,
   \item $\gamma<\delta$ implies $\alpha|_\gamma\le \alpha|_\delta$,
   \item $\alpha<\beta$ implies $\alpha|_\gamma\le \beta|_\gamma$.
   \item $\delta\le\gamma$ implies $(\alpha| _\gamma)|_\delta=\alpha|_\gamma$,
   \item $\beta<\alpha|_\gamma$ if and only if $\beta+\Omega^{\gamma+1}\le \alpha$,
-  \item $\beta<\alpha|_\gamma$ and $\delta\le\gamma$ implies $\beta+\Omega^\delta<\alpha|_\gamma$.\label{extitem:morditem4}
-% 	\item $\omega^{\f\beta\alpha}=\f\beta\alpha$. \label{extitem:morditem:eno}
+  \item $\beta<\alpha|_\gamma$ and $\delta\le\gamma$ implies $\beta+\Omega^\delta<\alpha|_\gamma$.\label{item:morditem4}
+% 	\item $\omega^{\f\beta\alpha}=\f\beta\alpha$. \label{item:morditem:eno}
 % 	\item If $\gamma<\alpha<\Omega$ then $\gamma<\f\beta\alpha$ for every $\beta$.
 % 	\item If $\delta<\beta$ and $\gamma<\f\beta\alpha$ then
-% 	    $\f\delta\gamma<\f\beta\alpha$\label{extitem:morditem6}.
-% 	\item $\alpha<\gamma$ implies $\f\beta\alpha<\f\beta\gamma$.\label{extitem:morditem8}
+% 	    $\f\delta\gamma<\f\beta\alpha$\label{item:morditem6}.
+% 	\item $\alpha<\gamma$ implies $\f\beta\alpha<\f\beta\gamma$.\label{item:morditem8}
 \end{enumerate}
 \end{proposition}
 % \begin{proof}
-% % \ref{extitem:morditem1}. This is trivial, since $\beta^*< \vartheta\beta$
+% % \ref{item:morditem1}. This is trivial, since $\beta^*< \vartheta\beta$
 % for every $\beta$.
 % (i), (ii) and (iii) issue immediately from the definition of $\alpha|_\gamma$.
 %
 % (iv). For every $\gamma$ and $\alpha$, $\alpha=\alpha|_\gamma+\alpha_0$ for
 % some $\alpha_0<\Omega^\gamma$. Thus, if $\delta<\gamma$, $\Omega$
 %
-% \ref{extitem:morditem5}. If $\gamma<\vartheta\beta<\Omega\le\beta$, $\gamma^*<
+% \ref{item:morditem5}. If $\gamma<\vartheta\beta<\Omega\le\beta$, $\gamma^*<
 % \vartheta\beta$ and hence $\vartheta\gamma<\vartheta\beta$ by
-% \cref{extprop:mordmain}\ref{extitem:mordtheta}.
+% \cref{prop:mordmain}\ref{item:mordtheta}.
 %
-% % \ref{extitem:morditem6}. $\f\delta\gamma<\f\beta\alpha$ if and only if
+% % \ref{item:morditem6}. $\f\delta\gamma<\f\beta\alpha$ if and only if
 % % $\max\{\delta^*,\gamma^*\}<\f\beta\alpha$ (since $\delta<\beta$ and $\gamma<\Omega$).
 % % But $\gamma<\f\beta\alpha$ and $\delta^*\le\beta^*$ so
 % % $\max\{\delta^*,\gamma^*\}<\f\beta\alpha$.
@@ -1406,11 +1416,11 @@ The following observations are immediate consequences of the definition.
 % Add $\theory S_1$ results, such as reaching limit ordinals or reaching $\gamma_m$, like above.
 
 %%%%%%%%%% Lower bound %%%%%%%%%%%%
-\subsection{Lower bounds on the proof-theoretic ordinal}\label{extsec:Fblower}
+\section{Lower bounds on the proof-theoretic ordinal}\label{sec:Fblower}
 
-We will now establish lower bounds for the theories $\HST_\beta$. This will be achieved by extending the well-ordering proofs used in our analysis of $\F$ (\cref{classsec:lowerbounds}) and $\theory S_3$ (\cref{extsec:S3lowerbd}). Recall $\kappa=\vartheta\varepsilon_{\Omega+1}$.
+We will now establish lower bounds for the theories $\HST_\beta$. This will be achieved by extending the well-ordering proofs used in our analysis of $\F$ (\cref{classsec:lowerbounds}) and $\theory S_3$ (\cref{sec:S3lowerbd}). Recall $\kappa=\vartheta\varepsilon_{\Omega+1}$.
 
-[Remark that case distinctions below are all decidable]
+\gelhighlight{[Remark that case distinctions below are all decidable]}
 
 
 $\HST_0$ is identical to $\F$, for which an optimal lower bound was established
@@ -1424,7 +1434,7 @@ For each $\xi<\kappa$ let $\wo_\xi(x)$ denote the formula
 Let $F_0(\rho)$ denote the formula $\wo_0(\rho^*)\land \forall\sigma<\rho[
 \wo_0(\sigma^*)\rightarrow \wo_0(\vartheta\sigma)]$ and $F_0^\rho(\alpha)$ denote
 $\alpha<\Omega\rightarrow F_0(\rho+\alpha)$. We begin with a technical lemma.
-\begin{lemma}\label{extlem:F0tech}
+\begin{lemma}\label{lem:F0tech}
  $\HST_0^1\proves \forall\rho[\T_0(\gn{F_0(\dot\rho)})\rightarrow \wo_0(\vartheta\rho)]$.
 \end{lemma}
 \begin{proof}
@@ -1434,12 +1444,12 @@ Argue within $\HST_0^1$, and assume
 \end{align}
 Let $\gamma_0=\rho^*+1$ and $\gamma_{m+1}=C(\rho,\gamma_m)\cap\Omega$.
 Moreover, let $\wo_0^1(x)$ denote $\T_0(\gn{\wo_0(\dot x)})$.
-\Cref{eqn:F0tech1} implies $\wo_0^1(\gamma_0)$ and
+\eqref{eqn:F0tech1} implies $\wo_0^1(\gamma_0)$ and
 $\forall\sigma<\rho[\wo_0^1(\sigma^*)\rightarrow\wo_0^1(\vartheta\sigma))]$, whence
 it is easy to deduce $\forall m[\wo_0^1(\gamma_m)\rightarrow\wo_0^1(\gamma_{m+1})]$
 and thus $\wo_0^1(\vartheta\rho)$. By \Del{0}, $\wo_0(\vartheta\rho)$ holds.
 \end{proof}
-\begin{lemma}\label{extprop:F0wellordering}
+\begin{lemma}\label{prop:F0wellordering}
   For every $m<\omega$, $\HST_0^m\proves F_0(\Omega\cdot\bar{m})$.
 %   \forall\alpha[\wo_0\alpha\rightarrow\wo_0\vartheta(\Omega\cdot\bar n+\alpha)]$.
 \end{lemma}
@@ -1459,15 +1469,15 @@ Argue informally within $\HST_0^n$, assuming $\forall\nu<\mu\, F_0^{\Omega\cdot\
   \forall\nu<\mu(\wo_0(\nu^*)\land\forall\sigma<\Omega\cdot\bar n+\nu[\wo_0(\sigma^*)\rightarrow\wo_0(\vartheta\sigma)]).
 %   \mu<\Omega\land\forall\nu<\mu\,\wo_0\vartheta(\Omega\cdot\bar n+\nu);\label{eqn:4.3}
 \end{gather}
-We want to show $\wo_0(\mu^*)$ and $\forall\sigma<\Omega\cdot\bar n+\mu[\wo_0(\sigma^*)\rightarrow\wo_0(\vartheta\sigma)]$. The former is obvious since the fact $\wo_0(\varepsilon_\alpha)$ is progressive in $\alpha$ is provable in $\HST_0^1$ ({\em cf.}~\cref{classlem:S1e+}). To prove the latter, assume $\wo_0(\sigma^*)$ for some $\sigma<\Omega\cdot\bar n+\mu$. If $\mu=0$ or is
-a limit ordinal, $\wo_0(\vartheta\sigma)$ is immediate given \cref{eqn:4.3}. Otherwise $\mu=\nu+1$
+We want to show $\wo_0(\mu^*)$ and $\forall\sigma<\Omega\cdot\bar n+\mu[\wo_0(\sigma^*)\rightarrow\wo_0(\vartheta\sigma)]$. The former is obvious since the fact $\wo_0(\varepsilon_\alpha)$ is progressive in $\alpha$ is provable in $\HST_0^1$ (\emph{cf.}~\cref{classlem:S1e+}). To prove the latter, assume $\wo_0(\sigma^*)$ for some $\sigma<\Omega\cdot\bar n+\mu$. If $\mu=0$ or is
+a limit ordinal, $\wo_0(\vartheta\sigma)$ is immediate given \eqref{eqn:4.3}. Otherwise $\mu=\nu+1$
 for some $\nu$, whence we may assume $\sigma=\Omega\cdot\bar n+\nu$. Let
 $\gamma_0=\sigma^*+1$ and $\gamma_{m+1}=C(\sigma,\gamma_m)\cap\Omega$. Then
 $\gamma_m<\Omega$ for each $m$ and
 \begin{align*}
   \vartheta \sigma\le\sup_{m}\gamma_m
 \end{align*}
-by \cref{extprop:theta1}. $\wo_0(\gamma_0)$ is a consequence of
+by \cref{prop:theta1}. $\wo_0(\gamma_0)$ is a consequence of
 $\wo_0(\sigma^*)$, so suppose
 \begin{align}\label{eqn:4.4}
  \wo_0(\gamma_m)
@@ -1477,7 +1487,7 @@ definition of $C(\sigma,\gamma_m)$. Assume $\wo_0(\alpha)$ holds for every
 $\alpha\in C_{k}(\sigma,\gamma_m)\cap\Omega$ and suppose $\beta\in
 C_{k+1}(\sigma,\gamma_m)\cap\Omega$.
 
-(C1). $\beta\le\gamma_m$, so $\wo_0(\beta)$ is a result of \cref{eqn:4.4}.
+(C1). $\beta\le\gamma_m$, so $\wo_0(\beta)$ is a result of \eqref{eqn:4.4}.
 
 (C2). $\beta=_\NF\omega^\delta+\eta$, and $\delta,\eta\in C_k(\sigma,\gamma_m)$.
 Since also $\delta,\eta<\Omega$ the induction hypothesis yields
@@ -1486,8 +1496,8 @@ $\wo_0(\delta)\land\wo_0(\eta)$ and so $\wo_0(\beta)$.
 (C3). $\beta=_\NF\vartheta\xi$ and $\xi\in C_k(\sigma,\gamma_m)\cap\sigma$. Thus,
 $\xi^*\in C_k(\sigma,\gamma_m)\cap\Omega$ and therefore $\wo_0(\xi^*)$ by the
 induction hypothesis. If $\xi<\Omega\cdot n$, $\wo_0(\vartheta\xi)$ is a
-consequence of \cref{eqn:4.1}, otherwise $\Omega\cdot n\le\xi<\sigma$ and
-$\wo_0(\vartheta\xi)$ is implied by \cref{eqn:4.3}.
+consequence of \eqref{eqn:4.1}, otherwise $\Omega\cdot n\le\xi<\sigma$ and
+$\wo_0(\vartheta\xi)$ is implied by \eqref{eqn:4.3}.
 
 Thus we may deduce $\forall\alpha<\gamma_{m+1}\,\wo_0(\alpha)$, hence
 $\wo_0(\gamma_{m+1})$, and so $\wo_0(\vartheta\sigma)$, concluding the proof of
@@ -1499,7 +1509,7 @@ An application of \Nec{0} entails $\HST_0^m\proves \T_0(\gn{\Prog F^{\Omega\cdot
   \HST_0^m\proves\forall\alpha[\wo_0(\alpha)\rightarrow
    \T_0(\gn{F_0(\Omega\cdot\bar n+\dot\alpha)})],
 \end{align*}
-and hence, by \cref{extlem:F0tech},
+and hence, by \cref{lem:F0tech},
 \begin{align}\label{eqn:4.6}
   \HST_0^m\proves\forall\alpha(\wo_0(\alpha)\rightarrow\wo_0\vartheta(\Omega\cdot\bar
   n+\alpha)).
@@ -1507,12 +1517,12 @@ and hence, by \cref{extlem:F0tech},
 To obtain $\HST_0^m\proves F_0(\Omega\cdot\bar m)$ and complete the proof we
 argue within $\HST_0^m$. Firstly, $\wo_0((\Omega\cdot\bar m)^*)$ holds trivially as $(\Omega\cdot\bar m)^*=0$. Secondly, if
 $\sigma<\Omega\cdot\bar m$, we have either $\wo_0(\sigma^*)\rightarrow
-\wo_0(\vartheta\sigma)$ by \cref{eqn:4.1}, or $\sigma=\Omega\cdot\bar
+\wo_0(\vartheta\sigma)$ by \eqref{eqn:4.1}, or $\sigma=\Omega\cdot\bar
 n+\zeta$ for some $\zeta<\Omega$, whence $\wo_0(\sigma^*)\rightarrow \wo_0(\zeta)$
 and $\wo_0(\sigma^*)\rightarrow \wo_0(\vartheta\sigma)$ results from
-\cref{eqn:4.6}.
+\eqref{eqn:4.6}.
 \end{proof}
-\begin{corollary}\label{extcor:F0lowerbound}
+\begin{corollary}\label{cor:F0lowerbound}
  $\pto{\HST_0^m}\ge\vartheta(\Omega\cdot m)$ and $\pto{\HST_0}\ge\vartheta(\Omega\cdot\omega)$.
 \end{corollary}
 \begin{proof}
@@ -1530,7 +1540,7 @@ hypothesis. If, however, $\beta=\vartheta\xi$ for some $\xi\in C_{k}(\Omega\cdot
 m,\gamma_k)\cap\Omega\cdot m$, $\xi=\Omega\cdot n+\alpha$ for some $n<m$,
 $\alpha\in C_{k}(\Omega\cdot m,\gamma_k)\cap\Omega$ and
 $\HST_0^m\proves\wo_0(\bar\xi^*)$ by the induction hypothesis, whence
-\cref{extprop:F0wellordering} implies $\HST_0^m\proves\wo_0(\bar\beta)$.
+\cref{prop:F0wellordering} implies $\HST_0^m\proves\wo_0(\bar\beta)$.
 
 Since $\vartheta(\Omega\cdot m)\le\sup_{k<\omega}\gamma_k$, we obtain
 $\HST_0^m\proves\wo_0(\bar\alpha)$ for every $\alpha<\vartheta(\Omega\cdot m)$ and
@@ -1546,11 +1556,11 @@ to the function $\alpha\mapsto\vartheta(\Omega\cdot\alpha)$,
 and eventually to functions $\alpha\mapsto\vartheta(\Omega^{\beta}\cdot\alpha)$.
 
 Before proceeding directly with $\HST_1$ we require a slightly more general form
-of \cref{extprop:F0wellordering}. As its proof makes no explicit use of the fact $m$ is finite,
+of \cref{prop:F0wellordering}. As its proof makes no explicit use of the fact $m$ is finite,
 nor any application of \Nec{0} in showing $\Prog F^{\Omega\cdot \bar m}_0$ given
 $F_0(\Omega\cdot\bar m)$, we may readily deduce the following generalisation.
 
-\begin{proposition}\label{extprop:F0genwellordering}
+\begin{proposition}\label{prop:F0genwellordering}
   $\HST_0^1\proves \forall\rho[F_0(\rho)\rightarrow \Prog  F_0^\rho]$.
 \end{proposition}
 \begin{proof}
@@ -1561,29 +1571,29 @@ Argue inside $\HST_0^1$ and assume $F_0(\rho)$ and $\forall\nu<\mu\,F_0^\rho(\nu
   \forall\nu<\mu(\wo_0(\nu^*)\land\forall\sigma<\rho+\nu[\wo_0(\sigma^*)\rightarrow \wo_0\vartheta\sigma]),\label{eqn:F03.3}
 %  \forall\delta<\beta\, A^{\rho+\Omega\cdot\mu}(\delta),\label{eqn:F03.3}
 \end{gather}
-for some $\mu<\Omega$; we want to prove $\wo_0(\mu^*)$ and $\forall\tau<\rho+\mu[\wo_0(\tau^*)\rightarrow \wo_0(\vartheta\tau)]$. The former holds immediately given \cref{eqn:F03.3} so assume
+for some $\mu<\Omega$; we want to prove $\wo_0(\mu^*)$ and $\forall\tau<\rho+\mu[\wo_0(\tau^*)\rightarrow \wo_0(\vartheta\tau)]$. The former holds immediately given \eqref{eqn:F03.3} so assume
 \begin{gather}
   \wo_0(\tau^*),\label{eqn:F03.4}
 \end{gather}
 for some $\tau<\rho+\mu$. We will prove $\wo_0(\vartheta\tau)$.
 
 Let $\gamma_0=\tau^*+1$ and $\gamma_{m+1} = C(\tau,\gamma_m)\cap \Omega$. That $\wo_0(\gamma_m)$ holds for each $m$ will be established by induction on $m$. From
-\cref{eqn:F03.4} one has $\wo_0(\gamma_0)$. Assume $\wo_0(\gamma_m)$. In
+\eqref{eqn:F03.4} one has $\wo_0(\gamma_0)$. Assume $\wo_0(\gamma_m)$. In
 order to show $\wo_0(\gamma_{m+1})$, assume $\wo_0(\alpha)$ for every
 $\alpha\in C_k(\tau,\gamma_m)\cap\Omega$. Pick an arbitrary $\alpha_0\in
 C_{k+1}(\tau,\gamma_m)\cap\Omega$. If $\alpha_0$ was enumerated into the set by
 either (C1) or (C2), $\wo_0(\alpha_0)$ is immediate. Otherwise
 $\alpha_0=\vartheta\xi$ for some $\xi\in C_k(\tau,\gamma_m)\cap\tau$ and, since
 $\xi^*\in C_k(\tau,\gamma_m)\cap\Omega$, we have $\wo_0(\xi^*)$. If $\xi<\rho$,
-\cref{eqn:F03.2} provides $\wo_0(\vartheta\xi)$. Otherwise $\tau=\rho+\nu$
-for some $\nu<\mu$ and $\wo_0(\vartheta\xi)$ holds due to \cref{eqn:F03.3}.
+\eqref{eqn:F03.2} provides $\wo_0(\vartheta\xi)$. Otherwise $\tau=\rho+\nu$
+for some $\nu<\mu$ and $\wo_0(\vartheta\xi)$ holds due to \eqref{eqn:F03.3}.
 Either way $\wo_0(\alpha_0)$, and so $\wo_0(\alpha)$ for every
 $\alpha<\gamma_{m+1}$, whence $\wo_0(\gamma_{m+1})$.
 
 Since $\vartheta\tau\ge\sup_m\gamma_m$ we obtain $\wo_0(\vartheta\tau)$.
 \end{proof}
 
-\Cref{extprop:F0genwellordering} is plays a key role in the analysis of $\HST_0^m$ and also $\HST_1^1$. \Cref{extlem:F0tech} entails
+\Cref{prop:F0genwellordering} is plays a key role in the analysis of $\HST_0^m$ and also $\HST_1^1$. \Cref{lem:F0tech} entails
 \begin{align*}
  \HST_0^1\proves\T_0(\gn{\Prog  F_0^{\dot\rho}})
 	&\rightarrow {\forall\alpha[\wo_0(\alpha)\rightarrow \T_0(\gn{F_0^{\dot\rho}(\dot\alpha)})]}).\\
@@ -1595,45 +1605,45 @@ so $\HST_1^1\proves \forall\rho[\T_1(\gn{F_0(\dot\rho)})\rightarrow \T_1(\gn{F_0
 \end{align}
 where $F_1(\rho)$ is the formula $\T_1(\gn{F_0(\rho)})$ and
 $F_1^\rho(\alpha)$ denotes $\alpha<\Omega\rightarrow F_1(\rho+\Omega\cdot\alpha)$.
-\Cref{eqn:F11.1} is sufficient to deduce a lower bound on the strength of the
+\eqref{eqn:F11.1} is sufficient to deduce a lower bound on the strength of the
 theory $\HST_1^1$.
-\begin{corollary}\label{extcor:F11lowerbound}
+\begin{corollary}\label{cor:F11lowerbound}
   $\pto{\HST_1^1}\ge\vartheta\Omega^2$.
 \end{corollary}
 \begin{proof}
-Since $\HST_0\proves F_0(\bar0)$, \cref{eqn:F11.1} implies
+Since $\HST_0\proves F_0(\bar0)$, \eqref{eqn:F11.1} implies
 \begin{gather}\label{eqn:F11lower1}
  \HST_1^1\proves \Prog  F^{\bar 0}_1.
 \end{gather}
 
 Let $\sigma_0=1$ and $\sigma_{m+1}=\vartheta(\Omega\cdot\sigma_m)$. By
-\cref{extprop:thetaitems2} (ii), $\vartheta\Omega^2=\sup_m\sigma_m$, so it
+\cref{prop:thetaitems2} (ii), $\vartheta\Omega^2=\sup_m\sigma_m$, so it
 suffices to show $\HST_1^1\proves\wo_1(\bar\sigma_m)$ for each $m$. This is
 trivial for $m=0$; for $m=n+1$ argue within $\HST_1^1$ assuming
 $\wo_1(\bar\sigma_n)$. Then $\wo_1(\bar\sigma_n+1)$ and so $\T_1(\gn{F_0(\Omega\cdot\bar\sigma_n)})$
-by an application of \Conec{1} and \cref{eqn:F11lower1}. \Cref{extlem:F0tech} yields $\T_1(\gn{\wo_0\vartheta(\Omega\cdot\bar\sigma_n)})$ and so $\wo_1(\bar\sigma_m)$
+by an application of \Conec{1} and \eqref{eqn:F11lower1}. \Cref{lem:F0tech} yields $\T_1(\gn{\wo_0\vartheta(\Omega\cdot\bar\sigma_n)})$ and so $\wo_1(\bar\sigma_m)$
 holds.
 \end{proof}
 Within $\HST_1^2$, the above proof may be replicated under a $\T_1$ predicate,
 allowing one to reach ordinals beyond $\vartheta\Omega^2$, as the next
 proposition demonstrates.
-\begin{lemma}\label{extprop:F1wellordering}
+\begin{lemma}\label{prop:F1wellordering}
 For each $m$, $\HST_1^{m+1}\proves F_1(\Omega^2\cdot\bar m)$ and $\HST_1^{m+1}\proves \Prog  F_1^{\Omega^2\cdot\bar m}$.
 \end{lemma}
 \begin{proof}
 $\HST_1^1\proves F_1(\bar 0)$ holds trivially, so suppose $m=n+1$ and $\HST_1^m\proves F_1(\Omega^2\cdot\bar n)$.
-\Cref{eqn:F11.1} yields $\HST_1^m\proves \Prog  F_1^{\Omega^2\cdot\bar n}$, whence an application of \Nec{1} and T$^-_1$-Rep implies
+\eqref{eqn:F11.1} yields $\HST_1^m\proves \Prog  F_1^{\Omega^2\cdot\bar n}$, whence an application of \Nec{1} and T$^-_1$-Rep implies
 \begin{align}\label{eqn:F1well.1}
   \HST_1^{m+1}\proves \T_1(\gn{\forall\alpha[\wo_0(\alpha)\rightarrow \T_0(\gn{F_1(\Omega^2\cdot\bar n+\Omega\cdot\dot\alpha)})]}).
 \end{align}
-However, arguing within $\HST_0$, from $F_0(\rho)$ one obtains $\wo_0(\vartheta\rho)$, so \cref{eqn:F1well.1} entails
+However, arguing within $\HST_0$, from $F_0(\rho)$ one obtains $\wo_0(\vartheta\rho)$, so \eqref{eqn:F1well.1} entails
 \begin{align*}
   \HST_1^{m+1}\proves \T_1(\gn{\forall\alpha[\wo_0(\alpha)\rightarrow \wo_0\vartheta(\Omega^2\cdot\bar n+\Omega\cdot \dot\alpha)]}),
 \end{align*}
 and thus $\HST_1^{m+1}\proves F_1(\Omega^2\cdot\bar m)$ as required.
 \end{proof}
 
-\begin{theorem}\label{extcor:F1lowerbound}\label{extthm:F1lowerbound}
+\begin{theorem}\label{cor:F1lowerbound}\label{thm:F1lowerbound}
 Suppose $m<\omega$. Then every theorem of
 $\PA+\TI(\mathord<\vartheta(\Omega^2\cdot m))$  is derivable in
 $\HST_1^{m}$. Moreover, every theorem of
@@ -1643,7 +1653,7 @@ $\HST_1$.
 \begin{proof}
 Since $\vartheta0=\varepsilon_0$ and $\HST_1^0$ extends $\PA$, the case
 $m=0$ holds, so suppose $m=n+1>0$. If $\HST_1^m\proves \wo_0(\bar\alpha)$,
-\cref{extprop:F1wellordering} implies
+\cref{prop:F1wellordering} implies
 \begin{align*}
  \HST_1^{m}\proves \wo_0 \vartheta(\Omega^2\cdot \bar n+\Omega\cdot\bar\alpha),
 \end{align*}
@@ -1670,12 +1680,12 @@ The second part of the theorem is easily established using the fact $\vartheta(\
 \end{proof}
 % We thus obtain lower bounds on the strength of the theory $\HST_1^m$ and its
 % approximants.
-% \begin{corollary}\label{extcor:F1strength}
+% \begin{corollary}\label{cor:F1strength}
 % $\pto{\HST_1^m}\ge\vartheta(\Omega^2+\Omega\cdot m)$ and
 % $\pto{\HST_1}\ge\vartheta(\Omega^2+\Omega\cdot\omega)$.
 % \end{corollary}
 We can now turn our attention to the theories $\HST_p$ for $p<\omega$.
-\Cref{extprop:F1wellordering} essentially shows $\HST_1\proves
+\Cref{prop:F1wellordering} essentially shows $\HST_1\proves
 F_1(\Omega^2\cdot\bar\alpha)$ implies $\HST_1\proves
 F_1(\Omega^2\cdot(\bar\alpha+1))$. This can be extended to show $\HST_1\proves\forall\nu<\bar\mu\,F_1(\Omega^2\cdot\nu)$ implies $\HST_1\proves F_1(\Omega^2\cdot\bar\mu)$, whence
 \begin{gather}\label{eqn:Fbwell1}
@@ -1683,27 +1693,27 @@ F_1(\Omega^2\cdot(\bar\alpha+1))$. This can be extended to show $\HST_1\proves\f
 \end{gather}
 where $F_2^{\rho}(\alpha)$ is the formula $\alpha<\Omega\land\T_2(\gn{F_0(\rho+\Omega^2\cdot\alpha)})$.
 
-\Cref{eqn:Fbwell1} suffices to deduce a lower bound for $\HST_2^1$ and acts as
+\eqref{eqn:Fbwell1} suffices to deduce a lower bound for $\HST_2^1$ and acts as
 the base step in the analysis of $\HST_2$ and ultimately $\HST_p$, which follows a
-generalised form of the procedure used in \cref{extprop:F1wellordering}.
+generalised form of the procedure used in \cref{prop:F1wellordering}.
 
 Let $F_p(\rho)$, for $0<p<\omega$, be the formula $\T_p(\gn{F_0(\dot\rho)})$, that is
 \begin{align*}
  \T_{p}(\gn{\wo_0(\rho^*)\land\forall\sigma<\dot\rho [\wo_0(\sigma^*)\rightarrow\wo_0(\vartheta\sigma)]}),
 \end{align*}
 and denote by $F_p^\rho(\alpha)$ the formula $\alpha<\Omega\land F_p(\rho+\Omega^{\bar p}\cdot\alpha)$.
-\begin{lemma}\label{extlem:Fpwellordering1}
+\begin{lemma}\label{lem:Fpwellordering1}
  For each $p<\omega$, $\HST_p^1\proves \forall\rho[F_p(\rho)\rightarrow\Prog F_p^{\rho}]$ and, for $m<\omega$, $\HST_p^{m+1}\proves F_p(\Omega^{\bar p+1}\cdot\bar m)$.
 \end{lemma}
 \begin{proof} The proof proceeds by induction on $p<\omega$. The case of $p=0$
-has already been shown in \cref{extprop:F0genwellordering} so suppose $p=q+1>0$.
+has already been shown in \cref{prop:F0genwellordering} so suppose $p=q+1>0$.
 Argue informally within $\HST_p^1$. Assume
 \begin{gather}
  F_p(\rho),\label{eqn:Fpwell1}\\
  \forall\nu<\mu\,F_p^\rho(\nu)\label{eqn:Fpwell2}
 \end{gather}
 for some $\mu<\Omega$. If $\mu=0$, of course $F_p^\rho(\mu)$ holds by
-\cref{eqn:Fpwell1}, and if $\mu$ is a limit ordinal, \cref{eqn:Fpwell2}
+\eqref{eqn:Fpwell1}, and if $\mu$ is a limit ordinal, \eqref{eqn:Fpwell2}
 implies $\T_p(\gn{\forall\nu<\dot\mu\,F_0(\rho+\Omega^{\bar p}\cdot\mu)})$,
 whence $F_p^\rho(\mu)$ is immediate. This leaves only the case in which $\mu$ is a
 successor ordinal. But for every ordinal $\tau$,
@@ -1718,11 +1728,11 @@ successor ordinal. But for every ordinal $\tau$,
 	  \end{split}
 \end{align}
 The second implication holds on account of the induction hypothesis, while the
-final holds due to \Del{0} and \cref{extlem:F0tech}. Given that if
+final holds due to \Del{0} and \cref{lem:F0tech}. Given that if
 $\tau\le\sigma<\tau+\Omega^{p}$ there exists
 some $\zeta<\Omega$ such that $\sigma<\tau+\Omega^q\cdot\zeta$ and
 $\wo_0(\sigma^*)\rightarrow\wo_0(\zeta)$ (pick
-$\zeta=(\sigma^*)^{\varepsilon+}$), \cref{eqn:Fpwell3}
+$\zeta=(\sigma^*)^{\varepsilon+}$), \eqref{eqn:Fpwell3}\gelnote{define \( \alpha^{\varepsilon+} \)}
 entails $F_p(\tau)\rightarrow\T_p(\gn{F_0(\dot\tau+\Omega^{\bar p})})$,
 % $F_p(\tau)\rightarrow\T_p(\gn{\forall\sigma<\dot\tau+\Omega^{\bar p}[\wo_0(\sigma^*)\rightarrow \wo_0(\vartheta\sigma)]})$
 that is $\forall\tau[F_p^\tau(\alpha)\rightarrow F_p^\tau(\alpha+1)]$.
@@ -1735,7 +1745,7 @@ $\HST_p^{m+1}\proves\T_p(\gn{\Prog F_p^{\Omega^{\bar p+1}\cdot\bar n}})$, from w
 \end{align*}
 and hence obtain $\HST_p^{m+1}\proves F_p(\Omega^{\bar p+1}\cdot\bar m)$.
 \end{proof}
-\begin{theorem}\label{extthm:Fplowerbound}
+\begin{theorem}\label{thm:Fplowerbound}
  For every $m<\omega$ and $p<\omega$,
 $\HST_p^{m}\proves\TI(\mathord<\vartheta(\Omega^{p+1}\cdot m))$ and
 $\HST_p\proves\TI(\mathord<\vartheta(\Omega^{p+1}\cdot\omega))$.
@@ -1749,7 +1759,7 @@ n+\Omega^{\bar p}\cdot\bar\alpha)$, and so
 \begin{align*}
   \HST_p^m\proves\wo_p(\vartheta(\Omega^{\bar p+1}\cdot\bar n+\Omega^{\bar p}\cdot\bar\alpha)),
 \end{align*}
-by unravelling the definition of $F_p$ and \cref{extlem:F0tech}.
+by unravelling the definition of $F_p$ and \cref{lem:F0tech}.
 
 Let $\sigma_0=1$ and $\sigma_{k+1}=\vartheta(\Omega^{p+1}\cdot
 n+\Omega^p\cdot\sigma_k)$. The previous paragraph establishes $\HST_p^m\proves
@@ -1790,8 +1800,8 @@ p<\omega\,\T_\omega(\gn{\forall\alpha[\wo_{0}(\alpha)\rightarrow\wo_{0}
   \HST_\omega\proves \forall\sigma<\Omega^\omega[\wo_\omega(\sigma^*)\rightarrow
   \wo_\omega(\vartheta\sigma))].
 \end{align*}
-\Cref{eqn:Fbetawellordering0.1} is not difficult to establish as the proof of
-\cref{extlem:Fpwellordering1} is clearly uniform in $p<\omega$ and thus can be
+\eqref{eqn:Fbetawellordering0.1} is not difficult to establish as the proof of
+\cref{lem:Fpwellordering1} is clearly uniform in $p<\omega$ and thus can be
 repeated under a $\T_\omega$ predicate in $\HST_\omega$. But in order to lift the
 construction to arbitrary $\beta\in\OT_\Omega\cap\Omega$ we require a more
 general argument.
@@ -1801,15 +1811,15 @@ For each $\beta\in\OT_\Omega$ let $G_\beta(\rho)$ denote the formula
   \T_{\beta}(\gn{F_0(\dot\rho)}),
 \end{align*}
 and let $G_\beta^\rho(\alpha)$ abbreviate $\alpha<\Omega\land \forall\eta<\bar\beta\,G_\beta(\rho+\Omega^\eta\cdot\alpha)$.
-\begin{proposition}\label{extlem:Fbetawellordering1}
+\begin{proposition}\label{lem:Fbetawellordering1}
  For each $\beta\in\OT_\Omega\cap\Omega$, $\HST_{\beta}^1\proves \forall\rho[G_\beta(\rho)\rightarrow \Prog G_\beta^\rho]$ and for every $m<\omega$, $\HST_{\beta}^{m+1}\proves G_\beta(\Omega^{\bar\beta}\cdot\bar m)$.
 \end{proposition}
-The proof of \cref{extlem:Fbetawellordering1} is by transfinite induction on
+The proof of \cref{lem:Fbetawellordering1} is by transfinite induction on
 $\beta$ and requires, for a given $\beta$, the following technical lemmata.
-\begin{lemma}\label{extlem:Fbetatech1}
+\begin{lemma}\label{lem:Fbetatech1}
  $\HST_\beta^1\proves \forall\rho[G_\beta(\rho)\rightarrow \forall\eta<\bar\beta\,\T_\beta(\gn{\Prog G_{\dot\eta}^{\dot\rho}})]$.
 \end{lemma}
-\begin{lemma}\label{extlem:Fbetatech2}
+\begin{lemma}\label{lem:Fbetatech2}
   $\HST_\beta^1\proves \T_\beta(\gn{\forall\tau\forall\eta<\bar\beta\,[F_0(\tau)\land\T_0(\gn{\Prog G_{\dot\eta}^{\dot\tau}}) \rightarrow
   F_0(\tau+\Omega^{\eta})]})$.
 \end{lemma}
@@ -1819,16 +1829,16 @@ The two lemmata hold vacuously when $\beta=0$. For $\beta>0$
  \HST_\beta^1\proves G_\beta(\rho)\equi \forall\eta<\bar\beta\,\T_\beta(\gn{G_\eta(\dot\rho)}),
 \end{align*}
 so the first lemma would result from replicating the proof of (the transfinite
-induction hypothesis of) \cref{extlem:Fbetawellordering1} under a $\T_\beta$
-predicate. This is possible as the proof of the \namecref{extlem:Fbetawellordering1}, which is presented below, is
+induction hypothesis of) \cref{lem:Fbetawellordering1} under a $\T_\beta$
+predicate. This is possible as the proof of the \namecref{lem:Fbetawellordering1}, which is presented below, is
 uniform in $\eta<\beta$.
 
-In order to establish \cref{extlem:Fbetatech2}, argue within $\HST_\beta^1$ {\em under} the scope of a $\T_\beta$ predicate. Fix $\eta<\bar\beta$, some arbitrary $\tau$ and assume
+In order to establish \cref{lem:Fbetatech2}, argue within $\HST_\beta^1$ \emph{under} the scope of a $\T_\beta$ predicate. Fix $\eta<\bar\beta$, some arbitrary $\tau$ and assume
 \begin{gather}
   \T_0(\gn{\Prog G_{\dot \eta}^{\dot\tau}}),\label{eqn:Fbetatech2}\\
   F_0(\tau).\label{eqn:Fbetatech3}
 \end{gather}
-\Cref{eqn:Fbetatech2} entails
+\eqref{eqn:Fbetatech2} entails
 \begin{gather*}
   \forall\alpha [\wo_0(\alpha)\rightarrow \forall\xi<\eta\,\T_0(\gn{G_\eta(\dot\tau+\Omega^{\dot\xi}\cdot\dot\alpha)})],
 \end{gather*}
@@ -1836,19 +1846,19 @@ so $\forall\alpha[\wo_0(\alpha)\rightarrow \forall\xi<\eta\,\T_0(\gn{F_0(\dot\ta
 \begin{align}\label{eqn:Fbetatech4}
   \forall\xi<\eta\forall\alpha [\wo_0(\alpha)\rightarrow\wo_0(\vartheta(\tau+\Omega^\xi\cdot\alpha))]
 \end{align}
-by \cref{extlem:F0tech}. If $\tau\le\sigma<\tau+\Omega^\eta$, there exists some
+by \cref{lem:F0tech}. If $\tau\le\sigma<\tau+\Omega^\eta$, there exists some
 $\zeta<\Omega$ and $\xi<\eta$ such that $\sigma<\tau+\Omega^\xi\cdot\zeta$
 and $\wo_0(\sigma^*)\rightarrow \wo_0(\zeta)$ (pick
 $\zeta=(\sigma^*)^{\varepsilon+}$), whence $\wo_0(\sigma^*)\rightarrow
-\wo_0(\vartheta\sigma)$ results from \cref{eqn:Fbetatech4} as
+\wo_0(\vartheta\sigma)$ results from \eqref{eqn:Fbetatech4} as
 $\vartheta\sigma<\vartheta(\tau+\Omega^\xi\cdot\zeta)$. If, however,
-$\sigma<\tau$, \cref{eqn:Fbetatech3} implies $\wo_0(\sigma^*)\rightarrow
+$\sigma<\tau$, \eqref{eqn:Fbetatech3} implies $\wo_0(\sigma^*)\rightarrow
 \wo_0(\vartheta\sigma)$. Thus, $F_0(\tau+\Omega^\eta)$ holds.
 \end{proof}
-\begin{proof}[of \cref{extlem:Fbetawellordering1}]
+\begin{proof}[of \cref{lem:Fbetawellordering1}]
 Argue informally within $\HST_\beta^1$. Fix some arbitrary $\rho$ and assume $G_\beta(\rho)$.
-\Cref{extlem:Fbetatech1} yields $\forall\eta<\bar\beta\,\T_\beta(\gn{\Prog
-G_\eta^\rho})$ from which, using T$^-_\beta$-Rep and \cref{extlem:Fbetatech2},
+\Cref{lem:Fbetatech1} yields $\forall\eta<\bar\beta\,\T_\beta(\gn{\Prog
+G_\eta^\rho})$ from which, using T$^-_\beta$-Rep and \cref{lem:Fbetatech2},
 one obtains
   $\forall\eta<\bar\beta\,\T_\beta(\gn{F_0(\rho+\Omega^\eta)})$,
 that is, $\forall\eta<\bar\beta\,G_\beta(\rho+\Omega^\eta)$. Therefore
@@ -1862,105 +1872,36 @@ If $\mu$ is a limit ordinal, $\forall\nu<\mu\,G_\beta^\rho(\nu)$ and
 \cdot\nu)}),
 \end{align*}
 from which $\T_\beta(\gn{F_0(\dot\rho+\Omega^{\dot\eta}\cdot\dot\mu)})$ is easily
-deduced. Thus \cref{eqn:Fbetawellordering11} entails
+deduced. Thus \eqref{eqn:Fbetawellordering11} entails
 \begin{align*}
  \HST_\beta^1\proves\forall\rho[G_\beta(\rho)\rightarrow \Prog G_\beta^\rho].
 \end{align*}
 
-The second half of \cref{extlem:Fbetawellordering1} is proved by induction on $m<\omega$. The case $m=0$ holds since $F_0(\bar0)$ is vacuously true. If $m=n+1$ and $\HST_\beta^m\proves G_\beta(\Omega^{\bar\beta}\cdot\bar n)$,
+The second half of \cref{lem:Fbetawellordering1} is proved by induction on $m<\omega$. The case $m=0$ holds since $F_0(\bar0)$ is vacuously true. If $m=n+1$ and $\HST_\beta^m\proves G_\beta(\Omega^{\bar\beta}\cdot\bar n)$,
 \begin{align*}
  \HST_\beta^{m+1}\proves \T_\beta(\gn{\Prog G_\beta^{\Omega^{\bar\beta}\cdot\bar n}}),
 \end{align*}
-so $\HST_\beta^{m+1}\proves G_\beta(\Omega^{\bar\beta}\cdot\bar m)$ by an argument similar to \cref{extlem:Fbetatech2}.
+so $\HST_\beta^{m+1}\proves G_\beta(\Omega^{\bar\beta}\cdot\bar m)$ by an argument similar to \cref{lem:Fbetatech2}.
 %
-%
-% This proceeds by transfinite induction on
-% $\beta\in\OT_\Omega\cap\Omega$. If $\beta=0$, (i), (ii) and (iii) hold vacuously
-% while (iv) is a result of \cref{extprop:F0genwellordering}. Thus suppose
-% $\beta>0$.
-%
-% It is useful to begin with (iii), followed by (iv), (i) and (ii), as the
-% arguments employed for parts (i) and (ii) reflect upon those used in showing the
-% induction hypothesis for (ii) and (iv). Since (i) and (ii) will not depend on
-% either (iii) or (iv) we may assume, for the time being, they hold.
-%
-% From (ii) we obtain
-% \begin{align*}%\label{eqn:Fbetawellordering1.1}
-%  \HST_\beta^1\proves (\forall\nu<\mu\,B_\beta(\nu))\rightarrow\forall\eta<\bar\beta\,\T_\beta(\gn{\Prog A_\eta^{\dot\mu}}).
-% \end{align*}
-% Within $\HST_\beta^1$, however,
-% \begin{align*}
-%  \T_\beta(\gn{\Prog A^{\dot\mu}_\eta})&\rightarrow \T_\beta(\gn{\T_\eta(\gn{\Prog A_\eta^{\dot\mu}})}),\\
-% 		&\rightarrow \T_\beta(\gn{\forall\alpha[\wo_\eta(\alpha)\rightarrow \T_\eta(\gn{A_\eta^{\dot\mu}(\dot\alpha)})]}),\\
-% 		&\rightarrow \T_\beta(\gn{\forall\alpha[\wo_\eta(\alpha)\rightarrow \wo_\eta\vartheta(\Omega^2\cdot\dot\eta+\Omega\cdot\dot\mu+\dot\alpha)]});
-% \end{align*}
-% thus we deduce $\HST_\beta^1\proves\Prog B_\beta$.
-%
-% We now move on to (iv), the proof of which follows by generalising
-% the argument for \cref{extlem:Fpwellordering1} into the transfinite.
-% Applying \Nec\beta to (iii) we obtain $\HST_{\beta}^2\proves
-% \forall\alpha[\wo_\beta(\alpha)\rightarrow \T_\beta(\gn{B_\beta(\dot\alpha)})]$ and so
-% \begin{align}\label{eqn:Fbetawellordering2}
-%   \HST_{\beta}^2\proves\forall\alpha[\wo_\beta(\alpha)\rightarrow \wo_\beta\vartheta(\Omega^2\cdot\bar \beta+\Omega\cdot\alpha)].
-% \end{align}
-% Argue informally within $\HST_{\beta}^2$. Assume
-% \begin{gather}\label{eqn:Fbetawellordering3}
-%   \forall\nu<\mu\,\forall\alpha[\wo_\beta(\alpha)\rightarrow
-%   \wo_\beta\vartheta(\Omega^2\cdot\bar \beta+\Omega\cdot\dot\nu+\dot\alpha)].
-% \end{gather}
-% The aim is to prove $\Prog A_\beta^\mu$ so assume further
-% \begin{gather}
-%   \label{eqn:Fbetawellordering4}
-%  \forall\alpha<\beta\,A_\beta^\mu(\alpha).
-% \end{gather}
-% By induction on the rank of $\gamma_0<\vartheta(\Omega^2\cdot\beta+\Omega\cdot\mu+\alpha)$ we show $\wo_\beta(\gamma_0)$, whence we may deduce $A_\beta^\mu(\alpha)$. The only non-trivial case is given by
-% \begin{align*}
-%  \gamma_0=\vartheta\xi<\vartheta(\Omega^2\cdot \beta+\Omega\cdot\mu+\beta),
-% \end{align*}
-% for which we obtain the following four possibilities:
-% \begin{enumerate}\renewcommand*\theenumi{\arabic{enumi}}
-% \renewcommand*\labelenumi{\em\theenumi.}%
-%   \item $\xi<\Omega^2\cdot\beta$ and
-% $\xi^*<\vartheta(\Omega^2\cdot\beta+\Omega\cdot\mu+\beta)$,
-%   \item $\Omega^2\cdot\beta\le\xi<\Omega^2\cdot\beta+\Omega\cdot\mu$ and
-% $\xi^*<\vartheta(\Omega^2\cdot \beta+\Omega\cdot\mu+\beta)$,
-%   \item
-% $\Omega^2\cdot\beta+\Omega\cdot\mu\le\xi<\Omega^2\cdot\beta+\Omega\cdot\mu+\alpha$ and $\xi^*<\vartheta(\Omega^2\cdot \beta+\Omega\cdot\mu+\beta)$,
-% %  \item $\xi<\Omega^2\cdot\bar p+\Omega\cdot\mu+\beta$ and $\xi^*<\vartheta(\Omega^2\cdot\bar p+\Omega\cdot\mu+\beta)$;
-%  \item $\xi>\Omega^2\cdot\beta+\Omega\cdot\mu+\alpha$ and $\vartheta\xi\le\max\{\beta^*,\mu^*,\alpha^*\}$.
-% \end{enumerate}
-% In the cases 1--3 we may assume $\wo_\beta(\xi^*)$ as $\xi$ has rank strictly
-% smaller than $\gamma_0$ and, by
-% \cref{eqn:Fbetawellordering4,eqn:Fbetawellordering2,eqn:Fbetawellordering3} respectively, we deduce $\wo_\beta\vartheta\xi$. In
-% case 4, $\wo_\beta\vartheta\xi$ is obtained from
-% \begin{align*}
-%  \wo_\beta(\beta^*)\land\wo_\beta(\mu^*)\land\wo_\beta(\alpha^*)
-% \end{align*}
-% which is implied by \cref{eqn:Fbetawellordering4,eqn:Fbetawellordering2,eqn:Fbetawellordering3}.
-%
-% Parts (i) and (ii) now follow by repeating the above argument for arbitrary
-% $\eta<\beta$ under a $\T_\beta$ predicate. This is possible as the proofs are
-% uniform in $\beta$ and applications of \Nec\eta are replaced by the
-% corresponding instantiation of T$_\beta^-$-Rep.
 \end{proof}
-Much as in the finite case, \cref{extlem:Fbetawellordering1} suffices to obtain
-lower bounds on the theories $\HST_\beta^m$. In \cref{extthm:Fbetalowerbound}
+Much as in the finite case, \cref{lem:Fbetawellordering1} suffices to obtain
+lower bounds on the theories $\HST_\beta^m$. In \cref{thm:Fbetalowerbound}
 below we prove $\pto{\HST_\beta}\ge\vartheta(\Omega^\beta\cdot\omega)$. This is
 achieved by showing the proof-theoretic ordinal of $\HST_\beta^m$ is closed under
 the operations $\alpha\mapsto\vartheta(\Omega^\eta\cdot\alpha)$ for every
 $\eta<\beta$ and extends the strength of $\HST_\beta^n$ for $n<m$. The method will
 only work if $\beta$ is not ``too large'', that is $\vartheta\Omega^\beta$ is
-indeed the {\em least} ordinal closed under the above operations. By taking
+indeed the \emph{least} ordinal closed under the above operations. By taking
 $\beta$ to be no larger than the Veblen ordinal $\vartheta\Omega^\Omega$,
-we can ensure that this is the case. %\footnote{{\em Cf.}~with \cref{extprop:thetaitems2}.}
-\begin{theorem}\label{extthm:Fbetalowerbound}
+we can ensure that this is the case. %\footnote{\emph{Cf.}~with \cref{prop:thetaitems2}.}
+\begin{theorem}\label{thm:Fbetalowerbound}
   For every $\beta<\vartheta\Omega^\Omega$ and every $m<\omega$,
   $\HST_\beta^{m}\proves\TI(\mathord<\vartheta(\Omega^\beta\cdot m))$ and $\HST_\beta\proves\TI(\mathord<\vartheta(\Omega^\beta\cdot\omega))$.
 \end{theorem}
 \begin{proof}
 For every $\beta<\vartheta\Omega^\Omega$, the base case, $m=0$, is immediate
 since $\HST_\beta^0$ extends $\PA$ formulated in the language $\L_\kappa$.
-Otherwise $m=n+1>0$ and \cref{extlem:Fbetawellordering1} implies $\HST_\beta^m\proves\Prog
+Otherwise $m=n+1>0$ and \cref{lem:Fbetawellordering1} implies $\HST_\beta^m\proves\Prog
 G_\beta^{\Omega^{\bar\beta}\cdot\bar n}$. Then, given $\HST_\beta^m\proves
 \wo_\beta(\bar \alpha)$, we obtain $\HST_\beta^m\proves
 \forall\eta<\bar\beta\,G_\beta(\Omega^{\bar\beta}\cdot\bar
@@ -2004,595 +1945,456 @@ The lower bound on $\HST_\beta$ is an immediate consequence of the fact
 \begin{align*}
   \vartheta(\Omega^{\beta}\cdot \omega)=\sup_{k<\omega}\vartheta(\Omega^{\beta}\cdot k).
 \end{align*}
-%  Fix some $\beta<\vartheta\Omega^\Omega$ and some $m<\omega$. Let
-% $\gamma_0=\beta^*+1$ and $\gamma_{k+1}=C(\Omega^\beta\cdot
-% m,\gamma_k)\cap\Omega$. Then
-%  \begin{align*}
-%   \vartheta(\Omega^\beta\cdot m)\le\sup_{k<\omega}\gamma_k.
-%  \end{align*}
-%  $\HST_\beta^m\proves \wo_\beta(\bar\alpha)$ for every $\alpha<\gamma_0$, so
-% suppose $\HST_\beta^m\proves \wo_\beta(\bar\alpha)$ for every $\alpha<\gamma_k$.
-% We will establish that
-%  \begin{align*}
-%   \HST_\beta^m\proves \wo_\beta(\bar\alpha)\text{ for every $\alpha<\gamma_{k+1}$}
-%  \end{align*}
-% by induction on the recursive definition of $\gamma_{k+1}$. Suppose, moreover,
-% that $\HST_\beta^m\proves \wo_\beta(\bar\alpha)$ for every $\alpha\in
-% C_i(\Omega^\beta\cdot m,\gamma_k)\cap\Omega$ and pick some $\eta\in
-% C_{i+1}(\Omega^\beta\cdot m,\gamma_k)\cap\Omega$.
-%
-% (C1). If $\eta<\gamma_k$, $\HST_\beta^m\proves\wo_\beta(\bar\eta)$ holds by assumption.
-%
-% (C2). If $\eta=\omega^\xi+\delta$ for $\xi,\delta\in C_i(\Omega^\beta\cdot
-% m,\gamma_k)\cap\Omega$ the subsidiary induction hypothesis implies
-% $\HST_\beta^m\proves\wo_\beta(\bar\eta)$.
-%
-% (C3). If $\eta=\vartheta\xi$ for some $\xi\in C_i(\Omega^\beta\cdot m,\gamma_k)\cap\Omega^\beta\cdot m$, we have $\xi^*\in C_i(\Omega^\beta\cdot m,\gamma_k)\cap\Omega$, whence $\HST_\beta^m\proves\wo_\beta(\bar\xi^*)$ and $\HST_\beta^m\proves\wo_\beta(\bar\eta)$ since $\HST_\beta^m\proves F_\beta(\Omega^\beta\cdot\bar m)$.
 \end{proof}
 
-% \begin{theorem}
-%  For every $m<\omega$ and $\beta<\vartheta\Omega^3$, $\HST_\beta^{m+1}\proves\TI(\mathord<\vartheta(\Omega^2\cdot\beta+\Omega\cdot m))$ and $\HST_\beta\proves\TI(\mathord<\vartheta(\Omega^2\cdot\beta+\Omega\cdot\omega))$.
-% \end{theorem}
-% \begin{proof}
-% We shall show the first part;
-% % $\HST_\beta^{m+1}\proves
-% % \TI(\mathord<\vartheta(\Omega^2\cdot\bar \beta+\Omega\cdot\bar m))$ for each $m<\omega$.
-% since $\vartheta(\Omega^2\cdot \beta+\Omega\cdot
-% \omega)=\sup_{n<\omega}\vartheta(\Omega^2\cdot \beta+\Omega\cdot n)$ we then easily
-% obtain $\HST_\beta\proves\TI(\mathord<\vartheta(\Omega^2\cdot \beta+\Omega\cdot \omega))$.
-%
-% The case of $\beta<\omega$ has already been dealt with. Let us first consider
-% the case $m=0$. \Cref{extlem:Fbetawellordering1} shows $\HST_\beta^1\proves\Prog
-% B_\beta$; thus if $\HST_\beta^1\proves\TI(\mathord<\gamma)$, we deduce
-% $\HST_\beta^1\proves \forall\eta<\bar\beta\,\T_{\beta}(\gn{\forall\alpha[
-% \wo_\eta(\alpha)\rightarrow
-% \wo_\eta\vartheta(\Omega^2\cdot\dot\eta+\Omega\cdot\bar\gamma+\alpha)]})$,
-% whence also
-% $\HST_\beta^1\proves\TI(\mathord<\vartheta(\Omega^2\cdot\eta
-% +\Omega\cdot\gamma))$ for every $\eta<\beta$.
-%
-% All that remains is to show
-% $\vartheta(\Omega^2\cdot\beta)$ is the least ordinal closed under the functions
-% $\gamma\mapsto\vartheta(\Omega^2\cdot \eta+\Omega\cdot\gamma)$ for $\eta<\beta$. Fix some sequence of ordinals $\{\alpha_i:i<\omega\}$ such that $\beta=\sup_{n<\omega}\alpha_n+1$.\footnote{If $\beta=\beta_0+1$, one may take $\alpha_i=\beta_0$ for every $i$.} Furthermore, let
-% $\sigma_0=0$ and $\sigma_{m+1}=\vartheta(\Omega^2\cdot\alpha_m+\Omega\cdot\sigma_m)$. We will prove by induction on the rank of $\gamma$ that $\gamma<\vartheta(\Omega^2\cdot \beta)$
-% implies $\gamma<\sigma_n$ for some $n$. As usual the only case of interest is given by
-% \begin{align*}
-%  \gamma=\vartheta\xi<\vartheta(\Omega^2\cdot \beta),
-% \end{align*}
-% which leads to one of two possibilities:
-% \begin{enumerate}\renewcommand*\theenumi{\arabic{enumi}}
-% \renewcommand*\labelenumi{\em\theenumi.}%
-% %   \item $\xi<\Omega^2\cdot\beta$ and
-% % $\xi^*<\vartheta(\Omega^2\cdot\beta+\Omega\cdot\mu+\beta)$,
-% %   \item $\Omega^2\cdot\beta\le\xi<\Omega^2\cdot\beta+\Omega\cdot\mu$ and
-% % $\xi^*<\vartheta(\Omega^2\cdot \beta+\Omega\cdot\mu+\beta)$,
-% %   \item
-% % $\Omega^2\cdot\beta+\Omega\cdot\mu\le\xi<\Omega^2\cdot\beta+\Omega\cdot\mu+\alpha$ and $\xi^*<\vartheta(\Omega^2\cdot \beta+\Omega\cdot\mu+\beta)$,
-%  \item $\xi<\Omega^2\cdot \beta$ and $\xi^*<\vartheta(\Omega^2\cdot\beta)$;
-%  \item $\xi>\Omega^2\cdot \beta$ and $\vartheta\xi\le\beta^*$.
-% \end{enumerate}
-% In the first case one may pick some $n<\omega$ so that $\xi^*<\sigma_n$ and
-% $\xi<\Omega^2\cdot\alpha_n+\Omega\cdot\sigma_n$, in which case
-% $\vartheta\xi<\sigma_{n+1}$. For the second case we use the fact
-% $\beta<\vartheta\Omega^3$ to deduce $\Omega^2\cdot
-% \beta<\xi<\Omega^3$.\footnote{Note the option $\xi>\Omega^3$ is ruled out since
-% $(\Omega^3)^*=0$.} But then $\beta^*\le\xi^*$ and so $\beta^*<\vartheta\xi$,
-% contradicting $\vartheta\xi\le\beta^*$.
-%
-% We now move to consider the theories $\HST_\beta^{m+1}$ with $m=n+1>0$. By using
-% \cref{extlem:Fbetawellordering1} we first show
-% \begin{align}\label{eqn:Fbetawellordering1}
-%   \HST_\beta^{k+2}\proves\Prog A^{\bar k}_\beta
-% \end{align}
-% for each $k<\omega$. This is immediate for $k=0$, and if $\HST_\beta^{k+2}\proves\Prog A^{\bar
-% k}_\beta$, \textT \beta-Intro yields
-% \begin{align*}
-%   \HST_\beta^{k+3}\proves \forall\alpha[\wo_\beta(\alpha)\rightarrow
-% 	  \wo_\beta\vartheta(\Omega^2\cdot\bar\beta+\Omega\cdot\bar k +\alpha)],
-% \end{align*}
-% whence \cref{extlem:Fbetawellordering1} yields $\HST_\beta^{k+3}\proves\Prog A_\beta^{k+1}$.
-%
-% Leading from \cref{eqn:Fbetawellordering1}, if
-% $\HST_\beta^{m+1}\proves\TI(\mathord<\alpha)$, we have $\HST_\beta^{m+1}\proves
-% A_\beta^{\bar n}(\bar\alpha)$, so $\HST_\beta^{m+1}\proves
-% \TI(\mathord<\vartheta(\Omega^2\cdot \beta+\Omega\cdot n+\alpha))$; all
-% that remains is to show $\vartheta(\Omega^2\cdot \beta+\Omega\cdot m)$ is the
-% least ordinal closed under the function $\alpha\mapsto\vartheta(\Omega^2\cdot
-% \beta+\Omega\cdot n+\alpha)$. Let $\sigma_0=0$, and
-% $\sigma_{k+1}=\vartheta(\Omega^2\cdot \beta+\Omega\cdot n+\sigma_k)$. We prove
-% $\gamma<\vartheta(\Omega^2\cdot \beta+\Omega\cdot m)$ implies $\gamma<\sigma_k$
-% for some $k<\omega$ by induction on the rank of $\gamma$. Suppose
-% $\gamma=\vartheta\xi<\vartheta(\Omega^2\cdot \beta+\Omega\cdot m)$. Again we
-% have two cases to consider.
-% \begin{enumerate}\renewcommand*\theenumi{\arabic{enumi}}
-% \renewcommand*\labelenumi{\em\theenumi.}%
-%  \item $\xi<\Omega^2\cdot \beta+\Omega\cdot m$ and
-% $\xi^*<\vartheta(\Omega^2\cdot\beta +\Omega\cdot m)$;
-%  \item $\xi>\Omega^2\cdot \beta+\Omega\cdot m$ and $\vartheta\xi\le\beta^*$.
-% \end{enumerate}
-% In the first case we may apply the induction hypothesis and deduce
-% $\xi<\Omega^2\cdot \beta+\Omega\cdot n+\sigma_k$ for some $k<\omega$, whence also
-% $\vartheta\xi<\vartheta(\Omega^2\cdot\beta +\Omega\cdot m)$. For the second
-% case, we have $\vartheta\xi\le\beta^*$, so $\vartheta\xi<\vartheta\Omega^3$. As
-% $(\Omega^3)^*=0$ this implies
-% \begin{align*}
-%  \Omega^2\cdot\beta +\Omega\cdot m<\xi<\Omega^3.
-% \end{align*}
-% Therefore $\beta^*\le\xi^*$ and $\beta^*<\vartheta\xi$, contradicting
-% $\vartheta\xi\le\beta^*$.
-% \end{proof}
+% -----------------------
+\section{Upper bounds on the proof-theoretic ordinal}\label{sec:Fbupper1}
 
-% \section{An infinitary proof system for theories with multiple inter-referential truth predicates.}
-\subsection{Upper bounds on the proof-theoretic ordinal}\label{extsec:Fbupper1}
 
-[Keep this about the classical theory.]
+%We now address to the task of determining an upper bound on the strength of the theory $\HST_\beta$. 
+We present a ordinal function \( f \) on \( \OT \) such that for all \( \rho \in \OT \), all arithmetical theorems of $\HST_\rho$ are derivable in the classical theory $\PA+\TI({<}f(\rho))$.
+By a slightly more involved argument, following the method of~\cite{LeiRat10}, the role of Peano arithmetic can be replaced by Heyting arithmetic, \( \HA \). 
 
-We now move to the task of determining an upper bound on the strength of the theory
-$\HST_\beta$. The ultimate aim is to demonstrate that any arithmetical theorem of
-$\HST_\beta$ is derivable in the theory $\PA+\TI(\mathord<\delta)$ for a suitable
-ordinal $\delta$. To achieve this it is natural to attempt to formalise the consistency proof provided in \cref{extsec:Fbconsis}. For it to be successful, however, we must show that the arguments involved can be carried out within the confines of
-$\PA+\TI(\mathord<\delta)$. The main difficulty is with formalising the T-Elimination theorem, \cref{extthm:FFTElim}, since:
-\begin{itemize}
- \item The proof
-  %that $\FF^*_\rho$ is closed under \Conec\eta,
-  %\cref{extlem:FFTElim},
-  makes free use of transfinite induction beyond the first uncountable ordinal.
- \item Moreover, each subsidiary induction appears to also require transfinite
-  induction beyond $\delta$ (albeit this time bounded in $\Omega$) in order to
-  support later steps in the main induction.
- \item In particular, the case in which the last rule employed was \Uni\eta
-  makes use of non-finitistic properties of $\Omega$; namely
-  \cref{extlem:ordOlimit}.
-\end{itemize}
-% As was the case when analysing $\Finfty$ (in particular \cref{classthm:F8TElim,classthm:Fstrength}),
-By introducing bounds on the height of the derivations in $\FF_\rho^*$ (for a fixed ordinal $\rho\in\OT_\Omega$), we observe that $\delta$ can be chosen so as to bound all uses of the subsidiary transfinite induction hypothesis described in the second point.
-Moreover, $\delta$ can be
-chosen in such a way that all references to the main induction hypothesis in
-\cref{extlem:FFTElim} are for ordinals of the form
-\linebreak$\Omega^{\alpha_0}\cdot\beta_0+\Omega^{\alpha_1}\cdot\beta_1+\cdots+\Omega^{
-\alpha_n}\cdot\beta_n$ where $\alpha_i,\beta_i<\delta$ for every $i\le n$; the
-upshot being that a formalised version of \cref{extlem:FFTElim} needs only countable induction on some suitable (lexicographical-style) ordering.
+The proof proceeds by formalising the consistency proof of \cref{sec:Fbconsis} within the confines of the theory $\PA+\TI({<}f(\rho))$. 
+The main technical difficulty is in formalising the co-Necessitation theorem, \cref{thm:FFTElim}, for two reasons:
+(1) the proof appeals to transfinite induction beyond the first uncountable ordinal and a subsidiary induction on all countable ordinals,
+(2) the case in which the last rule employed was \Uni\eta{} employs non-finitistic properties of $\Omega$, specifically \cref{lem:ordOlimit}.
 
-The third point, however, has no immediate alternative; we need the regularity
-of $\Omega$ to ensure the set $\FF^*_{<\rho}$ is closed under the $\omega$-rule
-if $\rho$ is not an $\Omega$-limit, a property required to establish that
-$\FF^*_\rho$ is closed under \Conec\eta. Suppose
-$\rho=\rho'+\Omega^{\xi+1}$ is not an $\Omega$-limit. If $A(x)$ is a formula of
-$\L_\kappa$ and $\FF^*_{\rho_n}\proves A(\bar n)$ with $\rho_n<\rho$ for every
+The first concern is directly alleviated by parameterising the height of derivations in $\FF_\rho$ from which a suitable choice of \( f \) ensures that applications of the subsidiary induction hypothesis are bounded below \( f(\rho) \) and all references to the main induction hypothesis in the co-necessitation theorem are for ordinals of the form
+$\Omega^{\alpha_0}\cdot\beta_0+\cdots+\Omega^{
+\alpha_n}\cdot\beta_n$ where $\alpha_i,\beta_i< f(\delta)$ for all $i$.
+
+The second point, however, has no immediate alternative; regularity
+of $\Omega$ is needed to ensure that the set $\FF_{<\rho}$ is closed under the $\omega$-rule
+in the case that $\rho$ is not an $\Omega$-limit, as this property is required to establish that
+$\FF_\rho$ is closed under \Conec\eta. 
+Suppose, for instance, that 
+$\rho=\rho'+\Omega^{\xi+1}$, which is not an $\Omega$-limit. 
+If $A(x)$ is a formula of
+$\L_\kappa$ and $\proves_{\rho_n}  A(\bar n)$ with $\rho_n<\rho$ for every
 $n$, we want to obtain an ordinal $\sigma<\rho$ such that
-$\FF^*_\sigma\proves\forall x\, A(x)$.
+$\proves_\sigma \forall x\, A(x)$.
 %
-% As discussed earlier,
-% the problem arises through the interaction between \Nec\beta and $\omega$-rule: suppose $f_\eta(\xi,x)$
-% is a primitive recursive function defined by
-% \begin{gather*}
-%  f_\eta(0,x)=x,\\
-% %  f_\eta(\xi+1,x)&=\T_\eta(\bar{f_\eta(\xi,x)}),\\
-%  f_\eta(\xi,x)=\gn{\forall\zeta<\bar\xi\,\T_\eta(\subdot {f_\eta}(\zeta,x))}.
-% \end{gather*}
-% If $\rho$ is an $\Omega$-limit, say $\rho=\Omega^\beta\cdot\lambda$ with
-% $\lambda$ a limit ordinal, there may exist some sentence $A$ such that
-% $f_\beta(\xi,\gn A)\in\FF^*_{<\rho}$ for every $\xi<\lambda$, but
-% $f_\beta(\lambda,\gn A)\not\in\FF^*_{<\rho}$.
-As each application of \Nec\eta must increase the height of a
-derivation, introducing bounds on the height of a derivation indirectly yields
-bounds on its T-rank. That is, if $\FF^*_\tau\proves B$ with height
-$\alpha$, one can prove the existence of a ordinal $\tau_0\le\tau$ such that
-$\FF^*_{\tau_0}\proves B$ and $\tau_0^*$ is no larger than the maximum of
-$\alpha$ and all $\eta$ such that \Nec\eta was utilised in the
-derivation $\FF^*_{\tau}\proves B$. Thus, if $\alpha$ is an ordinal bounding
-the height of the derivation $\FF^*_{\rho_n}\proves A(\bar n)$ for every
-$n$,
-% \footnote{In uses of this argument  we will always have a global bound on
-% the height of the derivations of interest.} 
-we may observe the ordinal $\rho_n$
-is ``bounded'' by $\alpha$ for every $n$, and so effectively find an ordinal $\gamma<\Omega$
-depending on $\alpha$ and $\rho$, so that if
-$\sigma=\rho'+\Omega^\xi\cdot\gamma$, $\rho_n<\sigma$ for every $n$ and, hence,
-$\FF^*_\sigma\proves \forall x\,A(x)$.
-% By introducing bounds on the height of derivations indirectly restricts applications of rule \Nec\eta
-% on how ``far'' this iteration may continue. For example, if
-% one has a bound $\alpha$ on the height of the derivation $\FF^*_\rho\proves
-% \T_\eta(\gn{\forall xA(x)})$ and the last applied rule was
-% \Uni\eta, one has a bound $\beta<\alpha$ on the premise,
-% $\FF^*_\rho\proves \forall x\,\T_\eta(\gn{A(\dot x)})$. The subsidiary induction
-% hypothesis will yield ordinals $\sigma_n<\rho$ and bounds
-% $\beta_n<g(\rho,\beta,\eta)$ (for some suitably chosen function $g$) on
-% derivations $\FF^*_{\sigma_n}\proves A(\bar n)$. Moreover, we know $\rho$ is not
-% an $\Omega$-limit. Ultimately we want to establish the sequence $\sigma_n$ is
-% bounded in $\rho$. As the height of the derivation increases with each
-% application of \Nec\eta and \Uni\eta, the ordinal
-% $\sigma_n$ must (in some suitable sense) be ``bounded'' by $\beta_n$, whence
-% $\sup_n\sigma_n$ is ``bounded'' by $g(\rho,\beta,\eta)$ and we may deduce
-% $\sup_n\sigma_n<\rho$.
+As each application of \Nec\eta{} in a derivation contributes to the height of a
+derivation, a bound on the height of a derivation implicitly bounds its T-rank.
+That is, if $\proves_\tau  B$ with height bound $\alpha$, it will follow that 
+$\proves_{\sigma}  B$ for some \( \sigma \le \tau \) such that $\sigma^* \le \alpha $.
+In particular, if $\alpha$ bounds the height of the derivation $\proves_{\rho_n}  A(\bar n)$ for each
+$n$, there exists an ordinal \( \beta < \Omega \) effectively computed from \( \rho \) and \( \alpha \)
+such that 
+$\proves_\sigma  \forall x\,A(x)$ where 
+$\sigma=\rho'+\Omega^\xi\cdot\beta$.
 
-Although at present these arguments are somewhat vague, they should explain the
-motivation behind a number of the technical results to follow. In particular,
-the remarks we made in relation to the third point are made explicit in the
-Condensation lemma (\cref{extlem:T8conden}).
+Although the above arguments are still vague, the reader may find them helpful motivation for a number of the technical results to follow, in particular in the Bounding Lemma (\cref{lem:T8conden}).
 
-It will be important to compare ordinals greater than $\Omega$ by their construction as well as their size. Therefore, we introduce a new ordering $<^*$, defined on $\OT_\Omega$ by
-\begin{align*}
-  \rho<^*\sigma\equi(\rho<\sigma\land\rho^*\le\sigma^*).
-\end{align*}
-$\rho\le^*\sigma$ abbreviates $\rho<^*\sigma\lor\rho=\sigma$.
-% \subsection{Upper bound on the proof-theoretic ordinal of \tF$_\beta$}\label{extsec:Fbupper1}
-\begin{definition}%[Definition of $\Tinfty\prov{\alpha}\rho\Gamma$]
-Fix $\kappa=\vartheta\varepsilon_{\Omega+1}$. Define $\Tinfty\prov{\alpha}{\rho}
-\Gamma \sa A$ for $\alpha, \rho\in\OT_\Omega$ with $\alpha<\Omega$ and $\Gamma \sa A$ an $\L_\kappa$-sequent, according to the
-following rules: {\em (Ax.1)}, $(\wedge)$, $(\lor)$, $(\omega)$ and $(\exists)$
-as in \cref{classdefn:F8}, along with the following for each $\eta<\kappa$ and each
-$\beta,\gamma<\alpha\in\OT_\Omega\cap\Omega$.
-\begin{description}
-  \item[\normalfont(Ax.2$_\eta$)] $\prov{\alpha}{\rho}{\Gamma, \T_\eta(s_0) \sa \T_\eta(s_1)}$
-	if $s_0^{\N}=s_1^{\N}$.
-  \item[\normalfont(Ax.3$_\eta$)] $\prov{\alpha}{\rho}{\Gamma, \T_\eta s \sa A}$ if $s^{\N}$ is
-	not the Gödel number of an $\L_\kappa$-sentence.
-  \item[\normalfont(\Imp\eta)] $\prov{\beta}{\rho}{\Gamma \sa \T_\eta(s_0)}$,
-	$\prv{\gamma}{\rho}{\Gamma \sa  \T_\eta(s_1)}$ and $s_0^{\N}=(s_1\dimplies
-	s_2)^{\N}$ implies $\prv{\alpha}{\rho}{\Gamma \sa \T_\eta(s_2)}$.
-  \item [\normalfont(\Nec\eta)] $\prov\alpha\rho{\Gamma \sa \T_\eta(s)}$
-	whenever $\prov{\beta}{\sigma}  \sa A$, with
-	$\sigma\nsum\Omega^{\eta+1}\le^*\rho$ and $s^{\N}=\gn A$.
-  \item [\normalfont(\Del\eta)]\label{extinf:dag1} $\prov{\beta}{\rho}{\Gamma \sa 
-	\T_\eta(s),}$ $s^{\N}=\gn{\T_\xi(s_0)}$ and $\xi<\kappa$ implies
-	$\prov{\alpha}{\rho}{\Gamma \sa \T_\eta(s_0)}$.
-%  \item [\normalfont($\lnot$\Del\eta)]$\prov{\beta}{\rho}{\Gamma,
-%	\T_\eta(s),}$ $s^{\N}=\gn{\lnot\T_\xi(s_0)}$ and $\xi<\kappa$ implies
-%	$\prov{\alpha}{\rho}{\Gamma,\T_\eta(s_1),}$ if $s_1^\N=(\dnot
-%	s_0)^\N$.
-  \item [\normalfont(\Rep\eta)]\label{extinf:dag2} $\prov{\beta}{\rho}{\Gamma \sa 
-	\T_\eta(s)}$, $\xi<\eta$ implies $\prv{\alpha}{\rho}{\Gamma \sa \T_\eta(s_0)}$
-	if $s^{\N}= \gn{\T_\xi(s_0)}$ and $s_0^{\N}$ is the Gödel number of
-	an $\L_\kappa$-sentence.
-  \item [\normalfont({\textT\eta-$\omega$})] $\prov{\beta}{\rho}{\Gamma \sa 
-	\T_\eta(\gn{A(\bar n)})}$ for every $n\in\N$, where $A(x)$ is a formula of $\L_\kappa$ with at most $x$ free,
-	implies $\prv{\alpha}{\rho}{\Gamma \sa \T_\eta(s)}$ whenever $s^\N=\gn{\forall x A(x)}$ and $\rho|_\eta$ is not an $\Omega$-limit.
-  \item [\normalfont(Weakening)] $\prov\beta\sigma\Gamma \sa A$ implies $\prov\alpha\rho{\Gamma,\Delta \sa A}$ whenever $\sigma\le^*\rho$ and $\Delta$ is an $\L_\T$-sequent.
-\end{description}
+In what follows it will be important to compare ordinals beyond $\Omega$ by their construction as well in addition to their magnitude, for which we introduce a new ordering $<^*$, defined on $\OT_\Omega$ by
+\[
+  \rho<^*\sigma \text{ iff }\rho<\sigma \text{ and }\rho^*\le\sigma^*,
+  \qquad
+  \rho\le^*\sigma \text{ iff } \rho<^*\sigma \text{ or }\rho=\sigma.
+\]
+
+\begin{definition}%[Infinitary calculus \( \Tinfty \)]
+Fix $\kappa=\vartheta\varepsilon_{\Omega+1}$. 
+We define $\prov{\alpha}{\rho} \Gamma $ for $\alpha, \rho\in\OT_\Omega$ with $\alpha<\Omega$ and \( \L_\kappa \)-sequent $\Gamma$ according to the inference rules in \cref{f-L-rules,f-T-rules}.
+%following rules: \emph{(Ax.1)}, $(\wedge)$, $(\lor)$, $(\omega)$ and $(\exists)$
+%as in \cref{classdefn:F8}, along with the following for each $\eta<\kappa$ and each
+%$\beta,\gamma<\alpha\in\OT_\Omega\cap\Omega$.
+%\begin{description}
+%  \item[\normalfont(Ax.2$_\eta$)] $\prov{\alpha}{\rho}{\Gamma, \T_\eta(s_0) \sa \T_\eta(s_1)}$
+%	if $s_0^{\N}=s_1^{\N}$.
+%  \item[\normalfont(Ax.3$_\eta$)] $\prov{\alpha}{\rho}{\Gamma, \T_\eta s \sa A}$ if $s^{\N}$ is
+%	not the Gödel number of an $\L_\kappa$-sentence.
+%  \item[\normalfont(\Imp\eta)] $\prov{\beta}{\rho}{\Gamma \sa \T_\eta(s_0)}$,
+%	$\prv{\gamma}{\rho}{\Gamma \sa  \T_\eta(s_1)}$ and $s_0^{\N}=(s_1\dimplies
+%	s_2)^{\N}$ implies $\prv{\alpha}{\rho}{\Gamma \sa \T_\eta(s_2)}$.
+%  \item [\normalfont(\Nec\eta)] $\prov\alpha\rho{\Gamma \sa \T_\eta s}$
+%	whenever $\prov{\beta}{\sigma}  \sa A$, with
+%	$\sigma\nsum\Omega^{\eta+1}\le^*\rho$ and $s^{\N}=\gn A$.
+%  \item [\normalfont(\Del\eta)]\label{inf:dag1} $\prov{\beta}{\rho}{\Gamma \sa 
+%	\T_\eta s,}$ $s^{\N}=\gn{\T_\xi(s_0)}$ and $\xi<\kappa$ implies
+%	$\prov{\alpha}{\rho}{\Gamma \sa \T_\eta(s_0)}$.
+%%  \item [\normalfont($\lnot$\Del\eta)]$\prov{\beta}{\rho}{\Gamma,
+%%	\T_\eta s,}$ $s^{\N}=\gn{\lnot\T_\xi(s_0)}$ and $\xi<\kappa$ implies
+%%	$\prov{\alpha}{\rho}{\Gamma,\T_\eta(s_1),}$ if $s_1^\N=(\dnot
+%%	s_0)^\N$.
+%  \item [\normalfont(\Rep\eta)]\label{inf:dag2} $\prov{\beta}{\rho}{\Gamma \sa 
+%	\T_\eta s}$, $\xi<\eta$ implies $\prv{\alpha}{\rho}{\Gamma \sa \T_\eta(s_0)}$
+%	if $s^{\N}= \gn{\T_\xi(s_0)}$ and $s_0^{\N}$ is the Gödel number of
+%	an $\L_\kappa$-sentence.
+%  \item [\normalfont({\textT\eta-$\omega$})] $\prov{\beta}{\rho}{\Gamma \sa 
+%	\T_\eta(\gn{A(\bar n)})}$ for every $n\in\N$, where $A(x)$ is a formula of $\L_\kappa$ with at most $x$ free,
+%	implies $\prv{\alpha}{\rho}{\Gamma \sa \T_\eta s}$ whenever $s^\N=\gn{\forall x A(x)}$ and $\rho|_\eta$ is not an $\Omega$-limit.
+%  \item [\normalfont(Weakening)] $\prov\beta\sigma\Gamma \sa A$ implies $\prov\alpha\rho{\Gamma,\Delta \sa A}$ whenever $\sigma\le^*\rho$ and $\Delta$ is an $\L_\T$-sequent.
+%\end{description}
 \end{definition}
-We refer to $\rho$ as the {\em T-rank} and $\alpha$ as the {\em height} of the derivation $\Tinfty\prov\alpha\rho{\Gamma.}$ For a fixed $\eta$, the rules (\Imp\eta) to (\textT\eta-$\omega$), are collectively referred to as {\em \textT\eta-rules}. The collection as a whole (for any $\eta$) is referred to as the {\em T-rules}. In each application of a rule or axiom above we specify the {\em active}, {\em minor} and {\em side} formulae as usual.
 
-Often when working with hierarchical systems one needs an extended notion of the
-rank of a formula. In this case, however, the basic definition of rank suffices
-and as such our work in $\Tinfty$ is greatly simplified. Define the {\em rank}
-of an $\L_\kappa$-sentence $A$, denoted $\rank A$, as in \cref{classsec:upperbdF} with the addition that $\rank{\T_\eta(s)}=\rank{\lnot \T_\eta(s)}=0$ for every $\eta<\kappa$.
+Given $\prov\alpha\rho{\Gamma}$\!, we refer to \( \Gamma \) as being \emph{derivable} with \emph{T-rank} $\rho$ and \emph{height} \( \alpha \). 
+For a fixed $\eta$, the rules (\Imp\eta) to (\Uni\eta) are collectively referred to as \emph{\textT\eta-rules}. 
+The collection as a whole (for all $\eta$) is referred to as the \emph{Truth rules}.
+In each application of a rule or axiom above we specify the \emph{principal}, \emph{minor} and \emph{side} formulae as standard.
 
-We observe the following straightforward results for $\Tinfty$ and,
-henceforth make free use of them without mention.
-\begin{proposition}\label{extprop:T8prop1}\label{extprop:T8items}\
+\begin{figure}
+	\centering
+	\ebproofset{
+		left label template={\normalfont\footnotesize (\inserttext)},
+		right label template={\footnotesize \inserttext},
+		template=\small$\inserttext$,
+	}
+	\begin{tabular}{c@{\qquad}c@{\qquad}c}
+		\begin{prooftree}
+			\hypo{A \text{ true literal}}
+			\infer1[Ax1]{\prv \alpha \rho {\Gamma , A}}
+		\end{prooftree}
+		&
+		\begin{prooftree}
+			\hypo{ \prv \alpha \rho \Gamma , A }
+			\hypo{ \prv {\alpha} \rho \Gamma , B }
+			\infer2[\( \wedge \)]{ \prv \beta \rho \Gamma , A \wedge B }
+		\end{prooftree}
+		&
+		\begin{prooftree}
+			\hypo{ \prv \alpha \rho \Gamma , A(\bar n) }
+			\hypo{ \text{all } n < \omega }
+			\infer2[\( \omega \)]{ \prv \beta \rho \Gamma , \forall x A(x) }
+		\end{prooftree}
+		\\[2em]
+		\begin{prooftree}
+			\hypo{s^\N = t^\N \in \setSent }
+			\infer1[Ax2]{\prv \alpha \rho {\Gamma , \lnot \T_\eta s , \T_\eta t }}
+		\end{prooftree}
+		&
+		\begin{prooftree}
+			\hypo{ \prv \alpha \rho \Gamma , A , B }
+			\infer1[\( \vee \)]{ \prv \beta \rho \Gamma , A \vee B }
+		\end{prooftree}
+		&
+		\begin{prooftree}
+			\hypo{ \prv \alpha \rho \Gamma , A(s) }
+			\infer1[\( \exists \)]{ \prv \beta \rho \Gamma , \exists x A(x) }
+		\end{prooftree}
+
+	\end{tabular}
+	\caption{Logical rules of the infinitary calculus; in each rule \( \beta > \alpha \).}
+	\label{f-L-rules}
+\end{figure}
+%
+\begin{figure}
+	\centering
+	\ebproofset{
+		left label template={\normalfont\footnotesize (\inserttext)},
+		right label template={\footnotesize \inserttext},
+		template=\small$\inserttext$,
+	}
+	\begin{tabular}{c@{\qquad}c@{\qquad}c}
+		\begin{prooftree}
+			\hypo{s^\N \not\in \setSent_\kappa }
+			\infer1[Ax3]{\prv \alpha \rho {\Gamma , \lnot \T_\eta s }}
+		\end{prooftree}
+		&
+		\begin{prooftree}
+			\hypo{ \prv \alpha \rho \Gamma , \T_\eta r }
+			\hypo{ \prv {\alpha} \rho \Gamma , \T_\eta ( r \dimplies s ) }
+%			\hypo{ s^\N = t^\N }
+			\infer2[\Imp\eta]{ \prv \beta \rho \Gamma , \T_\eta s }
+		\end{prooftree}
+		&
+		\begin{prooftree}
+			\hypo{ \prv \alpha \rho \Gamma , \T_\eta \gn{ \T_\xi s } }
+			\hypo{ s^\N = t^\N }
+			\infer2[\Del\eta]{ \prv \beta \rho \Gamma , \T_\eta t }
+		\end{prooftree}
+		\\[2em]
+		&
+		\begin{prooftree}
+			\hypo{ \prv \alpha \rho \Gamma , \T_\eta s }
+			\hypo{ t^\N =\gn{ \T_\xi s}^\N \in \setSent_\eta }
+			\infer2[\Rep\eta]{ \prv \beta \rho \Gamma , \T_\eta t }
+		\end{prooftree}
+		&
+		\begin{prooftree}
+			\hypo{ \prv \alpha \sigma A }
+			\hypo{ \sigma \nsum \Omega^{ \eta + 1 } \le^* \rho }
+			\hypo{ t^\N = \gn{ A }^\N }
+			\infer3[\Nec\eta]{ \prv \alpha \rho \T_\eta t}
+		\end{prooftree}
+		\\[2em]
+		&
+		\multicolumn{2}{c}{
+		\begin{prooftree}
+			\hypo{ \prv \alpha \rho \Gamma , \T_\eta \gn{ A( \bar n ) } }
+			\hypo{ \text{for all } n < \omega,  \rho |_\eta \text{ not an \( \Omega \)-limit and } s^\N = \gn{\forall x A(x)}^\N }
+			\infer2[\Uni\eta]{ \prv \beta \rho \Gamma , \T_\eta t }
+		\end{prooftree}}
+		\\
+
+	\end{tabular}
+	\caption{Truth rules of the infinitary calculus; in each case \( \beta > \alpha  \).}
+	\label{f-T-rules}
+\end{figure}
+
+The following lemma is an immediate consequence of the definition.
+
+\begin{lemma}[Weakening]
+	If\/ \( \prov \alpha \rho \Gamma \) then \( \prov \beta \sigma {\Gamma,\Delta} \) for all \( \Delta \), \( \beta \ge \alpha \) and \( \sigma \) satisfying \( \rho \le^* \sigma \).
+\end{lemma}
+
+The \emph{rank} of an $\L_\kappa$-sentence $A$, denoted $\rank A$, is defined straightforwardly as \( \rank A = 0 \) for \( A \) an atomic or negated atomic formula (including \( A \in \{ \T_\eta s, \lnot \T_\eta s \mid \eta < \kappa \} \)), \( \rank { A * B } = \max\{ \rank A , \rank B \} + 1 \) for \( * \in \{ \wedge , \vee \} \) and \( \rank { Q x A(x) } = \rank {A(\bar0)}+ 1 \) for \( Q \in \{ \forall , \exists \} \).
+
+Verification of the next proposition is straightforward and, hence, ommitted.
+%Henceforth, we will omit reference to make free use of the weakening lemma them without mention.
+\begin{proposition}\label{prop:T8prop1}\label{prop:T8items}\
  \begin{enumerate}
 %   \item $\Finfty\prov{\alpha}{\sigma}{\Gamma}$, $\beta\ge\alpha$ and $\sigma\le^*\rho$ implies $\Finfty\prv{\beta}{\rho}{\Gamma,\Delta}$ for any sequent $\Delta$.
-%   \label{extlem:F8L1itemi}
-  \item $\Tinfty\prov{\alpha}{\sigma}{\Gamma, A}$ implies
-	$\Tinfty\prov{\alpha}{\sigma}{\Gamma}$ if $A$ is a false arithmetical literal.
-	\label{extlem:F8L1itemvi}
-  \item $\Tinfty\prov{\alpha}{\sigma}{\Gamma, \T_\eta(s)}$ implies
-	$\Tinfty\prov{\alpha}\sigma{\Gamma}$ if $s^{\N}$ is not the code of an $\L_\kappa$-sentence.\label{extlem:F8L1itemviji}
-  \item $\Tinfty\prov{\alpha}\sigma{\Gamma, \T_\eta(s), \T_\eta(t)}$ and
-	$s^{\N}=t^{\N}$ implies
-	$\Tinfty\prov{\alpha}\sigma{\Gamma,\T_\eta(s).}$\label{extlem:F8L1itemx}
-  \item $\Tinfty\prov{\alpha}\sigma{\Gamma,\lnot \T_\eta(s), \lnot \T_\eta(t)}$ and
-	$s^{\N}=t^{\N}$ implies
-	$\Tinfty\prov{\alpha}\sigma{\Gamma,\lnot \T_\eta(s).}$\label{extlem:F8L1itemxi}
-  \item $\Tinfty\prov{\alpha}\sigma{\Gamma, A(t)}$ and $s^{\N}=t^{\N}$ implies
-	$\Tinfty\prov{\alpha}\sigma{\Gamma,A(s).}$\label{extlem:F8L1itemix}
+%   \label{lem:F8L1itemi}
+	\item For every \( \L_\kappa \)-sentence \( A \), \( \prov{\omega}{0} {\lnot A,A} \)
+  \item If \( A \) is a false equation, then\/ $\prov{\alpha}{\sigma}{\Gamma, A}$ implies
+	$\prov{\alpha}{\sigma}{\Gamma}$.
+	\label{lem:F8L1itemvi}
+  \item If $s^{\N} \notin \setSent_\kappa$, then $\prov{\alpha}{\sigma}{\Gamma, \T_\eta s}$ implies $\prov{\alpha}\sigma{\Gamma}$.\label{lem:F8L1itemviji}\gelhighlight{We use assumptions about coding.}
+  \item If\/ $\prov{\alpha}\sigma{\Gamma, A(s), A(t)}$ and
+	$s^{\N}=t^{\N}$ then
+	$\prov{\alpha}\sigma{\Gamma, A(s).}$\label{lem:F8L1itemx}
 \end{enumerate}
 \end{proposition}
-\begin{proof}
- The proof is essentially identical to the proof of \cref{classprop:F8items},
-  and hence omitted.
-\end{proof}
 
-Although we did not formulate $\Tinfty$ with a cut rule, it is easy to see that
-such a rule is admissible. The proof proceeds in the same manner as
-the cut elimination theorems of \cref{chap:fsclass} ({\em
-cf.}~\cref{classthm:F8CutElim,classthm:G8CutElim,classthm:E8CutElim}).
-% Since the
-% set-up of $\Tinfty$ differs somewhat from the earlier systems we will
-% re-present the proof here.
-\begin{theorem}[Admissibility of cut]\label{extthm:T8CutElim}%(Cut admissibility for $\Tinfty$)
-For every $\alpha,\beta<\Omega$ and every $\sigma\in\OT_\Omega$, $\Tinfty\prov{\alpha}{\sigma} {\Gamma,A}$ and $\Tinfty\prov{\alpha}{\sigma} {\Delta,\lnot A}$ imply $\Tinfty\prov{\beta}\sigma{\Gamma,\Delta}$ for some $\beta<\alpha^{\varepsilon+}$.\footnote{Recall $\alpha^{\varepsilon+}$ is the least $\varepsilon$-ordinal greater than $\alpha$.}
+For \( \alpha < \Omega \), \( \alpha^{\varepsilon+} \) denotes the least \( \varepsilon \)-number greater than \( \alpha \), i.e.,
+\[
+	\alpha^{\varepsilon+} = \sup \{ \alpha +1 , \omega^{\alpha +1}, \omega^{\omega^{\alpha+1}},\, \dotsc\, \}.
+\]
+
+The design of the calculus means that the cut rule is admissible with the same bounds as the arithmetical fragment.
+
+\begin{theorem}[Admissibility of cut]\label{thm:T8CutElim}%(Cut admissibility for $\Tinfty$)
+For every $\alpha,\beta<\Omega$ and every $\sigma\in\OT_\Omega$, if\/ $\prov{\alpha}{\sigma} {\Gamma,A}$ and\, $\prov{\alpha}{\sigma} {\Delta,\lnot A}$ then $\prov{\beta}\sigma{\Gamma,\Delta}$ for some $\beta<\alpha^{\varepsilon+}$.
 \end{theorem}
 \begin{proof}
-By the definition of $\Tinfty$, $\Tinfty\prov{\alpha}{\sigma}{\Delta,\lnot
-\T_\eta(s)}$ holds with $\lnot \T_\eta(s)$ active only if $\Delta,\lnot \T_\eta(s)$
-is an instance of either (Ax.2$_\eta$) or (Ax.3$_\eta$). If further,
-$\Tinfty\prov{\beta}{\sigma}{\Gamma,\T_\eta(s)}$ holds, it is easy to deduce in
-fact $\Tinfty\prov{\alpha\nsum\beta}{\sigma}{\Gamma,\Delta}$. Thus the claim
-holds when $A$ is either $\T_\eta(s)$ or $\lnot \T_\eta(s)$ for some $\eta<\kappa$ and
-term $s$.
-
-The other cases are proved by induction $\rank A$
-and their arguments are identical to those used in the Reduction Lemma for
-$\Finfty$, \cref{classlem:F8RedLemfor}.
+By the definition, the literals \( \lnot \T_\eta s \) are principal in only two rules, both axioms.
+Thus, given $\prov{\alpha}{\sigma}{\Gamma ,\T_\eta s}$ and $\prov{\alpha}{\sigma}{\Delta,\lnot \T_\eta s}$, if the latter holds by virtue of axiom (ax2) with $\lnot \T_\eta s$ principal, then \( s^\N \not\in \Sent_\kappa \) and \( \prov \alpha \sigma {\Gamma , \Delta} \) holds by the previous proposition.
+If, on the other hand, $\prov{\alpha}{\sigma}{\Delta,\lnot \T_\eta s}$ is an instance of (ax2), then \( \prov \alpha \sigma {\Gamma , \Delta} \) is either itself an instance of (ax2), or can be obtained from \( \prov \alpha \sigma {\Gamma , \T_\eta s} \) substitution of equal terms (also \cref{prop:T8prop1}).
+%
+The remaining cases follow by standard cut-admissibility argument for \( \omega \)-logic; see, for example, \cite{LeiRat10}.
 \end{proof}
-The remainder of this section is concerned with proving the equivalent form of the T-Elimination theorem for $\FF^*_\rho$,
-\cref{extthm:FFTElim}, and showing the argument can be formalised
-within the theory $\PA+\TI(\mathord<\delta)$ for some suitable $\delta$. We
-begin with the Condensation lemma, replacing the use of \cref{extlem:ordOlimit}.
-\begin{lemma}[Condensation lemma]\label{extlem:T8conden}
- Let $\Theta^*(\sigma)$ denote the least ordinal $\eta^*$ such that
-$\Omega^{\eta+1}>\sigma$. If $\Tinfty\prov\alpha\sigma\Gamma$ holds for some
-$\alpha$, $\sigma$ and $\Gamma$, there is a $\rho\le\sigma$ with
-$\rho^*\le\max\{\alpha^*,\Theta^*(\sigma)\}$ such that $\Tinfty\prov\alpha\rho{\Gamma.}$
+
+What remains is to establish a counterpart of the co-necessitation theorem from
+\cref{thm:FFTElim}, and confirm that the argument relative to proofs of T-rank \( \rho \) can be formalised
+within the theory $\PA+\TI({<}\delta)$ for suitable $\delta$. 
+The first step is bounding property on T-ranks referred to at the beginning of the section.
+
+\begin{lemma}[Bounding lemma]\label{lem:T8conden}
+	Let $\Theta\sigma$ denote the least $\eta$ such that $\Omega^{\eta+1}>\sigma$. 
+	%, and \( \Theta^* \sigma = (\Theta\sigma)^* \).
+	If\/ $\prov\alpha\sigma\Gamma$ then there exists $\rho\le\sigma$ such that
+	$\rho^*\le\max\{\alpha^*, (\Theta \sigma)^* \}$ and $\prov\alpha\rho{\Gamma.}$\gelhighlight{We don't use this any more??}
 \end{lemma}
 \begin{proof}
- We proceed by transfinite induction on the height of the derivation
-$\prov\alpha\sigma\Gamma$. In the case of axioms one may always take $\rho=0$
-and for any rule other than (\textT\eta-$\omega$) or (\Nec\eta) one may
-apply the induction hypothesis and leave $\rho$ unchanged. In the case
-(\Nec\eta) was the last rule applied one obtains a formula $\T_\eta(\gn
-A)$ in $\Gamma$ and a derivation $\prov{\alpha_0}\tau A$ for some $\alpha_0<\alpha$ with
-$\tau\nsum\Omega^{\eta+1}\le^*\sigma$. The induction hypothesis yields an ordinal
-$\tau_0\le\tau$ fulfilling $\tau_0^*\le\max\{\alpha_0^*,\Theta^*(\tau)\}$ such that
-$\prov{\alpha_0}{\tau_0}{A,}$ whence we observe taking $\rho=\tau_0\nsum\Omega^{\eta+1}$
-suffices, since
+By transfinite induction on \( \alpha \) in $\prov\alpha\sigma\Gamma$. 
+In the case of axioms it is always possible to choose $\rho=0$ and for any rule other than (\Uni\eta) or (\Nec\eta) the choice of $\rho$ given by the induction hypothesis suffices for the conclusion. 
+Suppose, therefore, that $\prov\alpha\sigma\Gamma$ is witnessed by an instance of (\Nec\eta), meaning that a formula $\T_\eta \gn A$ occurs in $\Gamma$ and $\prov{\alpha_0}\tau A$ for some $\alpha_0<\alpha$ and \( \tau \) satisfying  $\tau\nsum\Omega^{\eta+1}\le^*\sigma$. 
+The induction hypothesis yields $\rho_0\le\tau$ fulfilling $\rho_0^*\le\max\{\alpha_0^*,(\Theta \tau)^* \}$ such that
+$\prov{\alpha_0}{\rho_0}{A,}$ whence we observe setting $\rho=\rho_0\nsum\Omega^{\eta+1}$
+suffices, as
 \begin{align*}
-  \rho^*&\le\max\{\tau_0^*,\eta^*\}\\
-% 	&\le\max\{\alpha_0^*,\tau^*,\eta^*\}\\
-	&\le\max\{\alpha_0^*,\Theta^*(\tau),\eta^*\}\\
-	&\le\max\{\alpha^*,\Theta^*(\sigma)\}.
+  \rho^*&\le\max\{\rho_0^*,\eta^*\}\\
+	&\le\max\{\alpha_0^*,(\Theta \tau)^*,\eta^*\}\\
+	&\le\max\{\alpha^*, (\Theta \sigma)^* \}.
 \end{align*}
-In the case of (\textT\eta-$\omega$) suppose $\sigma|_\eta$ is not an $\Omega$-limit, $\Gamma$ contains the sentence
-$\T_\eta(\gn{\forall x\,A(x)})$ and there exists $\alpha_0<\alpha$ such that
-$\prov{\alpha_0}\sigma{\Gamma,\T_\eta(\gn{A(\bar n)})}$ for every $n$. The induction
-hypothesis yields a $\tau_0\le\sigma$ such that
-$\prov{\alpha_0}{\tau_0}{\Gamma,\T_\eta(\gn{A(\bar n)})}$ with
-$\tau_0^*\le\max\{\alpha_0^*,\Theta^*(\sigma)\}$. If $\tau_0$ is not an
-$\Omega$-limit take $\rho=\tau_0$, otherwise pick
-$\rho=\tau_0+\Omega^\xi$, where $\xi$ is such that $\sigma|_\eta=\sigma_0+\Omega^{\xi}$ for some $\sigma_0<\sigma$.
+For the case of (\Uni\eta) suppose that $\sigma|_\eta$ is not an $\Omega$-limit, $\Gamma$ contains the sentence
+$\T_\eta \gn{\forall x\,A(x)}$ and there exists $\alpha_0<\alpha$ such that
+$\prov{\alpha_0}\sigma{\Gamma,\T_\eta \gn{A(\bar n)} }$ for every $n$. 
+The induction hypothesis yields a $\rho_0\le\sigma$ such that $\prov{\alpha_0}{\rho_0}{\Gamma,\T_\eta \gn{A(\bar n)} }$ with $\rho_0^* \le \max\{\alpha_0^*, (\Theta \sigma)^* \}$. 
+If $\rho_0$ is not an $\Omega$-limit take $\rho=\rho_0$, otherwise define
+$\rho=\rho_0+\Omega^\xi$, where $\xi$ is such that $\sigma|_\eta=\sigma_0+\Omega^{\xi}$ for some $\sigma_0<\sigma$.
 In either case $\rho\le\sigma$ and
-\begin{align*}
-\rho^*=\max\{\tau_0^*,\xi^*\}\le\max\{\alpha^*,\Theta^*(\sigma)\}.
-\end{align*}
-\end{proof}
-% For the purpose of making notation clearer we will introduce a two-place variant of the function $\vartheta$. Define
-% \begin{align*}
-%   \vartheta(\Omega\cdot \rho\alpha=\vartheta(\Omega\cdot\rho+\alpha).
-% \end{align*}
-%  That is $\vartheta(\Omega\cdot\rho+\alpha)=\vartheta(\Omega^{1+\eta_0}
-% \cdot\beta_0+\cdots+\Omega^{1+\eta_n}\cdot\beta_n+\alpha)$ if
-% $\rho=_\NF\Omega^{\eta_0}\cdot\beta_0+\cdots+\Omega^{\eta_n}\cdot\beta_n$.
-We will now define a collection of standard $\L_\kappa$-structures $\mathfrak
-M_\rho$ indexed by ordinals $\alpha<\Omega$ and $\rho<\Omega^\kappa$. These
-play the role of the structures $\mathfrak{M}_\rho$ used in
-\cref{extthm:FFTElim}. Set
-\begin{align*}%\begin{split}
-  \mathfrak M_\rho\models \T_\eta(s)\text{ iff }&\text{there is an $\L_\kappa$-sentence $A$ with $s^{\N}=\gn A$ and ordinals}\\&\text{$\beta$, $\sigma$ such that $\sigma^*,\beta<\vartheta\rho$, $\sigma<\rho|_\eta$ and  $\Tinfty\prov{\beta}{\sigma}A$.}
-  %\end{split}
-\end{align*}
-% A sequent $\Gamma$ is T-positive if it is \textT\eta-positive for
-% every $\eta<\kappa$ and we $\bigvee\Gamma$ denotes the disjunction over elements of $\Gamma$.
-\begin{proposition}\label{extprop:T8mono}
-If $\Gamma$ is a T-positive sequent and $\rho\le^*\sigma$,
-$\mathfrak M_\rho\models\bigvee\Gamma$ implies $\mathfrak
-M_\sigma\models\bigvee\Gamma$.
-\end{proposition}
-\begin{proof}
-Suppose $\rho\le^*\sigma$. Since $\rho^*<\vartheta\sigma$, we have
-$\vartheta\rho\le\vartheta\sigma$ by \cref{extprop:thetaitems1} (viii), which coupled with the fact
-$\rho|_\eta\le\sigma|_\eta$ entails $\mathfrak M_\rho\models \T_\eta(s)$
-implies $\mathfrak M_\sigma\models \T_\eta(s)$ for every $\eta<\kappa$. The
-remaining cases are now easily verified.
+\( \rho^*=\max\{\rho_0^*,\xi^*\}\le\max\{\alpha^*, ( \Theta \sigma)^*\}\). 
 \end{proof}
 
-The next proposition will enable us to pass from derivations in $\Tinfty$ to satisfaction in the structures $\mathfrak
-M_{\rho}$ for T-positive sequents.
-\begin{lemma}\label{extlem:T8Mprop}
+The next step is to define a collection of standard $\L_\kappa$-structures $\mathfrak N_\rho = \pair{ \N , ( \FF_{\rho,\eta} )_{\eta \in \OT }} $ for $\rho<\Omega^\kappa$ as surrogates for the structures $\mathfrak{M}_\rho$ from \cref{thm:FFTElim}. 
+%The interpretation of \( \T_\eta \) in \( \mathfrak N_\rho \) is given by the
+The interpretation of the predicate \( \T_\eta \) in \( \mathfrak N_\rho \) is given by the set
+\begin{align*}
+	\FF_{\rho,\eta} = \bigl\{ \gn A &\mid \text{there exist $\alpha$, $\sigma$ such that $\max\{ \sigma^*,\alpha \} <\vartheta\rho$, $\sigma<\rho|_\eta$ and\,  $\prov{\alpha}{\sigma}A$} \bigr\}.
+  %\end{split}
+\end{align*}
+
+\begin{proposition}\label{prop:T8mono}
+	If\/ $A$ is T-positive\gelnote{Defined T-positive?}, $\rho\le^*\sigma$ and $\mathfrak N_\rho\models A$ then $\mathfrak N_\sigma\models A$.
+\end{proposition}
+\begin{proof}
+Suppose $\rho\le^*\sigma$. 
+As $\rho^*<\vartheta\sigma$, we have
+$\vartheta\rho\le\vartheta\sigma$ by \cref{prop:thetaitems1} (viii), which coupled with the fact that
+$\rho|_\eta\le\sigma|_\eta$ implies that $\FF_{\rho, \eta } \subseteq \FF_{\sigma,\eta} $ for every $\eta<\kappa$. 
+That $\mathfrak N_\rho\models A$ then $\mathfrak N_\sigma\models A$ for every T-positive sentence \( A \) follows by induction.
+\end{proof}
+
+The structure \( \mathfrak N_\rho \) is so chosen to provide a model of axioms of the theory \( \HST_\rho \) for certain \( \rho \).
+This claim witnessed by the next result.
+
+\begin{lemma}\label{lem:T8Mprop}
  The following hold for every $\alpha<\Omega$, $\eta<\kappa$ and $\rho<\Omega^\kappa$.
  \begin{enumerate}
-  \item $\mathfrak M_\rho\models\forall x\forall y( \T_\eta(x)\land
-	\T_\eta(x\dimplies y) \rightarrow \T_\eta(y))$.\label{eqn:T8propii}
-  \item $\mathfrak M_\rho\models \forall \xi<\bar\eta\,\forall
-	x(\T_\eta(x)\rightarrow \T_\eta(\gn{\T_\xi(\dot x)}))$.\label{eqn:T8propiii}
-  \item $\mathfrak M_\rho\models\forall\xi<\bar\kappa\forall
-	x(\T_\eta(\gn{\T_{\xi}(\dot x)})\rightarrow \T_\eta(x))$ if, for every
-	$\sigma<\rho$ and $\beta$ such that $\sigma^*,\beta<\vartheta\rho$,
+  \item $\mathfrak N_\rho\models\forall x\forall y( \T_\eta x \land	\T_\eta(x\dimplies y) \rightarrow \T_\eta y )$.\label{eqn:T8propii}
+  \item $\mathfrak N_\rho\models\forall x(\T_\eta x \rightarrow \forall \xi<\bar\eta\,\T_\eta \gn{\T_\xi \dot x })$.\gelnote{More coding}\label{eqn:T8propiii}
+  \item $\mathfrak N_\rho\models\forall\xi<\bar\kappa\forall x(\T_\eta \gn{\T_{\xi} \dot x } \rightarrow \T_\eta x )$ if, for every $\sigma<\rho$ and $\beta$ such that $ \max\{ \sigma^*,\beta \} <\vartheta\rho$,
 	\begin{center}
-	  $\Tinfty\prov\beta\sigma\Gamma$ implies $\mathfrak M_{\sigma+\beta}\models\textstyle\bigvee\Gamma$.
+	  $\prov\beta\sigma\Gamma$ implies $\mathfrak N_{\sigma+\beta}\models\textstyle\bigvee\Gamma$.
 	\end{center}\label{eqn:T8propiv}
-  \item $\mathfrak M_\rho\models\forall\xi<\bar\kappa\forall \gn A(\T_\eta(\gn{\lnot \T_{\xi}(\gn A)})\rightarrow \T_\eta(\gn{\lnot A}))$.\label{eqn:T8propv}
-% 	if, for every $\rho\le^*\sigma$ and every
-% 	$\beta<\vartheta(\Omega\cdot\sigma\alpha$,
-% 	\begin{align*}
-% 	  \prov\beta\rho\Gamma\text{ implies }\mathfrak
-% 	  M^\beta_\rho\models\textstyle\bigvee\Gamma.
-% 	\end{align*}
-  \item If $\rho|_\eta$ is not an $\Omega$-limit, $\mathfrak M_\rho\models
-	\forall x\,\T_\eta(\gn{A(\dot x)})$ and $\rho<^*\rho'$, $\mathfrak M_{\rho'}\models \T_\eta(\gn{\forall x\,A(x)})$.\label{eqn:T8propvi}
+%  \item $\mathfrak N_\rho\models\forall\xi<\bar\kappa\forall \gn A(\T_\eta(\gn{\lnot \T_{\xi}(\gn A)})\rightarrow \T_\eta(\gn{\lnot A}))$.\label{eqn:T8propv}
+  \item If $\rho|_\eta$ is not an $\Omega$-limit, $\mathfrak N_\rho\models
+	\forall x\,\T_\eta \gn{A(\dot x)} $ and $\rho<^*\sigma$, then $\mathfrak N_{\sigma}\models \T_\eta \gn{\forall x\,A(x)}$.\label{eqn:T8propvi}
  \end{enumerate}
 \end{lemma}
 \begin{proof}
-% (i). This holds provided $\alpha,\rho^*<\vartheta(\rho\nsum\Omega^\eta)+\alpha)$. But $\alpha\mapsto\vartheta(\Omega\cdot\rho+\alpha)$ is fixed point free, so this is immediate.
 
-\ref{eqn:T8propii}. We observe that if $\mathfrak M_\rho\models
-\T_\eta(\gn{A})\land\T_\eta(\gn{A\rightarrow B})$, there is an
-$\alpha<\vartheta\rho$ and $\sigma<\rho|_\eta$ such that
-\begin{align*}
- \prov{\alpha}\sigma{A}\text{ and }\prov{\alpha}\sigma{\lnot A,B}
-\end{align*}
-holds and $\sigma^*<\vartheta\rho$. Admissibility of the cut rule, \cref{extthm:T8CutElim}, yields
-$\prov{\gamma}\sigma{B}$ for some $\gamma<\alpha^{\varepsilon+}$. But $\rho>\Omega$, so $\gamma<\vartheta\alpha<\vartheta\rho$ and hence $\mathfrak M_\rho\models \T_\eta(\gn{B})$ by definition.
+\ref{eqn:T8propii}. Observe that if $\mathfrak N_\rho\models \T_\eta \gn{A} \land \T_\eta \gn{A\rightarrow B}$, then there is an $\alpha<\vartheta\rho$ and $\sigma<\rho|_\eta$ such that $\sigma^*<\vartheta\rho$ and
+\[
+ \prov{\alpha}\sigma{A}\text{ and }\prov{\alpha}\sigma{\lnot A,B}.
+\]
+Admissibility of cut, \cref{thm:T8CutElim}, implies $\prov{\gamma}\sigma{B}$ for some $\gamma<\alpha^{\varepsilon+}$. 
+As $\rho>\Omega$, we have $\gamma<\vartheta\alpha<\vartheta\rho$ and hence $\mathfrak N_\rho\models \T_\eta \gn{B}$.
+As \( \mathfrak N_\rho \) is standard, the quantified form holds also.
 
-\ref{eqn:T8propiii}. Fix some $\eta<\kappa$. Note $(\rho|_\eta)^*<\vartheta\rho$ for every $\eta$, since $\rho^*<\vartheta\rho$. Also $\rho<\Omega^\kappa$, so $\eta^*\le(\rho|_\eta)^*$. If $\rho|_\eta=0$,
-\ref{eqn:T8propiii} holds vacuously. Otherwise, suppose $\Tinfty\prov\beta\sigma A$ for some $\L_\kappa$-sentence $A$, some $\beta$ and $\sigma<\rho|_\eta$ such that $\beta,\sigma^*<\vartheta\rho$. Then $\sigma\nsum\Omega^{\xi+1}<\rho|_\eta$ for every $\xi<\eta$, and $(\sigma\nsum\Omega^{\xi+1})^*\le\max\{\sigma^*,\eta^*\}<\vartheta\rho$. So $\mathfrak M_\rho\models\forall\xi<\bar\eta\,\T_\eta(\gn{\T_\xi(\gn A)})$ as required.
+\ref{eqn:T8propiii}. Fix some $\eta<\kappa$. Since \( \rho^* < \vartheta \rho \) it follows that $(\rho|_\eta)^*<\vartheta\rho$. 
+If $\rho|_\eta=0$, then \( \FF_{\rho,\eta} = \emptyset \) and the claim holds vacuously.  
+Otherwise, $\eta^*\le(\rho|_\eta)^*$ and suppose 
+\[ \prov\alpha\sigma A \text{ where $\sigma<\rho|_\eta$ and $\alpha,\sigma^*<\vartheta\rho$.}
+\]
+Fix an arbitrary \( \xi < \eta \).
+Clearly, $\sigma\nsum\Omega^{\xi+1}<\rho|_\eta$, whence 
+\[(\sigma\nsum\Omega^{\xi+1})^*\le\max\{\sigma^*,\eta^*\}<\vartheta\rho, \]
+so \( \prov {\alpha+1}{\sigma \nsum \Omega^{\xi +1}} {\T_\xi\gn A } \), and ${\T_\xi \gn A } \in \FF_{\rho,\eta}$ as required.
 
-\ref{eqn:T8propiv}. Suppose $ \mathfrak M_\rho\models \T_\eta(\gn{\T_\xi(s)})$ and $\xi<\kappa$; we want to show $\mathfrak M_\rho\models \T_\eta(s)$. By definition there are ordinals $\alpha$ and $\sigma<\rho|_\eta$ such that $\sigma^*,\alpha<\vartheta\rho$ and
+\ref{eqn:T8propiv}. Suppose $ \mathfrak N_\rho\models \T_\eta \gn{\T_\xi s} $ and $\xi<\kappa$.
+We claim that $\mathfrak N_\rho\models \T_\eta s$. 
+By definition there exist $\alpha$ and $\sigma<\rho|_\eta$ satisfying $ \max\{ \sigma^*,\alpha \} < \vartheta\rho$ and
 \begin{align*}%\label{eqn:T8Mprop1}
- \Tinfty\prov{\alpha}{\sigma}{\T_\xi(s).}
+ \prov{\alpha}{\sigma}{\T_\xi s.}
 \end{align*}
-The additional assumption yields $\mathfrak{M}_{\sigma+\alpha}\models \T_\xi(s)$, whence $s^\N=\gn A$ for some $A$ and there is a $\beta$ and $\tau<\sigma|_\xi$ such that $\tau^*,\beta<\vartheta(\sigma+\alpha)$ and
-\begin{align*}
-  \Tinfty\prov\beta\tau {A.}
-\end{align*}
-Since $\sigma^*,\alpha<\vartheta\rho$ and $\sigma+\alpha<\rho$,
-% and $\alpha_0<\vartheta(\Omega\cdot\rho+\alpha)$,
+The additional assumption implies that $\mathfrak N_{\sigma+\alpha}\models \T_\xi s$, whence $s^\N=\gn A$ for some $A$ and there is a $\beta$ and $\tau<\sigma|_\xi$ satisfying
+\[
+	\max\{ \tau^*,\beta \} <\vartheta(\sigma+\alpha) \text{ and } \prov\beta\tau {A.}
+\]
+From $\max\{ \sigma^*,\alpha \} <\vartheta\rho$ and $\sigma+\alpha<\rho$, we deduce
 \begin{align*}
   \vartheta(\sigma+\alpha)< \vartheta\rho,
 \end{align*}
-and thus $\tau^*,\beta<\vartheta\rho$. Moreover, $\tau<\rho|_\eta$ so
-$\mathfrak M_\rho\models \T_\eta(s)$ follows by definition.
+and thus $ \max\{ \tau^*,\beta \}<\vartheta\rho$. As, moreover, $\tau<\rho|_\eta$ we conclude $\mathfrak N_\rho\models \T_\eta s$.
 
-\ref{eqn:T8propv} holds vacuously as $\Tinfty\prov\beta\sigma{\lnot\T_\xi(s)}$ cannot hold for any $\beta$, $\sigma$ and term $s$.
 
-\ref{eqn:T8propvi}. Suppose $\mathfrak M_\rho\models \forall x\, \T_\eta(\gn{A(\dot x)})$, $\rho<\rho'$ and $\rho|_\eta$ is not an $\Omega$-limit. By definition, $\rho|_\eta>0$ and one obtains ordinals $\alpha_n$ and $\tau_n$ for each $n\in \N$ such that
+\ref{eqn:T8propvi}. Suppose $\mathfrak N_\rho\models \forall x\, \T_\eta \gn{A(\dot x)}$, that $\rho|_\eta$ is not an $\Omega$-limit. Let \( \rho' \) be such that $\rho <^* \rho' $. 
+As \( \FF_{\rho,\eta} \) is non-empty, $\rho|_\eta > 0$ and there exist ordinals $\alpha_n$ and $\rho_n$ for each $n< \omega $ such that
 \begin{gather*}
-  \tau_n<\rho|_\eta,\\
-  \alpha_n,\tau_n^* <\vartheta\rho,\\
-  \Tinfty\prov{\alpha_n}{\tau_n}{A(\bar n).}
+	\rho_n<\rho|_\eta,\\
+	\max\{ \alpha_n,\rho_n^* \} <\vartheta\rho,\\
+	\prov{\alpha_n}{\rho_n}{A(\bar n).}
 \end{gather*}
-Our aim is to find ordinals $\sigma$, $\gamma$ such that
-% and $\gamma$ with  such that
-\begin{gather}
-  \sigma<\rho'|_\eta,\label{eqn:T8Mprop4}\\
-  \gamma,\sigma^*<\vartheta\rho',\label{eqn:T8Mprop5}\\
-  \Tinfty\prov{\gamma+1}\sigma{\forall xA(x).}\label{eqn:T8Mprop6}
-\end{gather}
-% We have two cases to consider depending on the value of $\eta$.
-%
-% \noindent\textbf{Case I.} \textit{${\eta=0}$.} If $\rho=\rho|_1$, use the argument for $\eta=1$ given below. Otherwise, $\rho=\rho|_\eta=\rho_0+1$ for some $\rho_0<\rho$ and so $\tau_n\le\rho_0$ for each $n$. Let $\sigma=\rho_0$ and $\gamma=\vartheta(\Omega\cdot\rho+\alpha)+1$. Then $\tau_n\le^*\sigma$ for each $n$ and $\sup_n\alpha_n<\gamma$, whence
-% % \begin{gather*}
-% %   \Tinfty\prov\gamma\sigma{\forall x A(x)},\\
-% %   \gamma,\sigma^*<\vartheta(\Omega\cdot\rho+\beta),\\
-% %   \sigma<\rho|_\eta,
-% % \end{gather*}
-% % whence $\mathfrak{M}^\beta_\rho\models \T_\eta(\gn{\forall x\,A(x)})$.
-% we are done.
-%
-% \noindent\textbf{Case II.} \textit{${\eta>0}$.}
-As $\rho|_\eta$ is not an $\Omega$-limit there exists $\xi$, $\rho_0<\rho$ such
-that $\rho|_\eta=\rho_0+\Omega^{\xi+1}$. Moreover, the Condensation \cref{extlem:T8conden} provides ordinals
-$\sigma_n\le\tau_n$ such that
-\begin{gather}\label{eqn:T8Mprop3}
-  \sigma_n^*\le\max\{\alpha_n^*,\Theta^*(\tau_n)\},\\
-  \Tinfty\prov{\alpha_n}{\sigma_n}{A(\bar n),}\label{eqn:T8Mprop2}
-\end{gather}
-where $\Theta^*(\tau_n)$ is defined as in the statement of \cref{extlem:T8conden}.
-Let $\gamma=\vartheta\rho$ and
-% \begin{align*}
-  $\sigma=\rho_0+\Omega^\xi\cdot\vartheta\rho$.
-% \end{align*}
-%
-Then \cref{eqn:T8Mprop4} clearly holds; moreover,
-\begin{align}\label{eqn:T8Mprop7}\begin{split}
-%  \sigma^*&\le\max\{\rho^*,\gamma^*\}\\
-% 	&=\vartheta(\Omega\cdot\rho+\alpha),
-  \sigma^*&\le\max\{\rho_0^*,\xi^*,\vartheta\rho\},\\
-	&=\vartheta\rho,\end{split}
-\end{align}
-so $\sigma^*=\vartheta\rho<\vartheta\rho'$. Therefore \cref{eqn:T8Mprop5} also holds.
-
-To establish \cref{eqn:T8Mprop6} and complete the proof, we will show $\sigma_n\le^*\sigma$ and apply (Weakening) to \cref{eqn:T8Mprop2}. Fix an arbitrary $n\in\N$. By \cref{eqn:T8Mprop3},
-\begin{align*}
-  \sigma_n^*&\le\max\{\alpha_n^*,\Theta^*(\tau_n)\},\\
-	  &\le\max\{\alpha_n^*,\tau_n^*\},\\
-	  &<\vartheta\rho.
-% 		  &\le\max\{\alpha^*,\rho^*\},\\
-% 		  &<\sigma^*.
-\end{align*}
-Moreover, $\sigma_n<\sigma$ because either $\sigma_n<\rho_0<\sigma$ or there is some $\gamma_0<\Omega$ such that
-\begin{align*}
-  \rho_0+\Omega^\xi\cdot\gamma_0\le\sigma_n<\rho_0+\Omega^\xi\cdot(\gamma_0+1),
-\end{align*}
-whence $\gamma_0^*\le\sigma^*_n<\vartheta\rho$, so $\gamma_0<\vartheta\rho$ and $\sigma_n<\sigma$. Hence $\mathfrak M_{\rho'}\models \T_\eta(\gn{\forall x\,A(x)})$ as desired.
+As $\rho|_\eta$ is not an $\Omega$-limit there exists $\xi$ and $\tau$ such that $\rho|_\eta = \tau +\Omega^{\xi+1}$.
+Let \( \sigma = \tau + \Omega^\xi \cdot \vartheta\rho \).
+%By the Bounding lemma, for each \( n < \omega \) there exists \( \sigma_n \)
+By the above, we have \( \rho_n <^* \sigma \) for every \( n \), so weakening implies that
+\[
+	\prov{\vartheta\rho}{\sigma}{ A(\bar n)} \text{ for every } n < \omega,
+\]
+whereby \( \prov{\vartheta\rho + 1}{\sigma}{ \forall x A(x)} \) follows.
+Clearly, \( \sigma < \rho|_\eta \le \rho'|_\eta \) and \( \sigma^* \le \max\{ \rho^* , \vartheta\rho \} < \vartheta \rho' \).
+Therefore, $\mathfrak N_{\rho'}\models \T_\eta \gn{\forall x\,A(x)}$ as desired.\gelhighlight{Reference to bounding lemma \cref{lem:T8conden} removed.}
 \end{proof}
 
-\begin{theorem}[T-Elimination theorem]\label{extlem:T8model}\label{extlem:T8TElim}
+\begin{theorem}[T-Elimination theorem]\label{lem:T8model}\label{lem:T8TElim}
 For every $\rho\in\OT_\Omega$ and $\alpha\in\OT_\Omega\cap\Omega$,
 \begin{enumerate}
- \item $\Tinfty\prov\alpha\rho\Gamma$ implies $\mathfrak
-	M_{\rho+\alpha}\models\bigvee\Gamma$  if $\Gamma$ is a T-positive sequent;
- \item $\Tinfty\prov\alpha\rho{\T_\eta(s)}$ implies there is an $\L_\T$-sentence $A$ with $s^\N=\gn A$ such that $\Tinfty\prov\beta\sigma A$ for some $\beta$, $\sigma<\rho|_\eta$ with $\sigma^*,\beta<\vartheta(\rho+\alpha)$;
-  \item $\Tinfty\prov\alpha\rho{\lnot \T_\eta(s)}$ implies there is an $\L_\T$-sentence $A$ with $s^\N=\gn A$ such that $\Tinfty\prov\alpha\rho {\lnot A.}$
+ \item $\prov\alpha\rho\Gamma$ implies $\mathfrak N_{\rho+\alpha}\models\bigvee\Gamma$  if $\Gamma$ is a T-positive sequent;
+ \item $\prov\alpha\rho{\T_\eta s}$ implies there is an $\L_\T$-sentence $A$ with $s^\N=\gn A$ such that $\prov\beta\sigma A$ for some $\beta$, $\sigma<\rho|_\eta$ with $\sigma^*,\beta<\vartheta(\rho+\alpha)$;
+%  \item $\prov\alpha\rho{\lnot \T_\eta s}$ implies there is an $\L_\T$-sentence $A$ with $s^\N=\gn A$ such that $\prov\alpha\rho {\lnot A.}$
 \end{enumerate}
 \end{theorem}
-\begin{proof} By {\em main} transfinite induction on $\rho$ with a {\em subsidiary} transfinite induction on $\alpha$. We begin with (i).
+\begin{proof} By \emph{main} transfinite induction on $\rho$ with a \emph{subsidiary} transfinite induction on $\alpha$. We begin with (i).
 
-First observe that since $\mathfrak M_\rho$ is standard all
-arithmetical rules and axioms are dealt with easily. \Cref{extprop:T8mono} deals
+First observe that since $\mathfrak N_\rho$ is standard all
+arithmetical rules and axioms are dealt with easily. \Cref{prop:T8mono} deals
 with (Weakening). Moreover, no instances of (Ax.2$_\eta$) and
 (Ax.3$_\eta$) are T-positive, so $\Gamma$ is not an instance of these axioms. Thus
-we need only consider the T-rules. Suppose $\Tinfty\prov\alpha\rho\Gamma$
+we need only consider the T-rules. Suppose $\prov\alpha\rho\Gamma$
 is derived via a \textT\eta-rule. If the last rule applied was
 (\Nec\eta), there is an $\L_\kappa$-sentence $A$ and term $s$ with
-$s^\N=\gn A$ so that $\T_\eta(s)$ is in $\Gamma$, and $\Tinfty\prov\beta\sigma A$
+$s^\N=\gn A$ so that $\T_\eta s$ is in $\Gamma$, and $\prov\beta\sigma A$
 holds for some $\beta<\alpha$ and $\sigma$ such that
 $\sigma\nsum\Omega^{\eta+1}\le^*\rho$. But then $\sigma<\rho|_\eta$ and $\beta,\sigma^*<\vartheta\rho$, so $\mathfrak{M}_{\rho+\alpha}\models\bigvee\Gamma$.
 
-For the remaining rules, \cref{extlem:T8Mprop} entails $\mathfrak M_{\rho+\alpha}\models\bigvee\Gamma$ is a consequence of the subsidiary induction hypothesis and, in the case of (\Del\eta), the main induction hypothesis.
+For the remaining rules, \cref{lem:T8Mprop} entails $\mathfrak N_{\rho+\alpha}\models\bigvee\Gamma$ is a consequence of the subsidiary induction hypothesis and, in the case of (\Del\eta), the main induction hypothesis.
 
-(ii) follows directly as a result of (i) and the definition of $\mathfrak M_{\rho+\alpha}$.
+(ii) follows directly as a result of (i) and the definition of $\mathfrak N_{\rho+\alpha}$.
 
-It is easy to check that $\Tinfty\prov\alpha\rho{\lnot \T_\eta(s)}$ can only hold
-if $s^\N$ is not the code of some $\L_\kappa$-sentence, whence (iii) holds
-vacuously.
+%It is easy to check that $\prov\alpha\rho{\lnot \T_\eta s}$ can only hold
+%if $s^\N$ is not the code of some $\L_\kappa$-sentence, whence (iii) holds
+%vacuously.
 \end{proof}
 
-Having established that $\Tinfty$ is also closed under \Conec\eta for every
+Having established that $\Tinfty$ is also closed under (\Conec\eta) for every
 $\eta<\kappa$ we can proceed with embedding each $\HST_\eta$ into $\Tinfty$. This
 is the focus of the following proposition and theorem.
-\begin{proposition}\label{extprop:T8embed}
- For each axiom $A$ of $\HST_\beta$, $\Tinfty\prov\alpha{\Omega^{\beta+1}\cdot n}A$, for some $\alpha<\varepsilon_0$ and every $n<\omega$.
+\begin{proposition}\label{prop:T8embed}
+ For each axiom $A$ of $\HST_\beta$, $\prov\alpha{\Omega^{\beta+1}\cdot n}A$, for some $\alpha<\varepsilon_0$ and every $n<\omega$.
 \end{proposition}
 % \begin{proof}
 % If $A$ is either of the axioms Ax-\textT\eta.1 or Ax-\textT\eta.2 for some
 % $\eta<\beta$,
 % % \begin{align*}\label{eqn:T8embed1}
-%   $\Tinfty\prov\omega{\Omega^\eta}A$
+%   $\prov\omega{\Omega^\eta}A$
 % % \end{align*}
 % holds by the usual embedding of $\PRA$ into an infinitary system and an
 % application of (\Nec\eta). In case $A$ is an instance of the induction
-% schema of $\HST_\beta$, we may deduce $\Tinfty\prov\alpha0A$ for some
+% schema of $\HST_\beta$, we may deduce $\prov\alpha0A$ for some
 % $\alpha<\varepsilon_0$, making use of the Cut Admissibility
-% \cref{extthm:T8CutElim}.
+% \cref{thm:T8CutElim}.
 %
 % For the axioms \textT\eta-* and remaining axioms of $\PA$, we may infer
-% $\Tinfty\prov\omega{0}A$ by using the same arguments as in \cref{classprop:F8axF}
+% $\prov\omega{0}A$ by using the same arguments as in \cref{classprop:F8axF}
 % where it was shown the axioms of $\F$ may be derived within $\Finfty$. We note
 % that the restrictions imposed on applications of (\textT\eta-$\omega$) have no
 % affect as by definition $0$ is not an $\Omega$-limit.
 % \end{proof}
-\begin{lemma}[Embedding \namecref{extthm:T8Embed} for $\Tinfty$]\label{extthm:T8Embed}
-Fix some $\beta<\vartheta\varepsilon_{\Omega+1}$ and suppose $\HST_\beta\proves A$ with $A$ a sentence of $\L_\beta$. Then there are ordinals $\alpha$ and $\rho$ such that $\Tinfty\prov\alpha\rho A$, $\rho<\Omega^{\beta+1}\cdot \omega$,  $\alpha,\rho^*<\vartheta(\Omega^{\beta+1}\cdot \omega)$ and $\rho=\rho|_0$.
+\begin{lemma}[Embedding \namecref{thm:T8Embed} for $\Tinfty$]\label{thm:T8Embed}
+Fix some $\beta<\vartheta\varepsilon_{\Omega+1}$ and suppose $\HST_\beta\proves A$ with $A$ a sentence of $\L_\beta$. Then there are ordinals $\alpha$ and $\rho$ such that $\prov\alpha\rho A$, $\rho<\Omega^{\beta+1}\cdot \omega$,  $\alpha,\rho^*<\vartheta(\Omega^{\beta+1}\cdot \omega)$ and $\rho=\rho|_0$.
 \end{lemma}
 \begin{proof} We proceed by induction on the length of the derivation $\HST_\beta\proves A$.
 
 \noindent\textbf{Case I.} \textit{${\beta=0}$.} This essentially follows from the
 embedding of $\F$ in $\Finfty$, \cref{classthm:F8Embed}, since $\vartheta(\Omega\cdot
-\omega)=\varphi \omega0$. \Cref{extprop:T8embed} deals with the axioms of $\HST_0$. According to the
-induction hypothesis, an application of {\em modus ponens} in $\HST_0$ means one has
+\omega)=\varphi \omega0$. \Cref{prop:T8embed} deals with the axioms of $\HST_0$. According to the
+induction hypothesis, an application of \emph{modus ponens} in $\HST_0$ means one has
 \begin{align*}%\label{eqn:T8embed2}
- \Tinfty\prov{\alpha_0}{\Omega\cdot m_0}{B,}&&\Tinfty\prov{\alpha_1}{\Omega\cdot m_1}{\lnot B,A}
+ \prov{\alpha_0}{\Omega\cdot m_0}{B,}&&\prov{\alpha_1}{\Omega\cdot m_1}{\lnot B,A}
 \end{align*}
 for some sentence $B$, ordinals $\alpha_0,\alpha_1<\vartheta(\Omega\cdot (m+1))$, and
 $m_0,m_1<\omega$. Weakening implies
 \begin{align*}
- \Tinfty\prov{\gamma}{\Omega\cdot m}{B,}&&\Tinfty\prov{\gamma}{\Omega\cdot m}{\lnot B,A}
+ \prov{\gamma}{\Omega\cdot m}{B,}&&\prov{\gamma}{\Omega\cdot m}{\lnot B,A}
 \end{align*}
-where $\gamma=\max\{\alpha_0,\alpha_1\}$ and $m=\max\{m_0,m_1\}$, whence $\Tinfty\prov\alpha{\Omega\cdot m} A$ holds for some $\alpha<\gamma^{\varepsilon+}$. Since
+where $\gamma=\max\{\alpha_0,\alpha_1\}$ and $m=\max\{m_0,m_1\}$, whence $\prov\alpha{\Omega\cdot m} A$ holds for some $\alpha<\gamma^{\varepsilon+}$. Since
 $\gamma<\vartheta(\Omega\cdot \omega)<\Omega$, $\vartheta\gamma<\vartheta(\Omega\cdot \omega)$ and so $\alpha<\vartheta(\Omega\cdot \omega)$ whence we are done.
 
 An application of \Nec{0} in $\HST_0$ corresponds to an application of the
 rule (\Nec{0}) in $\Tinfty$. It is an immediate consequence of the induction hypothesis that in this case the desired bounds are maintained.
 
 This leaves only applications of \Conec0 and $\lnot$\Conec0 in $\HST_0$
-to consider, for which we employ \cref{extlem:T8TElim}. $\lnot$\Conec0 is immediate, so suppose $\HST_0\proves \T_0(\gn
+to consider, for which we employ \cref{lem:T8TElim}. $\lnot$\Conec0 is immediate, so suppose $\HST_0\proves \T_0(\gn
 A)$ for some $\L_\kappa$-sentence $A$. The induction hypothesis implies
 \begin{align}\label{eqn:T8embed3}
- \Tinfty\prov\alpha{\Omega\cdot m}{\T_0(\gn A)}
+ \prov\alpha{\Omega\cdot m}{\T_0(\gn A)}
 \end{align}
-for some $\alpha<\vartheta(\Omega\cdot\omega)$ and $m<\omega$. By \cref{extlem:T8TElim} one obtains some $\gamma<\vartheta(\Omega\cdot m+\alpha)$ and $n<m$ such that
+for some $\alpha<\vartheta(\Omega\cdot\omega)$ and $m<\omega$. By \cref{lem:T8TElim} one obtains some $\gamma<\vartheta(\Omega\cdot m+\alpha)$ and $n<m$ such that
 \begin{align*}
- \Tinfty\prov\gamma{\Omega\cdot n}{A}
+ \prov\gamma{\Omega\cdot n}{A}
 \end{align*}
 holds. But $\Omega\cdot m+\alpha<\Omega\cdot \omega$ and $\alpha<\vartheta(\Omega\cdot \omega)$, so $\gamma<\vartheta(\Omega\cdot\omega)$.
 
 \noindent\textbf{Case II.} \textit{${\beta>0}$.}
-\Cref{extprop:T8embed} deals with the axioms of $\HST_\beta$. According to the
-induction hypothesis, an application of {\em modus ponens} in $\HST_\beta$ means one has
+\Cref{prop:T8embed} deals with the axioms of $\HST_\beta$. According to the
+induction hypothesis, an application of \emph{modus ponens} in $\HST_\beta$ means one has
 \begin{align*}%\label{eqn:T8embed4}
- \Tinfty\prov{\alpha_0}{\sigma}{B,}&&   \Tinfty\prov{\alpha_1}{\tau}{\lnot B,A}
+ \prov{\alpha_0}{\sigma}{B,}&&   \prov{\alpha_1}{\tau}{\lnot B,A}
 \end{align*}
 for some sentence $B$, ordinals
 $\alpha_0,\alpha_1<\vartheta(\Omega^{\beta+1}\cdot\omega)$, and
@@ -2600,10 +2402,10 @@ $\sigma,\tau<\Omega^{\beta+1}\cdot\omega$ such that
 $\sigma^*,\tau^*<\vartheta(\Omega^{\beta+1}\cdot\omega)$, $\sigma|_0=\sigma$ and $\tau|_0=\tau$. Applying (Weakening)
 yields
 \begin{align*}%\label{eqn:T8embed4}
- \Tinfty\prov{\alpha}{\rho}{B,}& &\Tinfty\prov{\alpha}{\rho}{\lnot B,A}
+ \prov{\alpha}{\rho}{B,}& &\prov{\alpha}{\rho}{\lnot B,A}
 \end{align*}
 where $\rho=\sigma\nsum\tau$ and $\alpha=\max\{\alpha_0,\alpha_1\}$, whence one obtains
-$\Tinfty\prov\gamma\rho A$ for some $\gamma<\alpha^{\varepsilon+}$. We
+$\prov\gamma\rho A$ for some $\gamma<\alpha^{\varepsilon+}$. We
 take $\rho=\sigma\nsum\tau$ in place of $\rho=\max\{\sigma,\tau\}$ to ensure
 $\sigma,\tau\le^* \rho$ as is required for (Weakening). Since
 $\rho<\Omega^{\beta+1}\cdot\omega$ and  $\rho^*=\max\{\sigma^*,\tau^*\}$, we have
@@ -2611,13 +2413,13 @@ $\rho^*,\gamma<\vartheta(\Omega^{\beta+1}\cdot\omega)$.
 
 If an application of \Nec\beta was utilised in $\HST_\beta$, $A$ is $\T_\beta(\gn B)$ for some sentence $B$ and the induction hypothesis yields
 \begin{align*}
- \Tinfty\prov\alpha\rho B
+ \prov\alpha\rho B
 \end{align*}
 for some $\alpha<\vartheta(\Omega^{\beta+1}\cdot\omega)$ and
 $\rho<\Omega^{\beta+1}\cdot\omega$. An application of the rule (\Nec\beta)
 in $\Tinfty$ yields
 \begin{align*}
-  \Tinfty\prov{\alpha+1}{\rho\nsum\Omega^{\beta+1}} {\T_\beta(\gn B)}.
+  \prov{\alpha+1}{\rho\nsum\Omega^{\beta+1}} {\T_\beta(\gn B)}.
 \end{align*}
 $\rho\nsum\Omega^{\beta+1}<\Omega^{\beta+1}\cdot\omega$ if and only if
 $\rho<\Omega^{\beta+1}\cdot\omega$, and
@@ -2628,121 +2430,102 @@ $\rho<\Omega^{\beta+1}\cdot\omega$, and
 so the desired bounds are maintained.
 
 This leaves only applications of \Conec\beta and $\lnot$\Conec\beta in
-$\HST_\beta$ to consider, for which we employ \cref{extlem:T8TElim}. The case of $\lnot$\Conec\beta is immediate given the induction hypothesis, so suppose
+$\HST_\beta$ to consider, for which we employ \cref{lem:T8TElim}. The case of $\lnot$\Conec\beta is immediate given the induction hypothesis, so suppose
 $\HST_\beta\proves \T_\beta(\gn A)$
 for some $\L_\kappa$-sentence $A$. The induction hypothesis entails
 \begin{align}\label{eqn:T8embed5}
-  \Tinfty\prov\alpha\rho{\T_\beta(\gn A)}
+  \prov\alpha\rho{\T_\beta(\gn A)}
 \end{align}
 for some $\rho<\Omega^{\beta+1}\cdot\omega$ and $\alpha,\rho^*<
-\vartheta(\Omega^{\beta+1}\cdot\omega)$. By \cref{extlem:T8TElim} (ii) one
+\vartheta(\Omega^{\beta+1}\cdot\omega)$. By \cref{lem:T8TElim} (ii) one
 obtains some $\gamma$ and $\sigma$ such that $\sigma^*,\gamma<\vartheta(\rho+\alpha)$, $\sigma<\rho|_\beta$ and
 \begin{align*}
-  \Tinfty\prov\gamma\sigma{A}
+  \prov\gamma\sigma{A}
 \end{align*}
 holds. $\sigma<\Omega^{\beta+1}\cdot\omega$ and, since
 $\rho^*,\alpha<\vartheta(\Omega^{\beta+1}\cdot\omega)$, one has
 $\vartheta(\rho+\alpha)<\vartheta(\Omega^{\beta+1}\cdot\omega)$, whence
 $\gamma,\sigma^*<\vartheta(\Omega^{\beta+1}\cdot\omega)$.
 \end{proof}
-\Cref{extthm:T8Embed} allows us to easily determine an upper bound on the strength of the theories $\HST_\beta$. By making use of the remarks at the beginning of this section, we see that the next theorem is provable with an almost identical argument to \cref{classthm:Fstrength}.
-\begin{theorem}\label{extthm:FbetaupperbdI}
+\Cref{thm:T8Embed} allows us to easily determine an upper bound on the strength of the theories $\HST_\beta$. By making use of the remarks at the beginning of this section, we see that the next theorem is provable with an almost identical argument to \cref{classthm:Fstrength}.
+\begin{theorem}\label{thm:FbetaupperbdI}
  Every arithmetical theorem of $\HST_\beta$, for $\beta<\vartheta\varepsilon_{\Omega+1}$, is derivable in
 $\PA+\TI(\mathord<\vartheta(\Omega^{\beta+1}\cdot\omega))$.
 \end{theorem}
 % TODO: Prove
 % \begin{proof}
-% All that remains from \cref{extthm:T8Embed} is to show the results regarding
+% All that remains from \cref{thm:T8Embed} is to show the results regarding
 % the system $\Tinfty$ can be formalised in $\PA$ and proved with transfinite
 % induction restricted to $\vartheta(\Omega\cdot(\Omega^\beta\cdot\omega)0$. We begin by noting
-% that \cref{extthm:T8Embed} can be rephrased in a similar manner to
+% that \cref{thm:T8Embed} can be rephrased in a similar manner to
 % \cref{classthm:F8Embed} to show ...
 %
 % As discussed in the proof of \ref{classthm:F8strength}, during the analysis of
 % $\Finfty$, this is achieved by considering recursive $\Tinfty$ derivations.
 % Formalising
-% \cref{extprop:T8items}, the cut admissibility theorem, \cref{extthm:T8CutElim}
-% and also the Collapsing lemma, \cref{extlem:T8conden}, is then standard ({\em
+% \cref{prop:T8items}, the cut admissibility theorem, \cref{thm:T8CutElim}
+% and also the Bounding lemma, \cref{lem:T8conden}, is then standard ({\em
 % cf.}~\cite[section 5]{Schw77}).
 % \end{proof}
-% \begin{corollary}\label{extcor:Fmupperbd1}
+% \begin{corollary}\label{cor:Fmupperbd1}
 %   $\pto{\HST_p}\le\vartheta(\Omega^{p+1}\cdot\omega)$ for each
 %   $p<\omega$ and $\pto{\HST_\beta}\le\vartheta(\Omega^\beta\cdot\omega)$ for each
 %   $\beta<\vartheta\varepsilon_{\Omega+1}$ with $\beta\ge\omega$.
 % \end{corollary}
-% We omit a proof of \cref{extthm:FbetaupperbdI} because,
+% We omit a proof of \cref{thm:FbetaupperbdI} because,
 % as the next section will demonstrate, the current upper bound obtained for
 % $\HST_\beta$ in this section is not optimal. We recommend the reader interested in the proof to
 % compare the proof of \cref{classthm:Fstrength,extthm:FbetaupperbdII} with the
 % remarks made at the beginning of this section.
 
-\section{Conclusion}\label{extsec:conc}
-By combining the work of \cref{extsec:Fbupper1,extsec:Fblower} we may determine
-the strength of the theory $\HST_\beta$ for every $\beta<\vartheta\Omega^\Omega$.
-% \begin{theorem}\label{extthm:Fbetastrength}
-%  For every $m<\omega$ and $\beta<\vartheta\Omega^3$, the theories $\HST_\beta^{m+1}$ and
-% $\PA+\TI(\mathord<\vartheta(\Omega^2\cdot\beta+\Omega\cdot m))$ prove the same
-% arithmetical statements, as do the theories $\HST_\beta$ and
-% $\PA+\TI(\mathord<\vartheta(\Omega^2\cdot \beta+\Omega\cdot \omega))$.
-% \end{theorem}
-% \begin{proof}
-% The reduction of $\HST_\beta^{m+1}$ and $\HST_\beta$ to
-% $\PA+\TI(\mathord<\vartheta(\Omega^2\cdot \beta+\Omega\cdot m))$ and
-% $\PA+\TI(\mathord<\vartheta(\Omega^2\cdot
-% \beta+\Omega\cdot \omega))$ respectively was accomplished in
-% \cref{extthm:FbetaupperbdII}, while the converse direction is a consequence of
-% \cref{extthm:Fbetalowerbound}.
-% \end{proof}
-\begin{theorem}\label{extthm:Fpstrength}
- For every $p<\omega$
- \begin{align*}
-  \pto{\HST_p}=\vartheta(\Omega^{p+1}\cdot\omega).
- \end{align*}
-% the theories $\HST_p$ and
-% $\PA+\TI(\mathord<\vartheta(\Omega^{p+1}\cdot \omega))$ prove the same
-% arithmetical statements.
-% as do the theories $\HST_p^{m}$ and
-% $\PA+\TI(\mathord<\vartheta(\Omega^{p+1}\cdot m))$ for every $m<\omega$.
-\end{theorem}
-\begin{theorem}\label{extthm:Fbetastrength}
- For every $\beta\ge\omega$ with $\beta<\vartheta\Omega^\Omega$,
- \begin{align*}
-  \vartheta(\Omega^\beta\cdot\omega)\le\pto{\HST_\beta}\le\vartheta(\Omega^{\beta+1}\cdot\omega).
- \end{align*}
-%  and every
-%   $m<\omega$, the theories $\HST_\beta^{m}$ and
-%   $\PA+\TI(\mathord<\vartheta(\Omega^\beta\cdot m))$ prove the same arithmetical
-%   statements, as do the theories $\HST_\beta$ and
-%   $\PA+\TI(\mathord<\vartheta(\Omega^\beta\cdot \omega))$.
-\end{theorem}
-\begin{proof} \Cref{extthm:FbetaupperbdI} provides the upper bounds for the two
-theorems. The lower bound for \cref{extthm:Fpstrength} results from
-\cref{extthm:Fplowerbound}, whereas the lower bound of
-\cref{extthm:Fbetastrength} is a consequence of \cref{extthm:Fbetalowerbound}
-\end{proof}
-When presented with some hierarchy of theories $\{\theory
-T_\alpha:\alpha\in\On\}$ it is natural to ask the limit of the corresponding
+% ----------------------------------------
+\section{Conclusion}\label{sec:conc}
+% ----------------------------------------
+
+We have introduced a hierarchy  \( ( \HST_\alpha )_{\alpha \in \On } \) of intuitionistic theories of self-applicable truth indexed by ordinals from a fixed elementary ordinal notation system \( \On \) and argued that \( \HST_{\alpha} \) formalises an intensional acceptance of the theories \( \HST_{\beta} \) for \( \beta < \alpha \).
+
+Presented with such a hierarchy of theories $ ( \theory T_\alpha )_{\alpha\in\On }$ it is natural to ask the limit of the corresponding
 autonomous progression, that is, the least ordinal not in the set $X_{\theory
 T}$ generated by the operation $\pto{\theory T_0}\subseteq X_{\theory T}$ and
 $\alpha\in X_\theory T$ implies $\pto{\theory T_\alpha}\subseteq X_{\theory
-T}$. Autonomous progressions of ramified theories such as $\RA_\alpha$ are well-studied, as are those obtained by
-% In the case of theories of ramified analysis and truth it is natural to consider autonomous progressions, as in the
-iterating reflection principles.
-% does the hierarchy given by $\theory T_0=\PA$, $\theory T_\lambda=\bigcup_{\beta<\lambda}\theory T_\beta$ for limit
-% ordinals $\lambda$, and $\theory T_{\alpha+1}=\theory T_\alpha+\pred{Rfln}(\theory T_\alpha)$, where
-% $\pred{Rfln}(\theory T)$ denotes the uniform reflection principle for $\theory T$,
-% \begin{gather*}
-%  \forall x (\Prov_{\theory T}(\gn{A(\dot x)})\rightarrow A(x))
-% \end{gather*}
-% for every arithmetical formula $A(x)$ with at most $x$ free. The former example has limiting ordinal $\Gamma_0$, while
-% the latter has limiting ordinal $\varphi20$.
+T}$. 
+Autonomous progressions of ramified theories such as $\RA_\alpha$ are well-studied, as are those obtained by
+iterating reflection principles~\cite{XX}.
 In the case $\theory T_\alpha=\HST_\alpha$ this is not difficult to determine
-given \cref{extthm:Fbetastrength}.
-\begin{theorem}\label{extthm:Fbauto}
+given \cref{thm:Fbetastrength}.
+
+Combining the results of the previous \namecref{sec:Fbupper1} we determine
+the strength of the theory $\HST_\beta$ for every $\beta<\vartheta\Omega^\Omega$.
+%
+\begin{theorem}\label{thm:Fpstrength}
+ For every $p<\omega$,
+ \(
+  \pto{\HST_p}=\vartheta(\Omega^{p+1}\cdot\omega)
+ \).
+\end{theorem}
+%
+\begin{theorem}\label{thm:Fbetastrength}
+ For every $\beta\ge\omega$ with $\beta<\vartheta\Omega^\Omega$,
+ \[
+  \vartheta(\Omega^\beta\cdot\omega)\le\pto{\HST_\beta}\le\vartheta(\Omega^{\beta+1}\cdot\omega).
+ \]
+\end{theorem}
+%
+\begin{proof} 
+\Cref{thm:FbetaupperbdI} provides both upper bounds for the two
+theorems. 
+The lower bounds are a corollary of
+\cref{thm:Fplowerbound} and
+\cref{thm:Fbetastrength} respectively.
+\end{proof}
+%
+
+
+\begin{theorem}\label{thm:Fbauto}
  The limit of the autonomous progression defined from $\{\HST_\beta:\beta<\Omega\}$ is the large Veblen ordinal, $\vartheta\Omega^\Omega$.
 \end{theorem}
 \begin{proof}
-Let $\sigma_0=0$ and $\sigma_{m+1}=\vartheta(\Omega^{\sigma_m})$. \Cref{extthm:Fbetalowerbound} implies $\pto{\HST_{\sigma_m}^1}\ge\sigma_{m+1}$, while \cref{extthm:Fbetastrength} entails $\pto{\HST_{\sigma_m}}<\sigma_{m+2}$, so $X_{\F}=\sup_m\sigma_m$. It remains to show
+Let $\sigma_0=0$ and $\sigma_{m+1}=\vartheta(\Omega^{\sigma_m})$. \Cref{thm:Fbetalowerbound} implies $\pto{\HST_{\sigma_m}^1}\ge\sigma_{m+1}$, while \cref{thm:Fbetastrength} entails $\pto{\HST_{\sigma_m}}<\sigma_{m+2}$, so $X_{\F}=\sup_m\sigma_m$. It remains to show
 \begin{align*}
  \vartheta(\Omega^\Omega)=\sup_{m<\omega}\sigma_m.
 \end{align*}
@@ -2770,13 +2553,13 @@ hypothesis.
 % single self-applicable truth predicate and constructing a hierarchy of typed
 % truth predicates. Perhaps, instead, one may reasonably argue it was naive to
 % expect the step from $\F$ to $\HST_1$ should be iterated; the reflection process
-% that lead us to $\HST_1$ may not guarantee the acceptance of {\em all} theorems of
+% that lead us to $\HST_1$ may not guarantee the acceptance of \emph{all} theorems of
 % $\HST_1$, perhaps only the arithmetical one (Cf.~Feferman). The latter point is a
 % valid one, although we argue that the analysis of $\HST_\beta$ is of interest in
 % its own right; the behaviour of the predicates in $\HST_\beta$ ...
 % One may reasonably argue it was naive to expect the step from $\HST_0$ to $\HST_1$
 % could be iterated; the reflection process that lead us to $\HST_1$ may not
-% guarantee the acceptance of {\em all} theorems of $\HST_1$, perhaps only those  in
+% guarantee the acceptance of \emph{all} theorems of $\HST_1$, perhaps only those  in
 % the language $\L_0$. This is similar to
 
 Our motivation for defining the theory $\HST_\beta$ as we did stemmed from the
@@ -2804,26 +2587,26 @@ language locally satisfies the same axioms and rules as $\T_0$.
 The analysis of the theories $\HST_\beta$ reveals that stratification of the
 language did not lead us as far from the world of a single self-applicable truth
 predicate as might have first appeared. Indeed,
-\cref{extlem:FFTElim,extthm:FFconsis} show the truth predicates of $\HST_\beta^1$
+\cref{lem:FFTElim,extthm:FFconsis} show the truth predicates of $\HST_\beta^1$
 may be treated as identical; they can all be interpreted as the set
-$\FF^*_{<\Omega^{\beta+1}}$. Within $\HST_\beta^2$ they may all be interpreted as the
-set $\FF^*_{<\Omega^{\beta+1}\cdot2}$ and, in general, all truth predicates in
+$\FF_{<\Omega^{\beta+1}}$. Within $\HST_\beta^2$ they may all be interpreted as the
+set $\FF_{<\Omega^{\beta+1}\cdot2}$ and, in general, all truth predicates in
 $\HST_\beta$ can be interpreted as the set
-$\FF^*_{\mathord<\Omega^{\beta+2}}$ (one cannot simply use
-$\FF^*_{\mathord<\Omega^{\beta+1}\cdot\omega}$ for the interpretation of $\T_\beta$ in
+$\FF_{\mathord<\Omega^{\beta+2}}$ (one cannot simply use
+$\FF_{\mathord<\Omega^{\beta+1}\cdot\omega}$ for the interpretation of $\T_\beta$ in
 $\HST_\beta$ as the set is not closed under the $\omega$-rule, whereas
-$\FF^*_{\mathord<\Omega^{\beta+2}}$ is, as well being closed under \Conec\eta, \Nec\eta for every $\eta\le\beta$.)
+$\FF_{\mathord<\Omega^{\beta+2}}$ is, as well being closed under \Conec\eta, \Nec\eta for every $\eta\le\beta$.)
 The upshot is that we may view each predicate $\T_\eta$ as ``extending'' the base predicate $\T_0$ as well as $\T_\xi$ for $\xi<\eta$. It would be interesting to determine whether the
 theory $\HST_\beta$ can be rewritten in some natural type-free form.
 
 The model constructions employed in the previous section for the analysis of $\HST_1$
 allow us to obtain an upper bound for the theory $\theory S_3$ introduced in
-\cref{extsec:S3}. Essentially, we stratify the language $\L_\T$ as described in
-\cref{extrem:S3}, interpreting the outermost truth predicate by $\T_1$ and all
+\cref{sec:S3}. Essentially, we stratify the language $\L_\T$ as described in
+\cref{rem:S3}, interpreting the outermost truth predicate by $\T_1$ and all
 others by $\T_0$, but by first embedding $\theory S_3$ in an infinitary theory
 formulated without T-Elim, we avoid the problems relating to \Conec0 and
 \Conec{1}.
-\begin{theorem}\label{extthm:S3strength}
+\begin{theorem}\label{thm:S3strength}
  $\theory S_3$ proves the same arithmetical statements as $\HST_1^1$ and hence has
 proof-theoretic ordinal $\Gamma_0$.
 \end{theorem}
@@ -2836,18 +2619,18 @@ S\prov\alpha{}\Gamma$ according to the rules (Ax.1), (Ax.2), (Ax.3),
 ($\land$), ($\lor_i$), ($\omega$), ($\exists$), (T-Imp), (T-Del), (T-Rep), (T-$\omega$), and
 the following additional rule
 \begin{description}
- \item [\normalfont(Ax.4)$^\FF$] $\Tinfty\prov\beta{\Omega\cdot\gamma} A$ for some $\gamma,\beta<\Omega$
+ \item [\normalfont(Ax.4)$^\FF$] $\prov\beta{\Omega\cdot\gamma} A$ for some $\gamma,\beta<\Omega$
   implies $\theoryinf S\prov\alpha{}{\Gamma,\T(\gn{A^*})}$ for any \linebreak$\alpha>\max\{\beta,\gamma\}$.
-%  \item [\normalfont(T-Rep)] $\theoryinf S^*\prov\alpha{}{\Gamma, \T(s)}$, implies
+%  \item [\normalfont(T-Rep)] $\theoryinf S^*\prov\alpha{}{\Gamma, \T s}$, implies
 \end{description}
-The Condensation lemma entails, for $\gamma<\Omega$, that
+The Bounding lemma entails, for $\gamma<\Omega$, that
 \begin{align}\label{eqn:S81}
-  \Tinfty\prov\alpha{\Omega\cdot\gamma}\Gamma\text{ implies }\theoryinf S\prov\alpha{}{\Gamma^*.}
+  \prov\alpha{\Omega\cdot\gamma}\Gamma\text{ implies }\theoryinf S\prov\alpha{}{\Gamma^*.}
 \end{align}
 %
 Define a sequence of $\L_\T$-structures
 \begin{align*}
-  \mathfrak{M}_\alpha=\pair{\N,\{\gn {A^*}:\text{$\Tinfty\prov{\beta}{\Omega\cdot\gamma} A$ for some $\gamma<\alpha$ and $\beta<\vartheta(\Omega\cdot\alpha)$}\}}.
+  \mathfrak{M}_\alpha=\pair{\N,\{\gn {A^*}:\text{$\prov{\beta}{\Omega\cdot\gamma} A$ for some $\gamma<\alpha$ and $\beta<\vartheta(\Omega\cdot\alpha)$}\}}.
 \end{align*}
 We claim
 \begin{align}\label{eqn:S82}
@@ -2860,53 +2643,58 @@ while if $\Gamma$ is derived through an application of (T-Rep), it follows from
 the induction hypothesis and closure of $\Tinfty$ under (\Nec{0}). If the last applied rule is (T-$\omega$), $\mathfrak{M}_\alpha\models\bigvee\Gamma$ holds by an application of
 ($\omega$) in $\Tinfty$ and the fact $\vartheta(\Omega\cdot\alpha)$ is increasing in $\alpha$.
 % This leaves only applications of (T-Del) to manage, for which we employ
-% the T-Elimination theorem for $\Tinfty$, \cref{extlem:T8TElim}.
+% the T-Elimination theorem for $\Tinfty$, \cref{lem:T8TElim}.
 Furthermore, by the definition of the function $\vartheta$, we have
 $\vartheta(\Omega\cdot\delta+\beta)<\vartheta(\Omega\cdot\alpha)$ whenever
 $\delta<\alpha$ and $\beta<\vartheta(\Omega\cdot\alpha)$; thus
-\cref{extlem:T8TElim} implies
+\cref{lem:T8TElim} implies
 \begin{align*}
   \mathfrak{M}_\alpha\models\forall\gn A(\T(\gn{\T(\gn A)})\rightarrow \T(\gn A)),
 \end{align*}
 and we may deduce $\mathfrak{M}_\alpha\models\bigvee\Gamma$ from the induction
 hypothesis if the last rule applied was (T-Del).
 
-\Cref{eqn:S82} can now be utilised along with \cref{eqn:S81} to conclude
+\eqref{eqn:S82} can now be utilised along with \eqref{eqn:S81} to conclude
 \begin{align*}%\label{eqn:S83}
  \theoryinf S\prov\alpha{}{\T(\gn A)}\text{ implies }\theoryinf
 S\prov{\vartheta(\Omega\cdot\alpha)}{} {A.}
 %\text{ for some $\beta<\vartheta(\Omega\cdot\alpha)$.}
 \end{align*}
 Since $\vartheta\Omega^2$ is the least ordinal closed under the function
-$\alpha\mapsto\vartheta(\Omega\cdot\alpha)$ (see \cref{extprop:thetaitems2}) we
+$\alpha\mapsto\vartheta(\Omega\cdot\alpha)$ (see \cref{prop:thetaitems2}) we
 may deduce $\theory S_3\proves A$ implies $\theoryinf S\prov\alpha{}A$ for
 some $\alpha<\vartheta\Omega^2$ for any sentence $A$, whence $\pto{\theory
 S_3}\le\vartheta\Omega^2$. Finally, note $\vartheta\Omega^2=\Gamma_0$
-by \cref{extprop:thetaitems3}.
+by \cref{prop:thetaitems3}.
 \end{proof}
 
- On a final note, one may
-reasonably consider applying this idea to the other Friedman-Sheard
-theories (or indeed to other theories of self-referential truth). The
-theory $\E$ is $\omega$-inconsistent ({\em cf.}~\cref{classsec:upperbdE}),
-so a definition of $\E_1$ cannot consistently contain the axiom
-\Uni{1}. Thus, since the predicate $\T_1$ could not adhere to the
-rules governing $\T_0$, this process could not be applied to $\E$. Iterating the
-operation pertaining to $\I$, however, does lead to a hierarchy of consistent
-theories. $\I$ does not contain the rule T-Intro, so one would not naturally include the principle
-\begin{align*}
-  \T_1(x)\rightarrow \T_1(\gn{\T_0(\dot x)})
-\end{align*}
-as an axiom of $\I_\beta$. Without such an axiom, though, there would be no dependency between the two
-predicates: any occurrence of $\T_0$ under $\T_1$ may be treated vacuous, as can
-any occurrence of $\T_1$ under $\T_0$. In an attempt to resolve the matter one
-could add to $\I_1$ the axiom $\T_1(\gn A)$ whenever $A$ is an axiom of $\I_0$
-($\I$ formulated with the predicate $\T_0$). This would appear a natural choice
-as it agrees with the construction of $\HST_1$.
-% \footnote{$\T_1(\gn A)$
-% is derivable in $\HST_1$ for every axiom $A$ of $\HST_0$ due to \Nec{1}.}
-It would be interesting to ascertain the strength of the resulting
-iteration and compare it to our results regarding $\HST_\beta$.
+% On a final note, one may
+%reasonably consider applying this idea to the other Friedman-Sheard
+%theories (or indeed to other theories of self-referential truth). The
+%theory $\E$ is $\omega$-inconsistent (\emph{cf.}~\cref{classsec:upperbdE}),
+%so a definition of $\E_1$ cannot consistently contain the axiom
+%\Uni{1}. Thus, since the predicate $\T_1$ could not adhere to the
+%rules governing $\T_0$, this process could not be applied to $\E$. Iterating the
+%operation pertaining to $\I$, however, does lead to a hierarchy of consistent
+%theories. $\I$ does not contain the rule T-Intro, so one would not naturally include the principle
+%\begin{align*}
+%  \T_1(x)\rightarrow \T_1(\gn{\T_0(\dot x)})
+%\end{align*}
+%as an axiom of $\I_\beta$. Without such an axiom, though, there would be no dependency between the two
+%predicates: any occurrence of $\T_0$ under $\T_1$ may be treated vacuous, as can
+%any occurrence of $\T_1$ under $\T_0$. In an attempt to resolve the matter one
+%could add to $\I_1$ the axiom $\T_1(\gn A)$ whenever $A$ is an axiom of $\I_0$
+%($\I$ formulated with the predicate $\T_0$). This would appear a natural choice
+%as it agrees with the construction of $\HST_1$.
+%% \footnote{$\T_1(\gn A)$
+%% is derivable in $\HST_1$ for every axiom $A$ of $\HST_0$ due to \Nec{1}.}
+%It would be interesting to ascertain the strength of the resulting
+%iteration and compare it to our results regarding $\HST_\beta$.
+
+\begin{thebibliography}{10}
+	\bibitem{LeiRat10} Leigh, G.E.\@ and M.\@ Rathjen, An ordinal analysis of theories of self-applicable truth. \emph{Arch. Math. Logic} (2010) 49:213–247
+	\bibitem{Lei-thesis} \emph{Proof-theoretic investigations into the Friedman--Sheard theories and other theories of truth}, Ph.D.\@ thesis, School of Mathematics, University of Leeds, 2010.
+\end{thebibliography}
 
 %++++++++++++++++++++++++++++++++++++++++
 \end{document}

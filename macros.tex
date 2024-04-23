@@ -27,14 +27,16 @@
 \newcommand{\size}[1]{\lvert{#1}\rvert}
 \newcommand{\card}[1]{\lvert{#1}\rvert}
 
+\newcommand{\setSent}{\set{Sent}}
+
 % Axiom names
 
-\newcommand{\Imp}[1]{Imp$_{#1}$}
-\newcommand{\Uni}[1]{Uni$_{#1}$}
-\newcommand{\Rep}[1]{Rep$_{#1}$}
-\newcommand{\Del}[1]{Del$_{#1}$}
-\newcommand{\Nec}[1]{Nec$_{#1}$}
-\newcommand{\Conec}[1]{Conec$_{#1}$}
+\newcommand{\Imp}[1]{imp$_{#1}$}
+\newcommand{\Uni}[1]{uni$_{#1}$}
+\newcommand{\Rep}[1]{rep$_{#1}$}
+\newcommand{\Del}[1]{del$_{#1}$}
+\newcommand{\Nec}[1]{nec$_{#1}$}
+\newcommand{\Conec}[1]{conec$_{#1}$}
 
 
 % Numeracy & Coding
@@ -125,7 +127,7 @@
 
 % Calculi
 
-\newcommand{\FF}{\calculus{F}}
+\newcommand{\FF}{\calculus{T}}
 
 \newcommand{\theoryinf}[1]{\calculus{#1}_\infty}
 %
@@ -135,6 +137,8 @@
 \newcommand{\Iinfty}{\theoryinf{I}}
 \newcommand{\Tinfty}{\theoryinf{T}}
 
+% Inference shorthands
 
+\newcommand{\axiom}[2][]{\hypo{}\infer1[#1]{#2}}
 
 
