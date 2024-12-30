@@ -57,7 +57,7 @@
 
 % Load these after everything
 \usepackage[bookmarks,unicode]{hyperref}
-\usepackage[]{cleveref}
+\usepackage[capitalize]{cleveref}
 
 % Define environments
 \newtheorem{theorem}{Theorem}[section]
@@ -89,6 +89,9 @@
 \newcommand{\gelnote}[1]{\note[magenta]{#1}}
 \newcommand{\gelhighlight}[1]{\highlight[magenta]{#1}}
 %
+
+
+\newcommand{\kommentar}[1]{}
 
 %++++++++++++++++++++++++++++++++++++++++
 \begin{document}
@@ -1444,28 +1447,69 @@ $\HST_0$ is identical to $\F$, for which an optimal lower bound was established
 in \cref{classlem:S2abcd}. However, because of the change in ordinal notation
 system and the reflective nature of the theories $\HST_\beta$ it will be useful
 to provide a new proof of the result.
-For each $\xi<\kappa$ let $\wo_\xi(x)$ denote the formula
-\begin{align*}
-  \forall\gn {A(x)}\forall y\prec x\,\T_\xi(\gn{\TI(\dot y,A)}).
-\end{align*}
-Let $F_0(\rho)$ denote the formula $\wo_0(\rho^*)\land \forall\sigma<\rho[
-\wo_0(\sigma^*)\rightarrow \wo_0(\vartheta\sigma)]$ and $F_0^\rho(\alpha)$ denote
-$\alpha<\Omega\rightarrow F_0(\rho+\alpha)$. We begin with a technical lemma.
+\begin{definition}\label{Prog}
+	For each $\xi<\kappa$ let $\wo_\xi(x)$ denote the formula 
+	\[
+	  \forall\gn {A(v)}\forall y\prec x\,\T_\xi(\gn{\TI(\dot y,A)}).
+	\]
+	For a formula $A(v)$ let $\Prog(A)$ be the formula
+	\[ 
+		\forall \alpha\,[\forall \zeta <\alpha\;A(\zeta) \,\to A(\alpha)].
+	\]
+\end{definition}
+The first thing to notice about the formula $\wo_\xi(x)$ is that it is progressive.
+%
+\begin{lemma}\label{MR1}  
+	We have $\HST_0^0\vdash \Prog(\wo_0)$.
+\end{lemma} 
+
+In essence using Gentzen's 1943 proof~\cite{Gentzen1943}, we get the following result.
+\begin{lemma}\label{MR2} 
+	$\HST_0^0\proves \forall \alpha'\forall \beta'\,[\wo_0(\alpha')\,\wedge\,\wo_0(\beta') \to \wo_0(\omega^{\alpha'}+\beta')]$.
+\end{lemma}
+
+\begin{definition}\label{F0}
+	Let $F_0(\rho)$ denote the formula $\wo_0(\rho^*)\land \forall\sigma<\rho[
+	\wo_0(\sigma^*)\rightarrow \wo_0(\vartheta\sigma)]$ and $F_0^\rho(\alpha)$ denote
+	$\alpha<\Omega\rightarrow F_0(\rho+\alpha)$.
+\end{definition}
+%
+We begin with a technical lemma.
 \begin{lemma}\label{lem:F0tech}
- $\HST_0^1\proves \forall\rho[\T_0(\gn{F_0(\dot\rho)})\rightarrow \wo_0(\vartheta\rho)]$.
+	$\HST_0^1\proves \forall\rho[\T_0(\gn{F_0(\dot\rho)})\rightarrow \wo_0(\vartheta\rho)]$.
 \end{lemma}
 \begin{proof}
 Argue within $\HST_0^1$, and assume
 \begin{align}\label{eqn:F0tech1}
   \T_0(\gn{F_0(\dot\rho)}).
 \end{align}
+Let $\wo_0^1(x)$ denote $\T_0(\gn{\wo_0(\dot x)})$.
+\eqref{eqn:F0tech1} implies (a) $\wo_0^1(\rho^*)$ and
+(b) $\forall\sigma<\rho[\wo_0^1(\sigma^*)\rightarrow\wo_0^1(\vartheta\sigma))]$.
+
+Via an induction on the syntactic complexity of ordinal terms $\alpha<\vartheta\rho$ we shall show that $\wo_0^1(\alpha)$ holds.
+
+If $\alpha$ is of the form $\vartheta\beta$ then either $\alpha\leq \rho^*$ or $\beta<\alpha$ and $\beta^*<\vartheta\rho$. In the first case we conclude 
+$\wo_0^1(\alpha)$ by (a) while in the second case $\wo_0^1(\alpha)$ follows from (b).
+
+If $\alpha$ has normal form $\omega^{\gamma}+\delta$, then $\gamma,\delta<\vartheta\rho$, and inductively we have 
+(c) $\wo_0^1(\gamma)$ and (d) $\wo_0^1(\delta)$. Applying an inference \Nec{0}   \kommentar{$T_0$-Intro} to the formula in \cref{MR2} and taking (c) and (d) into account, we arrive at $\wo_0^1(\alpha)$.
+
+As a result, we have shown $\forall \alpha<\vartheta\rho\,\;  \wo_0^1(\alpha)$ which yields $\T_0(\gn{\forall \alpha<\vartheta\dot{\rho}\,\;\wo_0(\alpha)})$
+via (U), and hence
+$\T_0(\gn{\wo_0(\vartheta\dot{\rho})}$ holds.  By \Del{0}, $\wo_0(\vartheta\rho)$ follows.
+\end{proof}
+
+
+\kommentar{
 Let $\gamma_0=\rho^*+1$ and $\gamma_{m+1}=C(\rho,\gamma_m)\cap\Omega$.
-Moreover, let $\wo_0^1(x)$ denote $\T_0(\gn{\wo_0(\dot x)})$.
+Moreover,
 \eqref{eqn:F0tech1} implies $\wo_0^1(\gamma_0)$ and
 $\forall\sigma<\rho[\wo_0^1(\sigma^*)\rightarrow\wo_0^1(\vartheta\sigma))]$, whence
 it is easy to deduce $\forall m[\wo_0^1(\gamma_m)\rightarrow\wo_0^1(\gamma_{m+1})]$
 and thus $\wo_0^1(\vartheta\rho)$. By \Del{0}, $\wo_0(\vartheta\rho)$ holds.
-\end{proof}
+}
+
 \begin{lemma}\label{prop:F0wellordering}
   For every $m<\omega$, $\HST_0^m\proves F_0(\Omega\cdot\bar{m})$.
 %   \forall\alpha[\wo_0\alpha\rightarrow\wo_0\vartheta(\Omega\cdot\bar n+\alpha)]$.
@@ -1479,16 +1523,52 @@ $\HST_0^0\proves F_0(\bar0)$ holds vacuously, so suppose $m=n+1>0$ and
 % We will show $B^{n+1}(\Omega\cdot(\bar n+1))$.
 The first step is to establish
 % \begin{align*}%\label{eqn:4.2}
-  $\HST_0^n\proves\Prog F^{\Omega\cdot\bar n}_0$.
+  $\HST_0^n\proves\Prog (F^{\Omega\cdot\bar n}_0)$.
 % \end{align*}
-Argue informally within $\HST_0^n$, assuming $\forall\nu<\mu\, F_0^{\Omega\cdot\bar n}(\nu)$ for some $\mu$, that is,
+Argue informally within $\HST_0^n$, assuming $\forall\nu<\mu\, F_0^{\Omega\cdot\bar n}(\nu)$ for some $\mu<\Omega$, that is,
 \begin{gather}\label{eqn:4.3}
   \forall\nu<\mu(\wo_0(\nu^*)\land\forall\sigma<\Omega\cdot\bar n+\nu[\wo_0(\sigma^*)\rightarrow\wo_0(\vartheta\sigma)]).
 %   \mu<\Omega\land\forall\nu<\mu\,\wo_0\vartheta(\Omega\cdot\bar n+\nu);\label{eqn:4.3}
 \end{gather}
-We want to show $\wo_0(\mu^*)$ and $\forall\sigma<\Omega\cdot\bar n+\mu[\wo_0(\sigma^*)\rightarrow\wo_0(\vartheta\sigma)]$. The former is obvious since the fact $\wo_0(\varepsilon_\alpha)$ is progressive in $\alpha$ is provable in $\HST_0^1$ (\emph{cf.}~\cref{classlem:S1e+}). To prove the latter, assume $\wo_0(\sigma^*)$ for some $\sigma<\Omega\cdot\bar n+\mu$. If $\mu=0$ or is
+We want to show $\wo_0(\mu^*)$ and $\forall\sigma<\Omega\cdot\bar n+\mu[\wo_0(\sigma^*)\rightarrow\wo_0(\vartheta\sigma)]$. The former is obvious 
+by \cref{MR2,MR1}.
+%since the fact $\wo_0(\varepsilon_\alpha)$ is progressive in $\alpha$ is provable in $\HST_0^1$ (\emph{cf.}~\cref{classlem:S1e+}). 
+To prove the latter,
+assume $\wo_0(\sigma^*)$ and $\sigma<\Omega\cdot\bar n+\mu$. If $\mu=0$ or is
 a limit ordinal, $\wo_0(\vartheta\sigma)$ is immediate given \eqref{eqn:4.3}. Otherwise $\mu=\nu+1$
-for some $\nu$, whence we may assume $\sigma=\Omega\cdot\bar n+\nu$. Let
+for some $\nu$, whence we may assume $\sigma=\Omega\cdot\bar n+\nu$. 
+
+We want to show $\wo_0(\beta)$ for all $\beta< \vartheta \sigma$. To this end we proceed by induction on the syntactic complexity of $\beta$ and distinguish several (decidable) cases.
+
+(C1). $\beta\le\sigma^*$. Then $\wo_0(\beta)$ is a result of $\wo_0(\sigma^*)$.
+
+(C2). $\beta=_\NF\omega^\delta+\eta$. Then the induction hypothesis yields
+$\wo_0(\delta)\land\wo_0(\eta)$ and so $\wo_0(\beta)$ by Lemma \ref{MR2}.
+
+(C3). $\beta=_\NF\vartheta\xi$. As $\beta< \vartheta \sigma$, we have $\beta\leq \sigma^*$ or $\xi < \sigma\;\wedge\;\xi^*<\vartheta \sigma$.
+In the former case $\wo_0(\beta)$ is immediate while the latter case yields $\wo_0(\xi^*)$ by the induction hypothesis.
+ If $\xi<\Omega\cdot n$, $\wo_0(\vartheta\xi)$ is a
+consequence of \eqref{eqn:4.1}, otherwise $\Omega\cdot n\le\xi<\sigma$ and
+$\wo_0(\vartheta\xi)$ is implied by \eqref{eqn:4.3}.
+
+
+
+
+
+
+\kommentar{
+ and $\xi\in C_k(\sigma,\gamma_m)\cap\sigma$. Thus,
+$\xi^*\in C_k(\sigma,\gamma_m)\cap\Omega$ and therefore $\wo_0(\xi^*)$ by the
+induction hypothesis. If $\xi<\Omega\cdot n$, $\wo_0(\vartheta\xi)$ is a
+consequence of \eqref{eqn:4.1}, otherwise $\Omega\cdot n\le\xi<\sigma$ and
+$\wo_0(\vartheta\xi)$ is implied by \eqref{eqn:4.3}.
+
+
+
+
+
+
+Let
 $\gamma_0=\sigma^*+1$ and $\gamma_{m+1}=C(\sigma,\gamma_m)\cap\Omega$. Then
 $\gamma_m<\Omega$ for each $m$ and
 \begin{align*}
@@ -1515,21 +1595,22 @@ $\xi^*\in C_k(\sigma,\gamma_m)\cap\Omega$ and therefore $\wo_0(\xi^*)$ by the
 induction hypothesis. If $\xi<\Omega\cdot n$, $\wo_0(\vartheta\xi)$ is a
 consequence of \eqref{eqn:4.1}, otherwise $\Omega\cdot n\le\xi<\sigma$ and
 $\wo_0(\vartheta\xi)$ is implied by \eqref{eqn:4.3}.
+}
 
-Thus we may deduce $\forall\alpha<\gamma_{m+1}\,\wo_0(\alpha)$, hence
-$\wo_0(\gamma_{m+1})$, and so $\wo_0(\vartheta\sigma)$, concluding the proof of
+Thus we may deduce $\forall\beta<\vartheta\sigma\,\wo_0(\beta)$, 
+ and so $\wo_0(\vartheta\sigma)$, concluding the proof of
 \begin{align}\label{eqn:4.2}
-  \HST_0^n\proves\Prog F^{\Omega\cdot\bar n}_0.
+  \HST_0^n\proves\Prog (F^{\Omega\cdot\bar n}_0).
 \end{align}
-An application of \Nec{0} entails $\HST_0^m\proves \T_0(\gn{\Prog F^{\Omega\cdot\bar n}_0})$, so
+An application of \Nec{0} entails $\HST_0^m\proves \T_0(\gn{\Prog( F^{\Omega\cdot\bar n}_0)})$, so
 \begin{align*}
-  \HST_0^m\proves\forall\alpha[\wo_0(\alpha)\rightarrow
+  \HST_0^m\proves\forall\alpha<\Omega[\wo_0(\alpha)\rightarrow
    \T_0(\gn{F_0(\Omega\cdot\bar n+\dot\alpha)})],
 \end{align*}
 and hence, by \cref{lem:F0tech},
 \begin{align}\label{eqn:4.6}
-  \HST_0^m\proves\forall\alpha(\wo_0(\alpha)\rightarrow\wo_0\vartheta(\Omega\cdot\bar
-  n+\alpha)).
+  \HST_0^m\proves\forall\alpha<\Omega\,[\wo_0(\alpha)\rightarrow\wo_0(\vartheta(\Omega\cdot\bar
+  n+\alpha))].
 \end{align}
 To obtain $\HST_0^m\proves F_0(\Omega\cdot\bar m)$ and complete the proof we
 argue within $\HST_0^m$. Firstly, $\wo_0((\Omega\cdot\bar m)^*)$ holds trivially as $(\Omega\cdot\bar m)^*=0$. Secondly, if
@@ -1543,6 +1624,25 @@ and $\wo_0(\sigma^*)\rightarrow \wo_0(\vartheta\sigma)$ results from
  $\pto{\HST_0^m}\ge\vartheta(\Omega\cdot m)$ and $\pto{\HST_0}\ge\vartheta(\Omega\cdot\omega)$.
 \end{corollary}
 \begin{proof}
+ As a first step, we proceed by induction on the syntactic complexity of $\beta<\vartheta(\Omega\cdot m)$ to show that 
+ \begin{eqnarray}\label{MR3} &&\HST_0^m\proves \wo_0(\bar\beta).\end{eqnarray}
+  This is clear if $\beta=0$.  If $\beta=_\NF\omega^\delta+\eta$, we inductively have  $\HST_0^m\proves \wo_0(\bar\delta)\,\wedge\wo_0(\bar\eta)$,
+ thence  $\HST_0^m\proves \wo_0(\bar\beta)$ by lemma \ref{MR2}.
+ If $\beta=\vartheta \xi$ for some $\xi$, then either $\beta\leq (\Omega\cdot m)^*$ or $\xi<\Omega\cdot m\,\wedge\,\xi^*<\vartheta(\Omega\cdot m)$. However, the former is impossible since
+ $ (\Omega\cdot m)^*=0$. Hence $\xi=\Omega\cdot n+\alpha$ for some $n<m$ and $\alpha<\Omega$, and
+$\HST_0^m\proves\wo_0(\bar\xi^*)$ by the induction hypothesis, whence
+\cref{prop:F0wellordering} implies $\HST_0^m\proves\wo_0(\bar\beta)$.
+
+Finally, from \eqref{MR3} we obtain $\HST_0^m\proves\TI(\bar\beta)$  for every $\beta<\vartheta(\Omega\cdot m)$ by an application of
+\Conec0.
+\end{proof}
+
+
+ 
+ 
+ 
+ 
+ \kommentar{
 Let $\gamma_0=1$ and $\gamma_{k+1}= C(\Omega\cdot m,\gamma_k)\cap\Omega$. Then
 $\vartheta(\Omega\cdot m)\le\sup_{k<\omega}\gamma_k$ and
 $\HST_0^m\proves\wo_0(\bar{\gamma_0})$ holds. Moreover, if $\HST_0^m\proves
@@ -1563,7 +1663,8 @@ Since $\vartheta(\Omega\cdot m)\le\sup_{k<\omega}\gamma_k$, we obtain
 $\HST_0^m\proves\wo_0(\bar\alpha)$ for every $\alpha<\vartheta(\Omega\cdot m)$ and
 so $\HST_0^m\proves\TI(\mathord<\vartheta(\Omega\cdot m))$ by an application of
 \Conec0.
-\end{proof}
+}
+%\end{proof}
 
 We will now extend the well-ordering proof above to determine lower bounds on the strength of each
 theory $\HST_\beta$. This will be done in stages, first for $\beta=1$, then for
@@ -1573,26 +1674,43 @@ to the function $\alpha\mapsto\vartheta(\Omega\cdot\alpha)$,
 and eventually to functions $\alpha\mapsto\vartheta(\Omega^{\beta}\cdot\alpha)$.
 
 Before proceeding directly with $\HST_1$ we require a slightly more general form
-of \cref{prop:F0wellordering}. As its proof makes no explicit use of the fact $m$ is finite,
-nor any application of \Nec{0} in showing $\Prog F^{\Omega\cdot \bar m}_0$ given
+of \cref{prop:F0wellordering}. As its proof makes no explicit use of the fact that $m$ is finite,
+nor any application of \Nec{0} in showing $\Prog (F^{\Omega\cdot \bar m}_0)$ given
 $F_0(\Omega\cdot\bar m)$, we may readily deduce the following generalisation.
 
 \begin{proposition}\label{prop:F0genwellordering}
-  $\HST_0^1\proves \forall\rho[F_0(\rho)\rightarrow \Prog  F_0^\rho]$.
+  $\HST_0^1\proves \forall\rho[F_0(\rho)\rightarrow \Prog ( F_0^\rho)]$.
 \end{proposition}
 \begin{proof}
 Argue inside $\HST_0^1$ and assume $F_0(\rho)$ and $\forall\nu<\mu\,F_0^\rho(\nu)$, that is,
 \begin{gather}
   \wo_0(\rho^*),\label{eqn:F03.1}\\
-  \forall\sigma<\rho[\wo_0(\sigma^*)\rightarrow\wo_0\vartheta\sigma],\label{eqn:F03.2}\\
-  \forall\nu<\mu(\wo_0(\nu^*)\land\forall\sigma<\rho+\nu[\wo_0(\sigma^*)\rightarrow \wo_0\vartheta\sigma]),\label{eqn:F03.3}
+  \forall\sigma<\rho[\wo_0(\sigma^*)\rightarrow\wo_0(\vartheta\sigma)],\label{eqn:F03.2}\\
+  \forall\nu<\mu(\wo_0(\nu^*)\land\forall\sigma<\rho+\nu[\wo_0(\sigma^*)\rightarrow \wo_0(\vartheta\sigma)]),\label{eqn:F03.3}
 %  \forall\delta<\beta\, A^{\rho+\Omega\cdot\mu}(\delta),\label{eqn:F03.3}
 \end{gather}
 for some $\mu<\Omega$; we want to prove $\wo_0(\mu^*)$ and $\forall\tau<\rho+\mu[\wo_0(\tau^*)\rightarrow \wo_0(\vartheta\tau)]$. The former holds immediately given \eqref{eqn:F03.3} so assume
 \begin{gather}
   \wo_0(\tau^*),\label{eqn:F03.4}
 \end{gather}
-for some $\tau<\rho+\mu$. We will prove $\wo_0(\vartheta\tau)$.
+for some $\tau<\rho+\mu$. We will prove $\wo_0(\vartheta\tau)$. To this end we will show $\wo_0(\alpha)$ for every $\alpha<\vartheta\tau$ by induction on the syntactic complexity of $\alpha$. If $\alpha=0$ this is immediate, and if $\alpha=_\NF\omega^\delta+\eta$, we inductively have  $ \wo_0(\delta)$ and 
+$\wo_0(\eta)$,
+ thence  $\wo_0(\beta)$ by lemma \ref{MR2}.
+ If $\alpha=\vartheta \xi$ for some $\xi$, then either $\alpha\leq\tau ^*$ or $\xi<\tau\,\wedge\,\xi^*<\vartheta\tau$.  In the former case $\wo_0(\alpha)$ follows from (\ref{eqn:F03.4}).  Now assume $\xi<\tau\,\wedge\,\xi^*<\vartheta\tau$. Inductively we then have $\wo_0(\xi^*)$.
+ If $\xi<\rho$,
+\eqref{eqn:F03.2} provides $\wo_0(\vartheta\xi)$. Otherwise $\tau=\rho+\nu$
+for some $\nu<\mu$ and $\wo_0(\vartheta\xi)$ holds due to \eqref{eqn:F03.3}.
+As a result,
+ $\wo_0(\alpha)$ for every
+$\alpha<\vartheta\tau$, whence $\wo_0(\vartheta\tau)$.
+% 
+% 
+\kommentar{
+ $ (\Omega\cdot m)^*=0$. Hence $\xi=\Omega\cdot n+\alpha$ for some $n<m$, and
+$\HST_0^m\proves\wo_0(\bar\xi^*)$ by the induction hypothesis, whence
+\cref{prop:F0wellordering} implies $\HST_0^m\proves\wo_0(\bar\beta)$.
+
+
 
 Let $\gamma_0=\tau^*+1$ and $\gamma_{m+1} = C(\tau,\gamma_m)\cap \Omega$. That $\wo_0(\gamma_m)$ holds for each $m$ will be established by induction on $m$. From
 \eqref{eqn:F03.4} one has $\wo_0(\gamma_0)$. Assume $\wo_0(\gamma_m)$. In
@@ -1608,17 +1726,18 @@ Either way $\wo_0(\alpha_0)$, and so $\wo_0(\alpha)$ for every
 $\alpha<\gamma_{m+1}$, whence $\wo_0(\gamma_{m+1})$.
 
 Since $\vartheta\tau\ge\sup_m\gamma_m$ we obtain $\wo_0(\vartheta\tau)$.
+}
 \end{proof}
 
-\Cref{prop:F0genwellordering} is plays a key role in the analysis of $\HST_0^m$ and also $\HST_1^1$. \Cref{lem:F0tech} entails
+\Cref{prop:F0genwellordering} plays a key role in the analysis of $\HST_0^m$ and also $\HST_1^1$. \Cref{lem:F0tech} entails
 \begin{align*}
- \HST_0^1\proves\T_0(\gn{\Prog  F_0^{\dot\rho}})
-	&\rightarrow {\forall\alpha[\wo_0(\alpha)\rightarrow \T_0(\gn{F_0^{\dot\rho}(\dot\alpha)})]}).\\
-	&\rightarrow {\forall\alpha[\wo_0(\alpha)\rightarrow \wo_0\vartheta(\rho+\alpha)]}),
+ \HST_0^1\proves\T_0(\gn{\Prog  (F_0^{\dot\rho})})
+	&\rightarrow {\forall\alpha[\wo_0(\alpha)\rightarrow \T_0(\gn{F_0^{\dot\rho}(\dot\alpha)})]})\\
+	&\rightarrow {\forall\alpha[\wo_0(\alpha)\rightarrow \wo_0(\vartheta(\rho+\alpha))]}),
 \end{align*}
 so $\HST_1^1\proves \forall\rho[\T_1(\gn{F_0(\dot\rho)})\rightarrow \T_1(\gn{F_0(\dot\rho+\Omega)})]$. This amounts to proving
 \begin{align}\label{eqn:F11.1}
-  \HST_1^1\proves \forall\rho[{F_1(\rho)}\rightarrow \Prog  F_1^\rho]
+  \HST_1^1\proves \forall\rho[{F_1(\rho)}\rightarrow \Prog  (F_1^\rho)]
 \end{align}
 where $F_1(\rho)$ is the formula $\T_1(\gn{F_0(\rho)})$ and
 $F_1^\rho(\alpha)$ denotes $\alpha<\Omega\rightarrow F_1(\rho+\Omega\cdot\alpha)$.
@@ -1630,7 +1749,7 @@ theory $\HST_1^1$.
 \begin{proof}
 Since $\HST_0\proves F_0(\bar0)$, \eqref{eqn:F11.1} implies
 \begin{gather}\label{eqn:F11lower1}
- \HST_1^1\proves \Prog  F^{\bar 0}_1.
+ \HST_1^1\proves \Prog (F^{\bar 0}_1).
 \end{gather}
 
 Let $\sigma_0=1$ and $\sigma_{m+1}=\vartheta(\Omega\cdot\sigma_m)$. By
@@ -1645,20 +1764,23 @@ Within $\HST_1^2$, the above proof may be replicated under a $\T_1$ predicate,
 allowing one to reach ordinals beyond $\vartheta\Omega^2$, as the next
 proposition demonstrates.
 \begin{lemma}\label{prop:F1wellordering}
-For each $m$, $\HST_1^{m+1}\proves F_1(\Omega^2\cdot\bar m)$ and $\HST_1^{m+1}\proves \Prog  F_1^{\Omega^2\cdot\bar m}$.
+For each $m$, $\HST_1^{m+1}\proves F_1(\Omega^2\cdot\bar m)$ and $\HST_1^{m+1}\proves \Prog  (F_1^{\Omega^2\cdot\bar m})$.
 \end{lemma}
 \begin{proof}
 $\HST_1^1\proves F_1(\bar 0)$ holds trivially, so suppose $m=n+1$ and $\HST_1^m\proves F_1(\Omega^2\cdot\bar n)$.
-\eqref{eqn:F11.1} yields $\HST_1^m\proves \Prog  F_1^{\Omega^2\cdot\bar n}$, whence an application of \Nec{1} and T$^-_1$-Rep implies
+\eqref{eqn:F11.1} yields $\HST_1^m\proves \Prog ( F_1^{\Omega^2\cdot\bar n})$, whence an application of \Nec{1} and T$^-_1$-Rep implies
 \begin{align}\label{eqn:F1well.1}
   \HST_1^{m+1}\proves \T_1(\gn{\forall\alpha[\wo_0(\alpha)\rightarrow \T_0(\gn{F_1(\Omega^2\cdot\bar n+\Omega\cdot\dot\alpha)})]}).
 \end{align}
 However, arguing within $\HST_0$, from $F_0(\rho)$ one obtains $\wo_0(\vartheta\rho)$, so \eqref{eqn:F1well.1} entails
 \begin{align*}
-  \HST_1^{m+1}\proves \T_1(\gn{\forall\alpha[\wo_0(\alpha)\rightarrow \wo_0\vartheta(\Omega^2\cdot\bar n+\Omega\cdot \dot\alpha)]}),
+  \HST_1^{m+1}\proves \T_1(\gn{\forall\alpha[\wo_0(\alpha)\rightarrow \wo_0(\vartheta(\Omega^2\cdot\bar n+\Omega\cdot \dot\alpha))]}),
 \end{align*}
 and thus $\HST_1^{m+1}\proves F_1(\Omega^2\cdot\bar m)$ as required.
 \end{proof}
+
+For an ordinal representation $\alpha$, $\TI(\mathord<\alpha)$ stands for $\bigcup_{\delta<\alpha}\TI(\bar\beta)$.
+
 
 \begin{theorem}\label{cor:F1lowerbound}\label{thm:F1lowerbound}
 Suppose $m<\omega$. Then every theorem of
@@ -1672,12 +1794,12 @@ Since $\vartheta0=\varepsilon_0$ and $\HST_1^0$ extends $\PA$, the case
 $m=0$ holds, so suppose $m=n+1>0$. If $\HST_1^m\proves \wo_0(\bar\alpha)$,
 \cref{prop:F1wellordering} implies
 \begin{align*}
- \HST_1^{m}\proves \wo_0 \vartheta(\Omega^2\cdot \bar n+\Omega\cdot\bar\alpha),
+ \HST_1^{m}\proves \wo_0 (\vartheta(\Omega^2\cdot \bar n+\Omega\cdot\bar\alpha)),
 \end{align*}
 whereby if $\sigma_0=1$ and $\sigma_{k+1}=\vartheta(\Omega^2\cdot n+\Omega\cdot\sigma_k)$, $\HST_1^m\proves \wo_0(\bar\sigma_k)$ for every $k$.
 
 Thus we require to show $\vartheta(\Omega^2\cdot m)\le\sup_k\sigma_k$. This
-is proved by induction on the rank of $\alpha<\vartheta(\Omega^2\cdot
+is proved by induction on the syntactic complexity of $\alpha<\vartheta(\Omega^2\cdot
 m)$. If $\alpha=_\NF\omega^\gamma+\delta<\vartheta(\Omega^2\cdot m)$, the induction
 hypothesis immediately implies $\alpha<\sigma_k$ for some $k$. Otherwise
 \begin{align*}
@@ -1688,11 +1810,11 @@ and there are two cases to consider:
  \item $\xi<\Omega^2\cdot m$ and $\xi^*<\vartheta(\Omega^2\cdot m)$; or
  \item $\xi>\Omega^2\cdot m$ but $\vartheta\xi\le(\Omega^2\cdot m)^*$.
 \end{enumerate}
-b) cannot hold since $(\Omega^2\cdot m)^*=0$, so $\xi^*<\vartheta(\Omega^2\cdot m)$. As $\xi^*$ has rank strictly
+2) cannot hold since $(\Omega^2\cdot m)^*=0$, so $\xi^*<\vartheta(\Omega^2\cdot m)$. As $\xi^*$ has a complexity strictly
 smaller than $\alpha$ the induction hypothesis
 implies $\xi^*<\sigma_k$ for some $k$. But then $\xi<\Omega^2\cdot n+\Omega\cdot\sigma_k$ and
 $\alpha<\sigma_{k+1}$.
-
+%
 The second part of the theorem is easily established using the fact $\vartheta(\Omega^2\cdot\omega)=\sup_k\vartheta(\Omega^2\cdot k)$.
 \end{proof}
 % We thus obtain lower bounds on the strength of the theory $\HST_1^m$ and its
@@ -1701,12 +1823,19 @@ The second part of the theorem is easily established using the fact $\vartheta(\
 % $\pto{\HST_1^m}\ge\vartheta(\Omega^2+\Omega\cdot m)$ and
 % $\pto{\HST_1}\ge\vartheta(\Omega^2+\Omega\cdot\omega)$.
 % \end{corollary}
+
+\begin{definition}\label{nextepsilon}
+In what follows, we sometimes need to effectively determine the next epsilon number that comes after an ordinal $\alpha<\Omega$, denoted by $\alpha^{\varepsilon+}$ henceforth. 
+If $\alpha^*=0$ then  $\alpha^{\varepsilon+}$ is $\vartheta 0$. If $\alpha^*=\vartheta\beta$ we have to make a case distinction as to whether $\beta<\Omega$ or $\beta\geq\Omega$. 
+In the former case, $\alpha^{\varepsilon+}$  is $\vartheta(\beta+1)$, while in the latter case  $\alpha^{\varepsilon+}$  is $\vartheta(\alpha)$.
+\end{definition}
+
 We can now turn our attention to the theories $\HST_p$ for $p<\omega$.
 \Cref{prop:F1wellordering} essentially shows $\HST_1\proves
 F_1(\Omega^2\cdot\bar\alpha)$ implies $\HST_1\proves
 F_1(\Omega^2\cdot(\bar\alpha+1))$. This can be extended to show $\HST_1\proves\forall\nu<\bar\mu\,F_1(\Omega^2\cdot\nu)$ implies $\HST_1\proves F_1(\Omega^2\cdot\bar\mu)$, whence
 \begin{gather}\label{eqn:Fbwell1}
-  \HST_2^1\proves \Prog  F^{\bar 0}_2
+  \HST_2^1\proves \Prog  (F^{\bar 0}_2)
 \end{gather}
 where $F_2^{\rho}(\alpha)$ is the formula $\alpha<\Omega\land\T_2(\gn{F_0(\rho+\Omega^2\cdot\alpha)})$.
 
@@ -1719,8 +1848,9 @@ Let $F_p(\rho)$, for $0<p<\omega$, be the formula $\T_p(\gn{F_0(\dot\rho)})$, th
  \T_{p}(\gn{\wo_0(\rho^*)\land\forall\sigma<\dot\rho [\wo_0(\sigma^*)\rightarrow\wo_0(\vartheta\sigma)]}),
 \end{align*}
 and denote by $F_p^\rho(\alpha)$ the formula $\alpha<\Omega\land F_p(\rho+\Omega^{\bar p}\cdot\alpha)$.
+
 \begin{lemma}\label{lem:Fpwellordering1}
- For each $p<\omega$, $\HST_p^1\proves \forall\rho[F_p(\rho)\rightarrow\Prog F_p^{\rho}]$ and, for $m<\omega$, $\HST_p^{m+1}\proves F_p(\Omega^{\bar p+1}\cdot\bar m)$.
+ For each $p<\omega$, $\HST_p^1\proves \forall\rho[F_p(\rho)\rightarrow\Prog F_p^{\rho}]$ and, for $m<\omega$,  $\HST_p^{m+1}\proves F_p(\Omega^{\bar p+1}\cdot\bar m)$.
 \end{lemma}
 \begin{proof} The proof proceeds by induction on $p<\omega$. The case of $p=0$
 has already been shown in \cref{prop:F0genwellordering} so suppose $p=q+1>0$.
@@ -1737,8 +1867,8 @@ successor ordinal. But for every ordinal $\tau$,
 \begin{align}\label{eqn:Fpwell3}
 \begin{split}
   F_p(\tau) &\rightarrow \T_p(\gn{F_q(\dot\tau)}), \\
-	  &\rightarrow \T_p(\gn{\Prog F_q^{\dot\tau}}),\\
-	  &\rightarrow \T_p(\gn{\T_0(\gn{\Prog F_q^{\dot\tau}})}),\\
+	  &\rightarrow \T_p(\gn{\Prog (F_q^{\dot\tau})}),\\
+	  &\rightarrow \T_p(\gn{\T_0(\gn{\Prog (F_q^{\dot\tau})})}),\\
 	  &\rightarrow \T_p(\gn{\forall\alpha[\wo_0(\alpha)\rightarrow \T_0(\gn{F_q^{\dot\tau}(\dot\alpha)})]}),\\
 	  &\rightarrow \T_p(\gn{\forall\alpha[\wo_0(\alpha)\rightarrow \T_0(\gn{F_0(\dot\tau+\Omega^{\bar q}\cdot\dot\alpha)})]}),\\
 	  &\rightarrow \T_p(\gn{\forall\alpha[\wo_0(\alpha)\rightarrow\wo_0(\vartheta(\dot\tau+\Omega^{\bar q}\cdot\alpha))]}).
@@ -1749,14 +1879,14 @@ final holds due to \Del{0} and \cref{lem:F0tech}. Given that if
 $\tau\le\sigma<\tau+\Omega^{p}$ there exists
 some $\zeta<\Omega$ such that $\sigma<\tau+\Omega^q\cdot\zeta$ and
 $\wo_0(\sigma^*)\rightarrow\wo_0(\zeta)$ (pick
-$\zeta=(\sigma^*)^{\varepsilon+}$), \eqref{eqn:Fpwell3}\gelnote{define \( \alpha^{\varepsilon+} \)}
+$\zeta=(\sigma^*)^{\varepsilon+}$), \eqref{eqn:Fpwell3}     %\gelnote{define \( \alpha^{\varepsilon+} \)}
 entails $F_p(\tau)\rightarrow\T_p(\gn{F_0(\dot\tau+\Omega^{\bar p})})$,
 % $F_p(\tau)\rightarrow\T_p(\gn{\forall\sigma<\dot\tau+\Omega^{\bar p}[\wo_0(\sigma^*)\rightarrow \wo_0(\vartheta\sigma)]})$
 that is $\forall\tau[F_p^\tau(\alpha)\rightarrow F_p^\tau(\alpha+1)]$.
 
 For the second part, the case $m=0$ is immediate, so suppose $m=n+1$ and $\HST_p^m\proves
 F_p(\Omega^{\bar p+1}\cdot\bar n)$. Then
-$\HST_p^{m+1}\proves\T_p(\gn{\Prog F_p^{\Omega^{\bar p+1}\cdot\bar n}})$, from which we deduce
+$\HST_p^{m+1}\proves\T_p(\gn{\Prog (F_p^{\Omega^{\bar p+1}\cdot\bar n})})$, from which we deduce
 \begin{align*}
   \HST_p^{m+1}\proves\T_p(\gn{\forall\alpha[\wo_0(\alpha)\rightarrow\T_0(\gn{F_p(\Omega^{\bar p+1}\cdot\bar n+\Omega^{\bar p}\cdot\dot\alpha)})]})
 \end{align*}
@@ -1770,7 +1900,7 @@ $\HST_p\proves\TI(\mathord<\vartheta(\Omega^{p+1}\cdot\omega))$.
 \begin{proof}
 For every $p$, the base case, $m=0$, is immediate since $\HST_p^0$ extends $\PA$
 formulated in the language $\L_p$. Otherwise $m=n+1>0$ and the previous lemma
-shows $\HST_p^m\proves\Prog F_p^{\Omega^{\bar p+1}\cdot\bar n}$. Given $\HST_p^m\proves
+shows $\HST_p^m\proves\Prog( F_p^{\Omega^{\bar p+1}\cdot\bar n})$. Given $\HST_p^m\proves
 \wo_p(\bar \alpha)$, one obtains $\HST_p^m\proves F_p(\Omega^{\bar p+1}\cdot\bar
 n+\Omega^{\bar p}\cdot\bar\alpha)$, and so
 \begin{align*}
@@ -1782,7 +1912,7 @@ Let $\sigma_0=1$ and $\sigma_{k+1}=\vartheta(\Omega^{p+1}\cdot
 n+\Omega^p\cdot\sigma_k)$. The previous paragraph establishes $\HST_p^m\proves
 \TI(\mathord<\sigma_k)$ for every $k$, so all that remains is to show
 $\vartheta(\Omega^{p+1}\cdot m)\le\sup_k\sigma_k$, which proceeds by induction
-on the rank of $\alpha<\vartheta(\Omega^{p+1}\cdot m)$. If $\alpha=0$ we are
+on the complexity of $\alpha<\vartheta(\Omega^{p+1}\cdot m)$. If $\alpha=0$ we are
 done, and if $\alpha=_\NF\omega^\gamma+\delta$, the induction hypothesis implies
 $\alpha<\sigma_k$ for some $k$. Thus, suppose
 \begin{gather*}
@@ -1808,7 +1938,7 @@ Finally, we extend the well-ordering proofs to theories $\HST_\beta$ for
 $\beta\ge\omega$. For $\beta=\omega$ this involves generalising the above proof
 so that one may derive
 \begin{align}\label{eqn:Fbetawellordering0.1}
-  \HST_\omega\proves\forall p<\omega\,\T_\omega(\gn{\Prog F_p^{\bar0}}),
+  \HST_\omega\proves\forall p<\omega\,\T_\omega(\gn{\Prog (F_p^{\bar0})}),
 \end{align}
 whence $\HST_\omega \proves\forall
 p<\omega\,\T_\omega(\gn{\forall\alpha[\wo_{0}(\alpha)\rightarrow\wo_{0}
@@ -1829,15 +1959,15 @@ For each $\beta\in\OT_\Omega$ let $G_\beta(\rho)$ denote the formula
 \end{align*}
 and let $G_\beta^\rho(\alpha)$ abbreviate $\alpha<\Omega\land \forall\eta<\bar\beta\,G_\beta(\rho+\Omega^\eta\cdot\alpha)$.
 \begin{proposition}\label{lem:Fbetawellordering1}
- For each $\beta\in\OT_\Omega\cap\Omega$, $\HST_{\beta}^1\proves \forall\rho[G_\beta(\rho)\rightarrow \Prog G_\beta^\rho]$ and for every $m<\omega$, $\HST_{\beta}^{m+1}\proves G_\beta(\Omega^{\bar\beta}\cdot\bar m)$.
+ For each $\beta\in\OT_\Omega\cap\Omega$, $\HST_{\beta}^1\proves \forall\rho[G_\beta(\rho)\rightarrow \Prog (G_\beta^\rho)]$ and for every $m<\omega$, $\HST_{\beta}^{m+1}\proves G_\beta(\Omega^{\bar\beta}\cdot\bar m)$.
 \end{proposition}
 The proof of \cref{lem:Fbetawellordering1} is by transfinite induction on
 $\beta$ and requires, for a given $\beta$, the following technical lemmata.
 \begin{lemma}\label{lem:Fbetatech1}
- $\HST_\beta^1\proves \forall\rho[G_\beta(\rho)\rightarrow \forall\eta<\bar\beta\,\T_\beta(\gn{\Prog G_{\dot\eta}^{\dot\rho}})]$.
+ $\HST_\beta^1\proves \forall\rho[G_\beta(\rho)\rightarrow \forall\eta<\bar\beta\,\T_\beta(\gn{\Prog (G_{\dot\eta}^{\dot\rho})})]$.
 \end{lemma}
 \begin{lemma}\label{lem:Fbetatech2}
-  $\HST_\beta^1\proves \T_\beta(\gn{\forall\tau\forall\eta<\bar\beta\,[F_0(\tau)\land\T_0(\gn{\Prog G_{\dot\eta}^{\dot\tau}}) \rightarrow
+  $\HST_\beta^1\proves \T_\beta(\gn{\forall\tau\forall\eta<\bar\beta\,[F_0(\tau)\land\T_0(\gn{\Prog (G_{\dot\eta}^{\dot\tau})}) \rightarrow
   F_0(\tau+\Omega^{\eta})]})$.
 \end{lemma}
 \begin{proof}
@@ -1852,7 +1982,7 @@ uniform in $\eta<\beta$.
 
 In order to establish \cref{lem:Fbetatech2}, argue within $\HST_\beta^1$ \emph{under} the scope of a $\T_\beta$ predicate. Fix $\eta<\bar\beta$, some arbitrary $\tau$ and assume
 \begin{gather}
-  \T_0(\gn{\Prog G_{\dot \eta}^{\dot\tau}}),\label{eqn:Fbetatech2}\\
+  \T_0(\gn{\Prog (G_{\dot \eta}^{\dot\tau})}),\label{eqn:Fbetatech2}\\
   F_0(\tau).\label{eqn:Fbetatech3}
 \end{gather}
 \eqref{eqn:Fbetatech2} entails
@@ -1875,7 +2005,7 @@ $\sigma<\tau$, \eqref{eqn:Fbetatech3} implies $\wo_0(\sigma^*)\rightarrow
 \begin{proof}[of \cref{lem:Fbetawellordering1}]
 Argue informally within $\HST_\beta^1$. Fix some arbitrary $\rho$ and assume $G_\beta(\rho)$.
 \Cref{lem:Fbetatech1} yields $\forall\eta<\bar\beta\,\T_\beta(\gn{\Prog
-G_\eta^\rho})$ from which, using T$^-_\beta$-Rep and \cref{lem:Fbetatech2},
+(G_\eta^\rho)})$ from which, using T$^-_\beta$-Rep and \cref{lem:Fbetatech2},
 one obtains
   $\forall\eta<\bar\beta\,\T_\beta(\gn{F_0(\rho+\Omega^\eta)})$,
 that is, $\forall\eta<\bar\beta\,G_\beta(\rho+\Omega^\eta)$. Therefore
@@ -1891,12 +2021,12 @@ If $\mu$ is a limit ordinal, $\forall\nu<\mu\,G_\beta^\rho(\nu)$ and
 from which $\T_\beta(\gn{F_0(\dot\rho+\Omega^{\dot\eta}\cdot\dot\mu)})$ is easily
 deduced. Thus \eqref{eqn:Fbetawellordering11} entails
 \begin{align*}
- \HST_\beta^1\proves\forall\rho[G_\beta(\rho)\rightarrow \Prog G_\beta^\rho].
+ \HST_\beta^1\proves\forall\rho[G_\beta(\rho)\rightarrow \Prog( G_\beta^\rho)].
 \end{align*}
 
 The second half of \cref{lem:Fbetawellordering1} is proved by induction on $m<\omega$. The case $m=0$ holds since $F_0(\bar0)$ is vacuously true. If $m=n+1$ and $\HST_\beta^m\proves G_\beta(\Omega^{\bar\beta}\cdot\bar n)$,
 \begin{align*}
- \HST_\beta^{m+1}\proves \T_\beta(\gn{\Prog G_\beta^{\Omega^{\bar\beta}\cdot\bar n}}),
+ \HST_\beta^{m+1}\proves \T_\beta(\gn{\Prog (G_\beta^{\Omega^{\bar\beta}\cdot\bar n})}),
 \end{align*}
 so $\HST_\beta^{m+1}\proves G_\beta(\Omega^{\bar\beta}\cdot\bar m)$ by an argument similar to \cref{lem:Fbetatech2}.
 %
@@ -1919,13 +2049,13 @@ we can ensure that this is the case. %\footnote{\emph{Cf.}~with \cref{prop:theta
 For every $\beta<\vartheta\Omega^\Omega$, the base case, $m=0$, is immediate
 since $\HST_\beta^0$ extends $\PA$ formulated in the language $\L_\kappa$.
 Otherwise $m=n+1>0$ and \cref{lem:Fbetawellordering1} implies $\HST_\beta^m\proves\Prog
-G_\beta^{\Omega^{\bar\beta}\cdot\bar n}$. Then, given $\HST_\beta^m\proves
+(G_\beta^{\Omega^{\bar\beta}\cdot\bar n})$. Then, given $\HST_\beta^m\proves
 \wo_\beta(\bar \alpha)$, we obtain $\HST_\beta^m\proves
 \forall\eta<\bar\beta\,G_\beta(\Omega^{\bar\beta}\cdot\bar
 n+\Omega^{\bar\eta}\cdot\bar\alpha)$, and so
 \begin{align*}
-  \HST_\beta^m\proves\forall\eta<\bar\beta\,\wo_\beta\vartheta(\Omega^{\bar \beta}\cdot\bar
-  n+\Omega^{\bar \eta}\cdot\bar\alpha))),
+  \HST_\beta^m\proves\forall\eta<\bar\beta\,\wo_\beta(\vartheta(\Omega^{\bar \beta}\cdot\bar
+  n+\Omega^{\bar \eta}\cdot\bar\alpha)),
 \end{align*}
 by unravelling the definition of $G_\beta$.
 
@@ -1941,15 +2071,15 @@ $\alpha<\sigma_k$ for some $k$. Thus, suppose
 \end{gather*}
 There are two cases to consider.
 \begin{enumerate}
- \item $\xi<\Omega^{\beta}\cdot m$ and $\xi^*<\vartheta(\Omega^{\beta}\cdot m)$; or
- \item $\xi>\Omega^{\beta}\cdot m$ but $\vartheta\xi\le(\Omega^{\beta}\cdot m)^*$.
+ \item[(a)] $\xi<\Omega^{\beta}\cdot m$ and $\xi^*<\vartheta(\Omega^{\beta}\cdot m)$; or
+ \item[(b)] $\xi>\Omega^{\beta}\cdot m$ but $\vartheta\xi\le(\Omega^{\beta}\cdot m)^*$.
 \end{enumerate}
-a) entails $\xi^*<\sigma_k$ for some $k$ by the induction hypothesis
+(a) entails $\xi^*<\sigma_k$ for some $k$ by the induction hypothesis
 (since $\xi^*$ has rank strictly smaller than $\alpha$). Then
 $\xi<\Omega^{\beta}\cdot m+\Omega^\eta\cdot\sigma_k$ for some $\eta<\beta$, whence
 $\alpha<\vartheta(\Omega^{\beta}\cdot n+\Omega^\eta\cdot\sigma_k)\le\sigma_{k+1}$.
 
-To manage b) one utilises $\beta<\vartheta(\Omega^\Omega)$. Since
+To manage (b) one utilises $\beta<\vartheta(\Omega^\Omega)$. Since
 $\vartheta\xi\le\beta^*$ and $(\Omega^\Omega)^*=0$, we have
 \begin{align*}
   \vartheta\xi<\vartheta(\Omega^\Omega)
@@ -2666,6 +2796,7 @@ by \cref{prop:thetaitems3}.
 	\bibitem{BFPS81} Buccholz, Feferman, Pohlers and Sieg.
 	\bibitem{Fef91} Feferman, Solomon. Reflecting on Incompleteness, (1991)
 	\bibitem{RW93} Rathjen and Weiermann, \dots\ Kruskal's Theorem \dots.
+	\bibitem{Gentzen1943} Gentzen
 	\bibitem{XX} Some other citation.
 \end{thebibliography}
 
